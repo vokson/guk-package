@@ -42,7 +42,7 @@ const HUMIDITY_DESCRIPTION = [] - массив описаний относите
 * __density__ - марка бетона по средней плотности;
 #### Example
 
-```html
+```javascript
 var NORM = require('module_name');
 
 NORM.table_06_1(1)
@@ -58,7 +58,7 @@ NORM.table_06_1(NORM.LIGHT_CONCRETE, 'D900')
 * __type__ - тип бетона;
 #### Example
 
-```html
+```javascript
 NORM.table_06_2(NORM.LIGHT_CONCRETE)
 // ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2']
 ```
@@ -69,7 +69,7 @@ NORM.table_06_2(NORM.LIGHT_CONCRETE)
 * __type__ - тип бетона;
 #### Example
 
-```html
+```javascript
 NORM.table_06_3(NORM.LIGHT_CONCRETE)
 // ['F25', 'F35', 'F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500']
 ```
@@ -80,7 +80,7 @@ NORM.table_06_3(NORM.LIGHT_CONCRETE)
 * __type__ - тип бетона;
 #### Example
 
-```html
+```javascript
 NORM.table_06_4(NORM.LIGHT_CONCRETE)
 // ['W2', 'W4', 'W6', 'W8', 'W10', 'W12']
 ```
@@ -91,7 +91,7 @@ NORM.table_06_4(NORM.LIGHT_CONCRETE)
 * __type__ - тип бетона;
 #### Example
 
-```html
+```javascript
 NORM.table_06_5(NORM.POROUS_CONCRETE)
 // ['D800', 'D900', 'D1000', 'D1100', 'D1200', 'D1300', 'D1400']
 ```
@@ -102,7 +102,7 @@ NORM.table_06_5(NORM.POROUS_CONCRETE)
 * __type__ - тип бетона;
 #### Example
 
-```html
+```javascript
 NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
 // ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4']
 ```
@@ -114,7 +114,7 @@ NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
 * __class__ - класс бетона по прочности на сжатие;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
 #### Example
-```html
+```javascript
 NORM.table_06_7(NORM.HEAVY_CONCRETE, 'B25')
 // [18.5, 1.55]
 
@@ -129,7 +129,7 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true)
 * __class__ - класс бетона по прочности на сжатие;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 #### Example
-```html
+```javascript
 NORM.table_06_8(NORM.HEAVY_CONCRETE, 'B25')
 // [14.5, 1.05]
 
@@ -143,7 +143,7 @@ NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на осевое растяжение;
 #### Example
-```html
+```javascript
 NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4')
 // 1.85
 NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
