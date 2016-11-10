@@ -42,7 +42,7 @@ const HUMIDITY_DESCRIPTION = [] - массив описаний относите
 * __density__ - марка бетона по средней плотности;
 #### Example
 
-```html
+```javascript
 var NORM = require('module_name');
 
 NORM.table_06_1(1)
