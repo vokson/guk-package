@@ -33,6 +33,16 @@ const MIDDLE_HUMIDITY = 1 - 40-75%
 const LOW_HUMIDITY = 2 - Ниже 40%
 
 const HUMIDITY_DESCRIPTION = [] - массив описаний относительной влажности
+
+const SHORT_TERM_LOAD = 0 - Кратковременная нагрузка
+const LONG_TERM_LOAD = 1 - Длительная нагрузка
+
+export const LOADS_DESCRIPTION = [] - массив описаний типов нагрузок
+
+export const COMPRESSION = 0 - Сжатие
+export const TENSION = 1 - Растяжение
+
+export const STRESS_TYPE_DESCRIPTION = [] - массив описаний типов напряженного состояния
 ```
 
 ## Функции
@@ -148,4 +158,21 @@ NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4')
 // 1.85
 NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 // null
+```
+---
+*[number]* __table_06_10__ (*int* __type__, *string* __class__, *int* __humidity__, *int* __stressCondition__)
+
+Возвращает массив относительных деформаций бетона из Таблицы 6.10 (МПа)
+
+**[Eb0; Eb2; Eb1,red]** - при сжатии, **[Ebt0; Ebt2; Ebt1,red]** - при растяжении
+* __type__ - тип бетона;
+* __class__ - класс бетона по прочности на осевое растяжение;
+* __humidity__ - группа относительной влажности;
+* __stressCondition__ - вид напряженного состояния;
+#### Example
+```javascript
+NORM.table_06_10(NORM.HEAVY_CONCRETE, 'B80', NORM.HIGH_HUMIDITY, NORM.COMPRESSION)
+// [0.003, 0.0038, 0.0024]
+NORM.table_06_10(NORM.PRESTRESSED_CONCRETE, 'B20', NORM.LOW_HUMIDITY, NORM.TENSION)
+// [0.00028, 0.00036, 0.00026]
 ```

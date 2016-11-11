@@ -9,3 +9,4 @@ export {default as table_06_6} from './components/SP63.13330.2012/Table_06_6';
 export {default as table_06_7} from './components/SP63.13330.2012/Table_06_7';
 export {default as table_06_8} from './components/SP63.13330.2012/Table_06_8';
 export {default as table_06_9} from './components/SP63.13330.2012/Table_06_9';
+export {default as table_06_10} from './components/SP63.13330.2012/Table_06_10';

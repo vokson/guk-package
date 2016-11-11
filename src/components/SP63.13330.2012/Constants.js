@@ -31,3 +31,19 @@ export const HUMIDITY_DESCRIPTION = [
     '40-75%',
     'Ниже 40%',
 ];
+
+export const SHORT_TERM_LOAD = 0;
+export const LONG_TERM_LOAD = 1;
+
+export const LOADS_DESCRIPTION = [
+    'Кратковременная',
+    'Длительная',
+];
+
+export const COMPRESSION = 0;
+export const TENSION = 1;
+
+export const STRESS_TYPE_DESCRIPTION = [
+    'Сжатие',
+    'Растяжение',
+];
