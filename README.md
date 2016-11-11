@@ -66,8 +66,8 @@ NORM.table_06_1(NORM.LIGHT_CONCRETE, 'D900')
 
 Возвращает массив классов бетона на растяжение из Таблицы 6.2
 * __type__ - тип бетона;
-#### Example
 
+#### Example
 ```javascript
 NORM.table_06_2(NORM.LIGHT_CONCRETE)
 // ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2']
@@ -77,6 +77,7 @@ NORM.table_06_2(NORM.LIGHT_CONCRETE)
 
 Возвращает массив марок бетона по морозостойкости из Таблицы 6.3
 * __type__ - тип бетона;
+
 #### Example
 
 ```javascript
@@ -88,6 +89,7 @@ NORM.table_06_3(NORM.LIGHT_CONCRETE)
 
 Возвращает массив марок бетона по водонепроницаемости из Таблицы 6.4
 * __type__ - тип бетона;
+
 #### Example
 
 ```javascript
@@ -99,6 +101,7 @@ NORM.table_06_4(NORM.LIGHT_CONCRETE)
 
 Возвращает массив марок бетона по средней плотности из Таблицы 6.5
 * __type__ - тип бетона;
+
 #### Example
 
 ```javascript
@@ -110,6 +113,7 @@ NORM.table_06_5(NORM.POROUS_CONCRETE)
 
 Возвращает массив марок бетона по самонапряжению из Таблицы 6.6
 * __type__ - тип бетона;
+
 #### Example
 
 ```javascript
@@ -123,7 +127,9 @@ NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на сжатие;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
+
 #### Example
+
 ```javascript
 NORM.table_06_7(NORM.HEAVY_CONCRETE, 'B25')
 // [18.5, 1.55]
@@ -138,7 +144,9 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на сжатие;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
+
 #### Example
+
 ```javascript
 NORM.table_06_8(NORM.HEAVY_CONCRETE, 'B25')
 // [14.5, 1.05]
@@ -152,7 +160,9 @@ NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true)
 Возвращает расчетное сопротивление бетона **Rbt** из Таблицы 6.9 (МПа)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на осевое растяжение;
+
 #### Example
+
 ```javascript
 NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4')
 // 1.85
@@ -169,7 +179,9 @@ NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 * __class__ - класс бетона по прочности на осевое растяжение;
 * __humidity__ - группа относительной влажности;
 * __stressCondition__ - вид напряженного состояния;
+
 #### Example
+
 ```javascript
 NORM.table_06_10(NORM.HEAVY_CONCRETE, 'B80', NORM.HIGH_HUMIDITY, NORM.COMPRESSION)
 // [0.003, 0.0038, 0.0024]
