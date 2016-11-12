@@ -1,4 +1,5 @@
 import * as CONST from './Constants';
+import * as FUNC from './Common_Functions';
 import {default as class_function} from './Table_06_1';
 
 const VALUES = [
@@ -15,8 +16,8 @@ const VALUES = [
 ];
 
 var highStrengthFactor = function (classname) {
-    var s = classname.substr(1).replace(',', '.');
-    var value = parseFloat(s);
+
+    let value = FUNC.getGradeNumberValue(classname);
 
     if (value >= 70) {
         return (270 - value) / 210;

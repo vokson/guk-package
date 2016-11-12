@@ -2,7 +2,7 @@ import * as CONST from './Constants';
 import * as FUNC from './Common_Functions';
 import {default as class_function} from './Table_06_1';
 
-const MULTIPLICATOR = 1000;
+const MULTIPLIER = 1000;
 
 const HEAVY_CONCRETE_Eb = {
     'B3,5': 9.5,
@@ -145,7 +145,7 @@ function isValueInObject(object, classname, density) {
 }
 
 function getUpDownDensities(density) {
-    let density_number = FUNC.getGradeNumberValue(density, 1);
+    let density_number = FUNC.getGradeNumberValue(density);
     return ['D' + (density_number + 100), 'D' + (density_number - 100)];
 
 }
@@ -157,34 +157,34 @@ export default function (type = null, classname = null, density = null) {
     }
 
     if (type === CONST.HEAVY_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[classname] * MULTIPLICATOR;
+        return HEAVY_CONCRETE_Eb[classname] * MULTIPLIER;
     }
 
     if (type === CONST.PRESTRESSED_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[classname] * (0.56 + 0.006 * FUNC.getGradeNumberValue(classname, 1)) * MULTIPLICATOR;
+        return HEAVY_CONCRETE_Eb[classname] * (0.56 + 0.006 * FUNC.getGradeNumberValue(classname, 1)) * MULTIPLIER;
     }
 
     if (type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[classname] * MULTIPLICATOR;
+        return FINE_GRADE_A_CONCRETE_Eb[classname] * MULTIPLIER;
     }
 
     if (type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[classname] * 0.89 * MULTIPLICATOR;
+        return FINE_GRADE_A_CONCRETE_Eb[classname] * 0.89 * MULTIPLIER;
     }
 
     if (type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B) {
-        return FINE_GRADE_B_CONCRETE_Eb[classname] * MULTIPLICATOR;
+        return FINE_GRADE_B_CONCRETE_Eb[classname] * MULTIPLIER;
     }
 
     // *******************
 
 
     if (type === CONST.CELL_AUTOCLAVE_CONCRETE && isValueInObject(CELL_CONCRETE_Eb, classname, density)) {
-        return CELL_CONCRETE_Eb[density][classname] * MULTIPLICATOR;
+        return CELL_CONCRETE_Eb[density][classname] * MULTIPLIER;
     }
 
     if (type === CONST.CELL_CONCRETE && isValueInObject(CELL_CONCRETE_Eb, classname, density)) {
-        return CELL_CONCRETE_Eb[density][classname] * 0.8 * MULTIPLICATOR;
+        return CELL_CONCRETE_Eb[density][classname] * 0.8 * MULTIPLIER;
     }
 
     // ******************* INTERPOLATION OF DENSITY FOR LIGHT CONCRETE **************************
@@ -192,14 +192,14 @@ export default function (type = null, classname = null, density = null) {
     if (type === CONST.LIGHT_CONCRETE || type === CONST.POROUS_CONCRETE) {
 
         if (isValueInObject(LIGHT_CONCRETE_Eb, classname, density)) {
-            return LIGHT_CONCRETE_Eb[density][classname] * MULTIPLICATOR;
+            return LIGHT_CONCRETE_Eb[density][classname] * MULTIPLIER;
         }
 
         let [density_up, density_down] = getUpDownDensities(density);
 
         if (isValueInObject(LIGHT_CONCRETE_Eb, classname, density_up) && isValueInObject(LIGHT_CONCRETE_Eb, classname, density_down)) {
 
-            return (LIGHT_CONCRETE_Eb[density_down][classname] + LIGHT_CONCRETE_Eb[density_up][classname]) / 2 * MULTIPLICATOR;
+            return (LIGHT_CONCRETE_Eb[density_down][classname] + LIGHT_CONCRETE_Eb[density_up][classname]) / 2 * MULTIPLIER;
         }
     }
 
