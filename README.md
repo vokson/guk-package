@@ -166,6 +166,7 @@ NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true)
 ```javascript
 NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4')
 // 1.85
+
 NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 // null
 ```
@@ -185,6 +186,23 @@ NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 ```javascript
 NORM.table_06_10(NORM.HEAVY_CONCRETE, 'B80', NORM.HIGH_HUMIDITY, NORM.COMPRESSION)
 // [0.003, 0.0038, 0.0024]
+
 NORM.table_06_10(NORM.PRESTRESSED_CONCRETE, 'B20', NORM.LOW_HUMIDITY, NORM.TENSION)
 // [0.00028, 0.00036, 0.00026]
+```
+---
+*number* __table_06_11__ (*int* __type__, *string* __class__, *string* __density = null__)
+
+Возвращает начальный модуль упругости **Eb** бетона из Таблицы 6.11 (МПа)
+* __type__ - тип бетона;
+* __class__ - класс бетона по прочности на сжатие;
+* __density__ - марка бетона по средней плотности;
+
+#### Example
+
+```javascript
+NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15')
+// 24000
+NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900')
+// 4500
 ```
