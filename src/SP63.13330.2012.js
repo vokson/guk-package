@@ -12,3 +12,4 @@ export {default as table_06_8} from './components/SP63.13330.2012/Table_06_8';
 export {default as table_06_9} from './components/SP63.13330.2012/Table_06_9';
 export {default as table_06_10} from './components/SP63.13330.2012/Table_06_10';
 export {default as table_06_11} from './components/SP63.13330.2012/Table_06_11';
+export {default as table_06_12} from './components/SP63.13330.2012/Table_06_12';

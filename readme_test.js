@@ -48,3 +48,6 @@ console.log(NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15'));
 // 24000
 console.log(NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900'));
 // 4500
+
+console.log(NORM.table_06_12('B15', NORM.HIGH_HUMIDITY));
+// 2.4

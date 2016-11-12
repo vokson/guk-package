@@ -206,3 +206,17 @@ NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15')
 NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900')
 // 4500
 ```
+---
+*number* __table_06_12__ (*string* __class__, *int* __humidity__)
+
+Возвращает коэффициент ползучести бетона из Таблицы 6.12 (МПа)
+
+* __class__ - класс бетона по прочности на осевое растяжение;
+* __humidity__ - группа относительной влажности;
+
+#### Example
+
+```javascript
+NORM.table_06_12('B15', NORM.HIGH_HUMIDITY)
+// 2.4
+```
