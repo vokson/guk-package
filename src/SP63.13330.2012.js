@@ -1,6 +1,8 @@
 export * from './components/SP63.13330.2012/Constants';
 export * from './components/SP63.13330.2012/Common_Functions';
 
+export {default as formula_06_3} from './components/SP63.13330.2012/Formula_06_3';
+
 export {default as table_06_1} from './components/SP63.13330.2012/Table_06_1';
 export {default as table_06_2} from './components/SP63.13330.2012/Table_06_2';
 export {default as table_06_3} from './components/SP63.13330.2012/Table_06_3';

@@ -46,7 +46,7 @@ export const STRESS_TYPE_DESCRIPTION = [] - массив описаний тип
 ```
 
 ## Функции
-*[string]* __table_06_1__ (*int* __type__, *string* __density__)
+*[string]* __table_06_1__ (*number* __type__, *string* __density__)
 Возвращает массив классов бетона на сжатие из Таблицы 6.1
 * __type__ - тип бетона;
 * __density__ - марка бетона по средней плотности;
@@ -62,7 +62,7 @@ NORM.table_06_1(NORM.LIGHT_CONCRETE, 'D900')
 // ['B2,5', 'B3,5', 'B5', 'B7,5']
 ```
 ---
-*[string]* __table_06_2__ (*int* __type__)
+*[string]* __table_06_2__ (*number* __type__)
 
 Возвращает массив классов бетона на растяжение из Таблицы 6.2
 * __type__ - тип бетона;
@@ -73,7 +73,7 @@ NORM.table_06_2(NORM.LIGHT_CONCRETE)
 // ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2']
 ```
 ---
-*[string]* __table_06_3__ (*int* __type__)
+*[string]* __table_06_3__ (*number* __type__)
 
 Возвращает массив марок бетона по морозостойкости из Таблицы 6.3
 * __type__ - тип бетона;
@@ -85,7 +85,7 @@ NORM.table_06_3(NORM.LIGHT_CONCRETE)
 // ['F25', 'F35', 'F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500']
 ```
 ---
-*[string]* __table_06_4__ (*int* __type__)
+*[string]* __table_06_4__ (*number* __type__)
 
 Возвращает массив марок бетона по водонепроницаемости из Таблицы 6.4
 * __type__ - тип бетона;
@@ -97,7 +97,7 @@ NORM.table_06_4(NORM.LIGHT_CONCRETE)
 // ['W2', 'W4', 'W6', 'W8', 'W10', 'W12']
 ```
 ---
-*[string]* __table_06_5__ (*int* __type__)
+*[string]* __table_06_5__ (*number* __type__)
 
 Возвращает массив марок бетона по средней плотности из Таблицы 6.5
 * __type__ - тип бетона;
@@ -109,7 +109,7 @@ NORM.table_06_5(NORM.POROUS_CONCRETE)
 // ['D800', 'D900', 'D1000', 'D1100', 'D1200', 'D1300', 'D1400']
 ```
 ---
-*[string]* __table_06_6__ (*int* __type__)
+*[string]* __table_06_6__ (*number* __type__)
 
 Возвращает массив марок бетона по самонапряжению из Таблицы 6.6
 * __type__ - тип бетона;
@@ -121,7 +121,7 @@ NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
 // ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4']
 ```
 ---
-*[number]* __table_06_7__ (*int* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[number]* __table_06_7__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)
 * __type__ - тип бетона;
@@ -138,7 +138,7 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true)
 // [11.0, 0.88]
 ```
 ---
-*[number]* __table_06_8__ (*int* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[number]* __table_06_8__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив расчетных сопротивлений бетона **[Rb ; Rbt]** из Таблицы 6.8 (МПа)
 * __type__ - тип бетона;
@@ -155,7 +155,7 @@ NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true)
 // [8.5, 0.60]
 ```
 ---
-*[number]* __table_06_9__ (*int* __type__, *string* __class__)
+*[number]* __table_06_9__ (*number* __type__, *string* __class__)
 
 Возвращает расчетное сопротивление бетона **Rbt** из Таблицы 6.9 (МПа)
 * __type__ - тип бетона;
@@ -171,7 +171,7 @@ NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 // null
 ```
 ---
-*[number]* __table_06_10__ (*int* __type__, *string* __class__, *int* __humidity__, *int* __stressCondition__)
+*[number]* __table_06_10__ (*number* __type__, *string* __class__, *number* __humidity__, *number* __stressCondition__)
 
 Возвращает массив относительных деформаций бетона из Таблицы 6.10 (МПа)
 
@@ -191,7 +191,7 @@ NORM.table_06_10(NORM.PRESTRESSED_CONCRETE, 'B20', NORM.LOW_HUMIDITY, NORM.TENSI
 // [0.00028, 0.00036, 0.00026]
 ```
 ---
-*number* __table_06_11__ (*int* __type__, *string* __class__, *string* __density = null__)
+*number* __table_06_11__ (*number* __type__, *string* __class__, *string* __density = null__)
 
 Возвращает начальный модуль упругости **Eb** бетона из Таблицы 6.11 (МПа)
 * __type__ - тип бетона;
@@ -207,7 +207,7 @@ NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900')
 // 4500
 ```
 ---
-*number* __table_06_12__ (*string* __class__, *int* __humidity__)
+*number* __table_06_12__ (*string* __class__, *number* __humidity__)
 
 Возвращает коэффициент ползучести бетона из Таблицы 6.12 (МПа)
 
@@ -219,4 +219,21 @@ NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900')
 ```javascript
 NORM.table_06_12('B15', NORM.HIGH_HUMIDITY)
 // 2.4
+```
+---
+*number* __formula_06_3__ (*number* __Eb__, *number* __Fi_b,cr__)
+
+Возвращает значение модуля деформации бетона при продолжительном действии нагрузки, вычисленное по Формуле 6.3.
+
+* __Eb__ - начальный модуль упругости бетона;
+* __Fi_b,cr__ - коэффициент ползучести бетона;
+#### Example
+
+```javascript
+var Eb = NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15');
+// 24000
+var Fi = NORM.table_06_12('B15', NORM.HIGH_HUMIDITY);
+// 2.4
+NORM.formula_06_3(Eb, Fi)
+// 7058.8235
 ```

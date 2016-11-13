@@ -51,3 +51,13 @@ console.log(NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900'));
 
 console.log(NORM.table_06_12('B15', NORM.HIGH_HUMIDITY));
 // 2.4
+
+
+var Eb = NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15');
+console.log(Eb);
+// 24000
+var Fi = NORM.table_06_12('B15', NORM.HIGH_HUMIDITY);
+console.log((Fi));
+// 2.4
+console.log(NORM.formula_06_3(Eb, Fi));
+// 7058.8235
