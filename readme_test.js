@@ -61,3 +61,25 @@ console.log((Fi));
 // 2.4
 console.log(NORM.formula_06_3(Eb, Fi));
 // 7058.8235
+
+console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD));
+// [
+// [ -0.0035, -8.5 ],
+// [ -0.002, -8.5 ],
+// [ -0.0002125, -5.1 ],
+// [ 0, 0 ],
+// [ 0.00001875, 0.45],
+// [ 0.0001, 0.75 ],
+// [ 0.00015, 0.75 ]
+// ]
+
+console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
+// [
+// [ -0.0056, -8.5 ],
+// [ -0.004, -8.5 ],
+// [ -0.0015169230769230767, -5.1 ],
+// [ 0, 0 ],
+// [ 0.00010707692307692309, 0.36 ],
+// [ 0.00028, 0.6 ],
+// [ 0.00036, 0.6 ]
+// ]

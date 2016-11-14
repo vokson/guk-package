@@ -237,3 +237,38 @@ var Fi = NORM.table_06_12('B15', NORM.HIGH_HUMIDITY);
 NORM.formula_06_3(Eb, Fi)
 // 7058.8235
 ```
+---
+*[[number, number]]* __get3LinearDiagram__ (*number* __type__, *string* __class__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
+
+Возвращает 3-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку.
+
+* __type__ - тип бетона;
+* __class__ - класс бетона по прочности на сжатие;
+* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+* __humidity__ - группа относительной влажности (только для длительных нагрузок);
+* __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
+#### Example
+
+```javascript
+NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD)
+// [
+// [ -0.0035, -8.5 ],
+// [ -0.002, -8.5 ],
+// [ -0.0002125, -5.1 ],
+// [ 0, 0 ],
+// [ 0.00001875, 0.45],
+// [ 0.0001, 0.75 ],
+// [ 0.00015, 0.75 ]
+// ]
+
+NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true)
+// [
+// [ -0.0056, -8.5 ],
+// [ -0.004, -8.5 ],
+// [ -0.0015169230769230767, -5.1 ],
+// [ 0, 0 ],
+// [ 0.00010707692307692309, 0.36 ],
+// [ 0.00028, 0.6 ],
+// [ 0.00036, 0.6 ]
+// ]
+```
