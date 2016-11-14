@@ -1,6 +1,7 @@
 export * from './components/SP63.13330.2012/Constants';
 export * from './components/SP63.13330.2012/Common_Functions';
 
+export {default as get2LinearDiagram} from './components/SP63.13330.2012/get2LinearDiagram';
 export {default as get3LinearDiagram} from './components/SP63.13330.2012/get3LinearDiagram';
 
 export {default as formula_06_3} from './components/SP63.13330.2012/Formula_06_3';
