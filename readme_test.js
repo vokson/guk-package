@@ -23,14 +23,12 @@ console.log(NORM.table_06_6(NORM.PRESTRESSED_CONCRETE));
 
 console.log(NORM.table_06_7(NORM.HEAVY_CONCRETE, 'B25'));
 // [18.5, 1.55]
-
-console.log(NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true));
+console.log(NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true));
 // [11.0, 0.88]
 
 console.log(NORM.table_06_8(NORM.HEAVY_CONCRETE, 'B25'));
 // [14.5, 1.05]
-
-console.log(NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true));
+console.log(NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true));
 // [8.5, 0.60]
 
 console.log(NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4'));

@@ -183,11 +183,13 @@ NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
 // 0.95
 ```
 ---
-*[number]* __table_06_7__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[number]* __table_06_7__ (*number* __type__, *string* __class__, *number* __gamma_bi = 1.0__, *number* __gamma_bti = 1.0__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на сжатие;
+* __gamma_bi__ - коэффициент, понижающий **Rb**, > 0;
+* __gamma_bti__ - коэффициент, понижающий **Rbt**, > 0;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
 
 #### Example
@@ -196,15 +198,17 @@ NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
 NORM.table_06_7(NORM.HEAVY_CONCRETE, 'B25')
 // [18.5, 1.55]
 
-NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true)
+NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
 // [11.0, 0.88]
 ```
 ---
-*[number]* __table_06_8__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[number]* __table_06_8__ (*number* __type__, *string* __class__, *number* __gamma_bi = 1.0__, *number* __gamma_bti = 1.0__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив расчетных сопротивлений бетона **[Rb ; Rbt]** из Таблицы 6.8 (МПа)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на сжатие;
+* __gamma_bi__ - коэффициент, понижающий **Rb**, > 0;
+* __gamma_bti__ - коэффициент, понижающий **Rbt**, > 0;
 * __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 
 #### Example
@@ -213,7 +217,7 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', true)
 NORM.table_06_8(NORM.HEAVY_CONCRETE, 'B25')
 // [14.5, 1.05]
 
-NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', true)
+NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
 // [8.5, 0.60]
 ```
 ---
