@@ -121,6 +121,43 @@ NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
 // ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4']
 ```
 ---
+*number* __concreteGamma_b1__ (*number* __loadType__, *number* __type__)
+
+Возвращает коэффициент гамма_b1 для **Rb, Rbt** из п.6.1.12 а)
+* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+* __type__ - тип бетона;
+
+#### Example
+
+```javascript
+NORM.concreteGamma_b1(NORM.LONG_TERM_LOAD, NORM.CELL_CONCRETE)
+// 0.85
+```
+---
+*number* __concreteGamma_b2__ (*boolean* __isOnlyConcrete__)
+
+Возвращает коэффициент гамма_b2 для **Rb** из п.6.1.12 б)
+* __isOnlyConcrete__ - конструкция состоит только из бетона?;
+
+#### Example
+
+```javascript
+NORM.concreteGamma_b2(true)
+// 0.9
+```
+---
+*number* __concreteGamma_b3__ (*boolean* __isHeightMoreThanLimit__)
+
+Возвращает коэффициент гамма_b3 для **Rb** из п.6.1.12 в)
+* __isHeightMoreThanLimit__ - высота слоя бетонирования более 1.5м?;
+
+#### Example
+
+```javascript
+NORM.concreteGamma_b3(true)
+// 0.85
+```
+---
 *[number]* __table_06_7__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)

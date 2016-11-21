@@ -99,3 +99,12 @@ console.log(NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 
 // [ 0.00026, 0.6 ],
 // [ 0.00036, 0.6 ] 
 // ]
+
+console.log(NORM.concreteGamma_b1(NORM.LONG_TERM_LOAD, NORM.CELL_CONCRETE));
+// 0.85
+
+console.log(NORM.concreteGamma_b2(true));
+// 0.9
+
+console.log(NORM.concreteGamma_b3(true));
+// 0.85

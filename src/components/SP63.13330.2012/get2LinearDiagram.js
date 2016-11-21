@@ -47,13 +47,13 @@ export default function (type = null, classname = null, loadCondition = null, hu
         return null;
     }
 
-    return [
+    return new Array (
         [-eb2, -Rb],
         [-eb1, -Rb],
         [0, 0],
         [ebt1, Rbt],
         [ebt2, Rbt]
-    ];
+    );
 }
 
 

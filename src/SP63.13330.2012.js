@@ -1,6 +1,9 @@
 export * from './components/SP63.13330.2012/Constants';
 export * from './components/SP63.13330.2012/Common_Functions';
 
+export {default as concreteGamma_b1} from './components/SP63.13330.2012/concreteGamma_b1';
+export {default as concreteGamma_b2} from './components/SP63.13330.2012/concreteGamma_b2';
+export {default as concreteGamma_b3} from './components/SP63.13330.2012/concreteGamma_b3';
 export {default as get2LinearDiagram} from './components/SP63.13330.2012/get2LinearDiagram';
 export {default as get3LinearDiagram} from './components/SP63.13330.2012/get3LinearDiagram';
 
