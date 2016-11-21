@@ -158,6 +158,31 @@ NORM.concreteGamma_b3(true)
 // 0.85
 ```
 ---
+*number* __concreteGamma_b4__ (*number* __type__, *number* __humidity__)
+
+Возвращает коэффициент гамма_b4 для **Rb** из п.6.1.12 г)
+* __type__ - тип бетона;
+* __humidity__ - относительная влажность в %;
+
+#### Example
+
+```javascript
+NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
+// 0.95
+```
+---
+*number* __concreteGamma_b5__ (*boolean* __isColdTemperatureMoreThanMinus40__)
+
+Возвращает коэффициент гамма_b5 из п.6.1.12
+* __isColdTemperatureMoreThanMinus40__ - расчетная температура наружного воздуха в холодный период минус 40 и выше;
+
+#### Example
+
+```javascript
+NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
+// 0.95
+```
+---
 *[number]* __table_06_7__ (*number* __type__, *string* __class__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)

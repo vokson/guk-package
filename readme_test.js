@@ -108,3 +108,10 @@ console.log(NORM.concreteGamma_b2(true));
 
 console.log(NORM.concreteGamma_b3(true));
 // 0.85
+
+console.log(NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15));
+// 0.95
+
+console.log(NORM.concreteGamma_b5(true));
+// 1.0
+
