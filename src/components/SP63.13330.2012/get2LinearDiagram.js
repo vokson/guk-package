@@ -4,7 +4,7 @@ import {default as limit_strength_function} from './Table_06_8';
 import {default as strain_function} from './Table_06_10';
 
 
-export default function (type = null, classname = null, loadCondition = null, humidity = null, isReductionFactorToBeApplied = false) {
+export default function (type = null, classname = null, Ybi = 1.0, Ybti = 1.0, loadCondition = null, humidity = null, isReductionFactorToBeApplied = false) {
 
     if (!isTypeCorrect(type)) {
         return null;
@@ -12,7 +12,7 @@ export default function (type = null, classname = null, loadCondition = null, hu
 
     let Rb = null, Rbt = null, eb1 = null, ebt1 = null, eb2 = null, ebt2 = null;
 
-    let array_Rb_Rbt = limit_strength_function(type, classname, isReductionFactorToBeApplied);
+    let array_Rb_Rbt = limit_strength_function(type, classname, Ybi, Ybti, isReductionFactorToBeApplied);
 
     if (array_Rb_Rbt === null) {
         return null;

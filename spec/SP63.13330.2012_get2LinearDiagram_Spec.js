@@ -21,7 +21,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             [0.00015, 1.05]
         ], 6);
 
-        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B25', NORM.SHORT_TERM_LOAD), 6);
+        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B25', 1, 1, NORM.SHORT_TERM_LOAD), 6);
 
 
         // console.log('');
@@ -43,7 +43,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             [ebt2, Rbt]
         ], 6);
 
-        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B25', NORM.LONG_TERM_LOAD, NORM.MIDDLE_HUMIDITY), 6);
+        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B25', 1, 1, NORM.LONG_TERM_LOAD, NORM.MIDDLE_HUMIDITY), 6);
 
 
         // console.log('');
@@ -64,7 +64,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
                 [0.00015, 2.1]
             ], 6);
 
-        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B80', NORM.SHORT_TERM_LOAD), 6);
+        let test = preciseArrayWith(test_function(NORM.HEAVY_CONCRETE, 'B80', 1, 1, NORM.SHORT_TERM_LOAD), 6);
 
         // console.log('');
         // console.log('TEST:   ' + test);
@@ -74,27 +74,38 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
     });
 
     it("должна вернуть NULL, если тип неверен", function () {
-        expect(test_function(-1, 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function('AAA', 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(NORM.LIGHT_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(NORM.POROUS_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(NORM.CELL_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(-1, 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function('AAA', 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.LIGHT_CONCRETE, 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.POROUS_CONCRETE, 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.CELL_CONCRETE, 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, 'B15', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
 
     });
 
     it("должна вернуть NULL, если класс неверен", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, -1, NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B16', NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, -1, 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B16', 1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
     });
 
+    it("должна вернуть NULL, если Ybi неверен", function () {
+        expect(test_function(NORM.HEAVY_CONCRETE, -1, -1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B16', -1, 1, NORM.SHORT_TERM_LOAD)).toBe(null);
+    });
+
+    it("должна вернуть NULL, если Ybti неверен", function () {
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, -1, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, -1, NORM.SHORT_TERM_LOAD)).toBe(null);
+    });
+
+
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', -1)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 'AAA')).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, 1, -1)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, 1, 'AAA')).toBe(null);
     });
 
     it("должна вернуть NULL, если группа по влажности неверна", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', NORM.LONG_TERM_LOAD, -1)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', NORM.LONG_TERM_LOAD, 'AAA')).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, 1, NORM.LONG_TERM_LOAD, -1)).toBe(null);
+        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1, 1, NORM.LONG_TERM_LOAD, 'AAA')).toBe(null);
     });
 });

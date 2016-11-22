@@ -7,7 +7,7 @@ import {default as Fi_b_cr_function} from './Table_06_12';
 import {default as long_term_Eb_function} from './Formula_06_3';
 
 
-export default function (type = null, classname = null, loadCondition = null, humidity = null, isReductionFactorToBeApplied = false) {
+export default function (type = null, classname = null, Ybi = 1.0, Ybti = 1.0, loadCondition = null, humidity = null, isReductionFactorToBeApplied = false) {
 
     if (!isTypeCorrect(type)) {
         return null;
@@ -16,7 +16,7 @@ export default function (type = null, classname = null, loadCondition = null, hu
     let Rb = null, Rbt = null, Eb = null, eb0 = null, eb1 = null, eb2 = null, ebt0 = null, ebt1 = null, ebt2 = null;
 
     Eb = Young_modulus_function(type, classname);
-    let array_Rb_Rbt = limit_strength_function(type, classname, isReductionFactorToBeApplied);
+    let array_Rb_Rbt = limit_strength_function(type, classname, Ybi, Ybti, isReductionFactorToBeApplied);
 
     if (Eb === null || array_Rb_Rbt === null) {
         return null;

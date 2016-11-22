@@ -60,7 +60,7 @@ console.log((Fi));
 console.log(NORM.formula_06_3(Eb, Fi));
 // 7058.8235
 
-console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD));
+console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
 // [
 // [ -0.0035, -8.5 ],
 // [ -0.002, -8.5 ],
@@ -70,7 +70,7 @@ console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_L
 // [ 0.0001, 0.75 ],
 // [ 0.00015, 0.75 ]
 // ]
-console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
+console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
 // [
 // [ -0.0056, -8.5 ],
 // [ -0.004, -8.5 ],
@@ -81,7 +81,7 @@ console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 
 // [ 0.00036, 0.6 ]
 // ]
 
-console.log(NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_LOAD));
+console.log(NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
 // [
 // [ -0.0035, -8.5 ],
 // [ -0.0015, -8.5 ],
@@ -89,7 +89,7 @@ console.log(NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', NORM.SHORT_TERM_L
 // [ 0.00008, 0.75 ],
 // [ 0.00015, 0.75 ]
 // ]
-console.log(NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
+console.log(NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
 // [ 
 // [ -0.0056, -8.5 ],
 // [ -0.0034, -8.5 ],
@@ -98,18 +98,18 @@ console.log(NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 
 // [ 0.00036, 0.6 ] 
 // ]
 
-console.log(NORM.concreteGamma_b1(NORM.LONG_TERM_LOAD, NORM.CELL_CONCRETE));
+console.log(NORM.getYb1(NORM.LONG_TERM_LOAD, NORM.CELL_CONCRETE));
 // 0.85
 
-console.log(NORM.concreteGamma_b2(true));
+console.log(NORM.getYb2(true));
 // 0.9
 
-console.log(NORM.concreteGamma_b3(true));
+console.log(NORM.getYb3(true));
 // 0.85
 
-console.log(NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15));
+console.log(NORM.getYb4(NORM.CELL_CONCRETE, 15));
 // 0.95
 
-console.log(NORM.concreteGamma_b5(true));
+console.log(NORM.getYb5(true));
 // 1.0
 

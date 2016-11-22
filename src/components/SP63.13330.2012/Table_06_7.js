@@ -182,13 +182,13 @@ function getRbt(type, classname) {
     }
 }
 
-export default function (type = null, classname = null, gamma_bi = 1.0, gamma_bti = 1.0, isReductionFactorToBeApplied = false) {
+export default function (type = null, classname = null, Ybi = 1.0, Ybti = 1.0, isReductionFactorToBeApplied = false) {
 
-    if (!isClassCorrect(type, classname) || typeof gamma_bi !== "number" || typeof gamma_bti !== "number") {
+    if (!isClassCorrect(type, classname) || typeof Ybi !== "number" || typeof Ybti !== "number") {
         return null;
     }
 
-    if (gamma_bi < 0 || gamma_bti < 0) {
+    if (Ybi < 0 || Ybti < 0) {
         return null;
     }
 
@@ -205,5 +205,5 @@ export default function (type = null, classname = null, gamma_bi = 1.0, gamma_bt
         reductionFactor = 0.8;
     }
 
-    return [getRb(type, classname) * gamma_bi, getRbt(type, classname) * gamma_bti * reductionFactor];
+    return [getRb(type, classname) * Ybi, getRbt(type, classname) * Ybti * reductionFactor];
 }

@@ -1,5 +1,5 @@
 var NORM = require('../lib/SP63.13330.2012');
-var test_function = NORM.concreteGamma_b4;
+var test_function = NORM.getYb4;
 
 describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
 
