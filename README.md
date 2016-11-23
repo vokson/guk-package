@@ -304,7 +304,7 @@ NORM.formula_06_3(Eb, Fi)
 // 7058.8235
 ```
 ---
-*[[number, number]]* __get3LinearDiagram__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[[number, number]]* __get3LinearDiagramForConcrete__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает 3-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку.
 
@@ -342,7 +342,7 @@ NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 
 // ]
 ```
 ---
-*[[number, number]]* __get2LinearDiagram__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[[number, number]]* __get2LinearDiagramForConcrete__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
 
 Возвращает 2-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку.
 
@@ -375,3 +375,96 @@ NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 
 // [ 0.00036, 0.6 ]
 // ]
 ```
+---
+*number* __table_06_13__ (*string* __class__, *number* __Ysi = 1.0__)
+
+Возвращает нормативное сопротивление арматуры растяжению **Rs,n** из Таблицы 6.13 (МПа)
+* __class__ - класс арматуры;
+* __Ysi__ - коэффициент, понижающий **Rs,n**, > 0;
+#### Example
+
+```javascript
+NORM.table_06_13('A500', 1.0)
+// 500
+```
+---
+*[number]* __table_06_14__ (*string* __class__, *number* __Ysi = 1.0__, *number* __loadType__)
+
+Возвращает массив расчетных сопротивлений арматуры **[Rs ; Rsc]** из Таблицы 6.14 (МПа)
+* __class__ - класс арматуры;
+* __Ysi__ - коэффициент, понижающий **Rs, Rsc**, > 0;
+* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+#### Example
+
+```javascript
+NORM.table_06_14('A500', 1.0, NORM.SHORT_TERM_LOAD)
+// [ 435, 400 ]
+```
+---
+*number* __table_06_15__ (*string* __class__, *number* __Ysi = 1.0__)
+
+Возвращает расчетное сопротивление поперечной арматуры растяжению **Rsw** из Таблицы 6.15 (МПа)
+* __class__ - класс арматуры;
+* __Ysi__ - коэффициент, понижающий **Rsw**, > 0;
+#### Example
+
+```javascript
+NORM.table_06_15('A500', 1.0)
+// 300
+```
+---
+*number* __formula_06_11__ (*number* __Rs__, *number* __Es__)
+
+Возвращает значение **es0** по формуле 6.11 (МПа)
+* __Rs__ - расчетное сопротивление арматуры, >= 0;
+* __Es__ - модуль упругости арматуры, > 0;
+#### Example
+
+```javascript
+NORM.formula_06_11(500, 200000)
+// 0.0025
+```
+---
+*number* __formula_06_12__ (*number* __Rs__, *number* __Es__)
+
+Возвращает значение **es0** по формуле 6.12 (МПа)
+* __Rs__ - расчетное сопротивление арматуры, >= 0;
+* __Es__ - модуль упругости арматуры, > 0;
+#### Example
+
+```javascript
+NORM.formula_06_12(500, 200000)
+// 0.0045
+```
+---
+*number* __clause_06_2_12__ (*string* __class__)
+
+Возвращает значение модуля упругости **Es** по п.6.2.12 (МПа)
+* __class__ - класс арматуры;
+#### Example
+
+```javascript
+NORM.clause_06_2_12('A400')
+// 200000
+```
+---
+*[[number, number]]* __get2LinearDiagramForRebar__ (*string* __class__, *number* __Ysi = 1.0__, *number* __loadType__)
+
+Возвращает 2-х линейную диаграмму состояния арматуры сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.2), включая нулевую точку.
+
+* __class__ - класс арматуры;
+* __Ysi__ - коэффициент, понижающий **Rs, Rsc**, > 0;
+* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+#### Example
+
+```javascript
+NORM.get2LinearDiagramForRebar('A500', 1.0, NORM.SHORT_TERM_LOAD)
+// [
+// [ -0.0025, -400 ],
+// [ -0.002,  -400 ],
+// [ 0, 0 ],
+// [ 0.002175, 435 ],
+// [ 0.025, 435 ]
+// ]
+```
+---

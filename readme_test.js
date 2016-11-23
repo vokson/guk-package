@@ -60,7 +60,7 @@ console.log((Fi));
 console.log(NORM.formula_06_3(Eb, Fi));
 // 7058.8235
 
-console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
+console.log(NORM.get3LinearDiagramForConcrete(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
 // [
 // [ -0.0035, -8.5 ],
 // [ -0.002, -8.5 ],
@@ -70,7 +70,7 @@ console.log(NORM.get3LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SH
 // [ 0.0001, 0.75 ],
 // [ 0.00015, 0.75 ]
 // ]
-console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
+console.log(NORM.get3LinearDiagramForConcrete(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
 // [
 // [ -0.0056, -8.5 ],
 // [ -0.004, -8.5 ],
@@ -81,7 +81,7 @@ console.log(NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 
 // [ 0.00036, 0.6 ]
 // ]
 
-console.log(NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
+console.log(NORM.get2LinearDiagramForConcrete(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD));
 // [
 // [ -0.0035, -8.5 ],
 // [ -0.0015, -8.5 ],
@@ -89,7 +89,7 @@ console.log(NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SH
 // [ 0.00008, 0.75 ],
 // [ 0.00015, 0.75 ]
 // ]
-console.log(NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
+console.log(NORM.get2LinearDiagramForConcrete(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0, NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true));
 // [ 
 // [ -0.0056, -8.5 ],
 // [ -0.0034, -8.5 ],
@@ -113,3 +113,29 @@ console.log(NORM.getYb4(NORM.CELL_CONCRETE, 15));
 console.log(NORM.getYb5(true));
 // 1.0
 
+console.log(NORM.table_06_13('A500', 1.0));
+// 500
+
+console.log(NORM.table_06_14('A500', 1.0, NORM.SHORT_TERM_LOAD));
+// [ 435, 400 ]
+
+console.log(NORM.table_06_15('A500', 1.0));
+// 300
+
+console.log(NORM.formula_06_11(500, 200000));
+// 0.0025
+
+console.log(NORM.formula_06_12(500, 200000));
+// 0.0045
+
+console.log(NORM.clause_06_2_12('A400'));
+// 200000
+
+console.log(NORM.get2LinearDiagramForRebar('A500', 1.0, NORM.SHORT_TERM_LOAD));
+// [
+// [ -0.0025, -400 ],
+// [ -0.002,  -400 ],
+// [ 0, 0 ],
+// [ 0.002175, 435 ],
+// [ 0.025, 435 ]
+// ]

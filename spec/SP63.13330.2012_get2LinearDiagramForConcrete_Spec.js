@@ -1,5 +1,5 @@
 var NORM = require('../lib/SP63.13330.2012');
-var test_function = NORM.get2LinearDiagram;
+var test_function = NORM.get2LinearDiagramForConcrete;
 
 function preciseArrayWith(array, precision) {
     return array.map(function (arr) {

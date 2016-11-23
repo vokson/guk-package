@@ -1,0 +1,42 @@
+import {default as table_06_14} from './Table_06_14';
+import {default as formula_06_11} from './Formula_06_11';
+import {default as formula_06_12} from './Formula_06_12';
+import {default as clause_06_2_12} from './Clause_06_2_12';
+
+const LIST_FORMULA_06_11 = ['A240', 'A400', 'A500', 'B500', 'Bp500'];
+const LIST_FORMULA_06_12 = ['A600', 'A800', 'A1000', 'Bp1200', 'Bp1300', 'Bp1400', 'Bp1500', 'Bp1600', 'K1400', 'K1500', 'K1600', 'K1700'];
+
+export default function (classname = null, Ysi = 1.0, loadType = null) {
+
+    let Rs = null, Rsc = null, es0 = null, esc0 = null;
+    const es2 = 0.025;
+
+    let Es = clause_06_2_12(classname);
+    let array_Rs_Rsc = table_06_14(classname, Ysi, loadType);
+
+    if (array_Rs_Rsc === null || Es === null) {
+        return null;
+    }
+
+    [Rs, Rsc] = array_Rs_Rsc
+
+    if (LIST_FORMULA_06_11.indexOf(classname) !== -1) {
+        es0 = formula_06_11(Rs, Es);
+        esc0 = formula_06_11(Rsc, Es);
+    }
+    if (LIST_FORMULA_06_12.indexOf(classname) !== -1) {
+        es0 = formula_06_12(Rs, Es);
+        esc0 = formula_06_12(Rsc, Es);
+    }
+    if (es0 === null || esc0 === null) {
+        return null;
+    }
+
+    return [
+        [-es2, -Rsc],
+        [-esc0, -Rsc],
+        [0, 0],
+        [es0, Rs],
+        [es2, Rs]
+    ];
+}
