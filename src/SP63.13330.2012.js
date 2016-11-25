@@ -10,6 +10,7 @@ export {default as getYb5} from './components/SP63.13330.2012/getYb5';
 export {default as get2LinearDiagramForConcrete} from './components/SP63.13330.2012/get2LinearDiagramForConcrete';
 export {default as get3LinearDiagramForConcrete} from './components/SP63.13330.2012/get3LinearDiagramForConcrete';
 export {default as get2LinearDiagramForRebar} from './components/SP63.13330.2012/get2LinearDiagramForRebar';
+export {default as get3LinearDiagramForRebar} from './components/SP63.13330.2012/get3LinearDiagramForRebar';
 
 export {default as clause_06_2_12} from './components/SP63.13330.2012/Clause_06_2_12';
 

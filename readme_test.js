@@ -139,3 +139,14 @@ console.log(NORM.get2LinearDiagramForRebar('A500', 1.0, NORM.SHORT_TERM_LOAD));
 // [ 0.002175, 435 ],
 // [ 0.025, 435 ]
 // ]
+
+console.log(NORM.get3LinearDiagramForRebar('A500', 1.0, NORM.SHORT_TERM_LOAD));
+// [
+// [ -0.015, -440 ],
+// [ -0.0022, -440 ],
+// [ -0.0018, -360 ],
+// [ 0, 0 ],
+// [ 0.0019575, 391.5 ],
+// [ 0.0023925, 478.5 ],
+// [ 0.015, 478.5 ]
+// ]
