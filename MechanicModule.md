@@ -10,16 +10,11 @@
 * *number* __yBasePoint__ - координата Y от-но базовой точки центра тяжести элемента
 * *number* __square__ - площадь элемента
 * *number* __youngModulusRatio__ - отношение Е элемента к базовому Е для нахождения центра тяжести приведенного сечения
+---
+*number* __getOrdinateByAbsciss__ (*number* __x__, *[number]* __arraySortedByX__, *boolean* __isInputCorrect = false__)
 
-#### Example
-
-```javascript
-var NORM = require('module_name');
-
-NORM.table_06_1(1)
-// ['B20', 'B25', 'B30', 'B35', 'B40', 'B45', 'B50', 'B55', 'B60', 'B70']
-
-NORM.table_06_1(NORM.LIGHT_CONCRETE, 'D900')
-// ['B2,5', 'B3,5', 'B5', 'B7,5']
-```
+Возвращает ординату кусочно-линейной функции
+* __x__ - абсцисса (должна быть в пределах абсцисс функции)
+* __arraySortedByX__ - сортированный по X двумерный массив точек
+* __isInputCorrect__ - переменные __x__ и __arraySortedByX__ гарантированно правильны
 ---
