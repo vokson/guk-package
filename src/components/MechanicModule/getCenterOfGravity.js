@@ -11,13 +11,13 @@ export default function (objArray) {
         if (obj[CONST.IS_ALIVE] === true) {
 
             if (
-                !isNumber(obj[CONST.SQUARE_NAME], false) || !isNumber(obj[CONST.E_RATIO], false) ||
+                !isNumber(obj[CONST.SQUARE], false) || !isNumber(obj[CONST.E_RATIO], false) ||
                 !isNumber(obj[CONST.X_BASE_POINT]) || !isNumber(obj[CONST.Y_BASE_POINT])
             ) {
                 return null;
             }
 
-            let transformedSquare = obj[CONST.SQUARE_NAME] * obj[CONST.E_RATIO];
+            let transformedSquare = obj[CONST.SQUARE] * obj[CONST.E_RATIO];
 
             totalSquare += transformedSquare;
             totalSx += transformedSquare * obj[CONST.X_BASE_POINT];
