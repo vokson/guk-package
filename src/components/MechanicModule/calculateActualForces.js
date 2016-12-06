@@ -11,16 +11,19 @@ export default function (objArray) {
         if (obj[CONST.IS_ALIVE] === true) {
 
             if (
-                !isNumber(obj[CONST.X_GRAVITY_POINT]) || !isNumber(obj[CONST.Y_GRAVITY_POINT]) || !isNumber(obj[CONST.SQUARE]) || !isNumber(obj[CONST.STRESS])
+                !isNumber(obj[CONST.X_GRAVITY_POINT]) || !isNumber(obj[CONST.Y_GRAVITY_POINT]) || !isNumber(obj[CONST.SQUARE]) ||
+                !obj.hasOwnProperty(CONST.STRESS)
             ) {
                 return null;
             }
 
-            let force = obj[CONST.SQUARE] * obj[CONST.STRESS]
-            N += force;
-            Mx += force * obj[CONST.Y_GRAVITY_POINT];
-            My += force * obj[CONST.X_GRAVITY_POINT];
+            if (obj[CONST.STRESS] !== null) {
 
+                let force = obj[CONST.SQUARE] * obj[CONST.STRESS]
+                N += force;
+                Mx += force * obj[CONST.X_GRAVITY_POINT];
+                My += force * obj[CONST.Y_GRAVITY_POINT];
+            }
         }
 
     }

@@ -21,6 +21,7 @@ describe("Mechanic Module  - calculateStrainAndStress", function () {
 
         expect(result['strain']).toBe(0.1);
         expect(result['stress']).toBe(0.2);
+        expect(result['stressStrainRatio']).toBe(2);
         expect(result['isAlive']).toBe(true);
     });
 
@@ -31,6 +32,7 @@ describe("Mechanic Module  - calculateStrainAndStress", function () {
 
         expect(result['strain']).toBe(1);
         expect(result['stress']).toBe(2);
+        expect(result['stressStrainRatio']).toBe(2);
         expect(result['isAlive']).toBe(true);
     });
 
@@ -41,6 +43,7 @@ describe("Mechanic Module  - calculateStrainAndStress", function () {
 
         expect(result['strain']).toBe(-10);
         expect(result['stress']).toBe(-10);
+        expect(result['stressStrainRatio']).toBe(1);
         expect(result['isAlive']).toBe(true);
     });
 
@@ -51,7 +54,19 @@ describe("Mechanic Module  - calculateStrainAndStress", function () {
 
         expect(result['strain']).toBe(31);
         expect(result['stress']).toBeNull();
+        expect(result['stressStrainRatio']).toBe(1);
         expect(result['isAlive']).toBe(false);
+    });
+
+    it("должна вернуть правильный результат, если e0 = 0, rx = 0, ry = 0", function () {
+
+        var e0 = 0, rx = 0, ry = 0;
+        var result = test_function([obj], e0, rx, ry)[0];
+
+        expect(result['strain']).toBe(0);
+        expect(result['stress']).toBe(0);
+        expect(result['stressStrainRatio']).toBe(1);
+        expect(result['isAlive']).toBe(true);
     });
 
 

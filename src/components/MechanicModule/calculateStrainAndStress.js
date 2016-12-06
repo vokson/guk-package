@@ -15,7 +15,10 @@ export default function (objArray, e0, rx, ry) {
         let obj = arr[i];
 
         if (
-            !isNumber(obj[CONST.X_GRAVITY_POINT]) || !isNumber(obj[CONST.Y_GRAVITY_POINT]) || !obj.hasOwnProperty(CONST.BASE_DIAGRAM)
+            !isNumber(obj[CONST.X_GRAVITY_POINT]) ||
+            !isNumber(obj[CONST.Y_GRAVITY_POINT]) ||
+            !isNumber(obj[CONST.E]) ||
+            !obj.hasOwnProperty(CONST.BASE_DIAGRAM)
         ) {
             return null;
         }
@@ -23,10 +26,11 @@ export default function (objArray, e0, rx, ry) {
         obj[CONST.STRAIN] = e0 + rx * obj[CONST.X_GRAVITY_POINT] + ry * obj[CONST.Y_GRAVITY_POINT];
         obj[CONST.STRESS] = getOrdinateByAbsciss(obj[CONST.STRAIN], obj[CONST.BASE_DIAGRAM]);
 
-        if (obj[CONST.STRESS] === null) {
-            obj[CONST.IS_ALIVE] = false;
+        if (obj[CONST.STRESS] === null || obj[CONST.STRAIN] === 0) {
+            obj[CONST.NU_RATIO] = 1;
+        } else {
+            obj[CONST.NU_RATIO] = obj[CONST.STRESS]/(obj[CONST.STRAIN]*obj[CONST.E]);
         }
-
     }
 
     return arr;
