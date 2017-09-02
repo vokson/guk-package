@@ -11,7 +11,7 @@ function getValueFromDiagram(x, arr) {
     }
 }
 
-var MECH = require('./lib/MechanicModule');
+var MECH = require('../lib/MechanicModule');
 
 const COUNT = 100, TIMES = 100000;
 var test_array = [];

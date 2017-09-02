@@ -1,5 +1,5 @@
-var NORM = require('./lib/SP63.13330.2012');
-var MECH = require('./lib/MechanicModule');
+var NORM = require('../lib/SP63.13330.2012');
+var MECH = require('../lib/MechanicModule');
 
 // Подготовка массива элементов
 // Прямоугольник 400 х 600(h)

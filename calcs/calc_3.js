@@ -1,5 +1,5 @@
-var NORM = require('./lib/SP63.13330.2012');
-var MECH = require('./lib/MechanicModule');
+var NORM = require('../lib/SP63.13330.2012');
+var MECH = require('../lib/MechanicModule');
 
 const maxPercentTolerance = 0.1; // in %
 const maxValueTolerance = 0.1 / 1000; // in mN, mN*m

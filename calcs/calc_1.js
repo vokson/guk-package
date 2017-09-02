@@ -12,7 +12,7 @@ Array.prototype.indexOfPoint = function (item) {
     else return -1;                 // Если искомого элемента нет в массиве, то -1.
 }
 
-var NORM = require('./lib/SP63.13330.2012');
+var NORM = require('../lib/SP63.13330.2012');
 
 // Подготовка массива элементов
 // Прямоугольник 400 х 600(h)
