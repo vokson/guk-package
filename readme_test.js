@@ -164,3 +164,6 @@ console.log(NORM.table_07_1(15.0, NORM.LONG_TERM_LOAD));
 
 console.log(NORM.formula_07_3(0.9, 100, 20));
 // 1800
+
+console.log(NORM.formula_07_4(10, 20, 30, 0.5, 1.5, 2.5));
+// 800

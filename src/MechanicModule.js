@@ -7,11 +7,11 @@ export {default as calculateCoordinatesAgainstCenter} from './components/Mechani
 export {default as addDiagrams} from './components/MechanicModule/addDiagrams';
 export {default as makeTotalDiagram} from './components/MechanicModule/makeTotalDiagram';
 export {default as countOfDeadObjects} from './components/MechanicModule/countOfDeadObjects';
-export {default as calculateStrainAndStress} from './components/MechanicModule/calculateStrainAndStress';
+//export {default as calculateStrainAndStress} from './components/MechanicModule/calculateStrainAndStress';
 export {default as calculateActualForces} from './components/MechanicModule/calculateActualForces';
 //export {default as calculateD} from './components/MechanicModule/calculateD';
 export {default as calculateTotalD} from './components/MechanicModule/calculateTotalD';
-export {default as calculateStrainComponents} from './components/MechanicModule/calculateStrainComponents';
+//export {default as calculateStrainComponents} from './components/MechanicModule/calculateStrainComponents';
 export {default as checkObjectsDeadOrAlive} from './components/MechanicModule/checkObjectsDeadOrAlive';
 
 
