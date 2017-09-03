@@ -14,3 +14,7 @@ export function getGradeNumberValue(grade, countOfSymbolsInPrefix = 1) {
 
     return null;
 }
+
+export function singleInterpolation(a1, a2, b1, b2, x) {
+    return b1 + (x - a1) / (a2 - a1) * (b2 - b1);
+}

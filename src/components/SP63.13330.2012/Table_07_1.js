@@ -1,23 +1,46 @@
-function interpolate(a1, a2, b1, b2, x) {
-    return b1 + (x - a1) / (a2 - a1) * (b2 - b1);
+import * as CONST from './Constants';
+import * as FUNC from './Common_Functions';
+
+var shortTermInput = [0, 10, 20];
+var shortTermOutput = [1.0, 0.90, 0.85];
+
+var longTermInput = [0, 6, 10, 15, 20];
+var longTermOutput = [1.0, 0.92, 0.9, 0.8, 0.6];
+
+// function isLoadTypeCorrect(loadType) {
+//     if (
+//         loadType === CONST.SHORT_TERM_LOAD ||
+//         loadType === CONST.LONG_TERM_LOAD
+//     ) {
+//         return true;
+//     }
+//
+//     return false;
+// }
+
+function calculateFi(e0_h, input, output) {
+    if (e0_h == 0) return output[0];
+
+    for (var i = 1; i < input.length; i++) {
+        if (input[i] >= e0_h) {
+            return FUNC.singleInterpolation(input[i - 1], input[i], output[i - 1], output[i], e0_h);
+        }
+    }
+    ;
 }
 
-var input = [0, 6, 10, 15, 20];
-var output = [1.0, 0.92, 0.9, 0.8, 0.6];
+export default function (e0_h = null, loadType = null) {
 
-export default function (e0_h = null) {
-
-    console.log("e0_h = "+e0_h);
     if (
         typeof e0_h === "number" && e0_h >= 0 && e0_h <= 20
     ) {
-        if (e0_h == 0) return output[0];
+        if (loadType === CONST.LONG_TERM_LOAD) {
+            return calculateFi(e0_h, longTermInput, longTermOutput);
+        }
 
-        for (var i = 1; i < input.length; i++) {
-            if (input[i] >= e0_h) {
-                return interpolate(input[i - 1], input[i], output[i - 1], output[i], e0_h);
-            }
-        };
+        if (loadType === CONST.SHORT_TERM_LOAD) {
+            return calculateFi(e0_h, shortTermInput, shortTermOutput);
+        }
 
     }
 

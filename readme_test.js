@@ -157,5 +157,10 @@ console.log(NORM.formula_07_1(100, 20));
 console.log(NORM.formula_07_2(10, 20, 0.1, 0.2));
 // 199.6
 
-console.log(NORM.table_07_1(3.0));
-// 0.96
+console.log(NORM.table_07_1(15.0, NORM.SHORT_TERM_LOAD));
+// 0.875
+console.log(NORM.table_07_1(15.0, NORM.LONG_TERM_LOAD));
+// 0.8
+
+console.log(NORM.formula_07_3(0.9, 100, 20));
+// 1800

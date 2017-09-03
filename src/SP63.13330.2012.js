@@ -19,6 +19,7 @@ export {default as formula_06_11} from './components/SP63.13330.2012/Formula_06_
 export {default as formula_06_12} from './components/SP63.13330.2012/Formula_06_12';
 export {default as formula_07_1} from './components/SP63.13330.2012/Formula_07_1';
 export {default as formula_07_2} from './components/SP63.13330.2012/Formula_07_2';
+export {default as formula_07_3} from './components/SP63.13330.2012/Formula_07_3';
 
 export {default as table_06_1} from './components/SP63.13330.2012/Table_06_1';
 export {default as table_06_2} from './components/SP63.13330.2012/Table_06_2';
