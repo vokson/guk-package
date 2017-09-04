@@ -167,3 +167,14 @@ console.log(NORM.formula_07_3(0.9, 100, 20));
 
 console.log(NORM.formula_07_4(10, 20, 30, 0.5, 1.5, 2.5));
 // 800
+
+console.log(NORM.formula_07_5(10, 20, 20, 2, 5));
+// 2000
+console.log(NORM.formula_07_5(10, 20, 6, 1, 1));
+// null
+
+console.log(NORM.formula_07_6(100, 200));
+// 2
+
+console.log(NORM.formula_07_7(100, 2));
+// 246.74
