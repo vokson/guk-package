@@ -178,3 +178,9 @@ console.log(NORM.formula_07_6(100, 200));
 
 console.log(NORM.formula_07_7(100, 2));
 // 246.74
+
+console.log(NORM.formula_07_9(100, 20));
+// 2000
+
+console.log(NORM.formula_08_1(NORM.HEAVY_CONCRETE, 'B80', 0.01, 0.01));
+// 0.35
