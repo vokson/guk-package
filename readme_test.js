@@ -190,3 +190,6 @@ console.log(NORM.formula_08_2(10, 200));
 
 console.log(NORM.formula_08_4(100, 200, 5, 20, 45, 25, 5));
 // 1665000
+
+console.log(NORM.formula_08_5(100, 10, 100, 5, 10, 3));
+// 16.6666..
