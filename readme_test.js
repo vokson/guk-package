@@ -193,3 +193,10 @@ console.log(NORM.formula_08_4(100, 200, 5, 20, 45, 25, 5));
 
 console.log(NORM.formula_08_5(100, 10, 100, 5, 10, 3));
 // 16.6666..
+
+console.log(NORM.formula_08_6(100, 2, 100, 1, 30, 10, 0.1));
+// 70
+
+console.log(NORM.formula_08_7(100, 200, 5, 20, 45, 15, 5, 50, 7));
+// 2036500
+
