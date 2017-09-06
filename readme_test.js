@@ -194,9 +194,33 @@ console.log(NORM.formula_08_4(100, 200, 5, 20, 45, 25, 5));
 console.log(NORM.formula_08_5(100, 10, 100, 5, 10, 3));
 // 16.6666..
 
-console.log(NORM.formula_08_6(100, 2, 100, 1, 30, 10, 0.1));
-// 70
+console.log(NORM.formula_08_6(1000, 2, 1000, 1, 100, 40, 7));
+// 27000
 
 console.log(NORM.formula_08_7(100, 200, 5, 20, 45, 15, 5, 50, 7));
 // 2036500
 
+console.log(NORM.formula_08_8(1000, 4, 1000, 1, 10, 10, 40, 7));
+// 9
+
+console.log(NORM.formula_08_10(300, 0.1, 1000, 2, 100, 15, 20, 45, 5));
+// 1129970
+
+console.log(NORM.formula_08_11(1, 5, 40, 5));
+// 22.5
+
+console.log(NORM.formula_08_12(500, 100, 2, 100, 1, 10, 15));
+// 4
+
+console.log(NORM.formula_08_13(500, 100, 2, 100, 1, 10, 15, 45, 0.3));
+// 4.74146...
+
+console.log("Formula_08_14");
+console.log(NORM.formula_08_14(100, 200));
+console.log("\n");
+// 2
+
+console.log("Formula_08_15");
+console.log(NORM.formula_08_15(100, 2));
+console.log("\n");
+// 246.74

@@ -31,6 +31,13 @@ export {default as formula_08_4} from './components/SP63.13330.2012/Formula_08_4
 export {default as formula_08_5} from './components/SP63.13330.2012/Formula_08_5';
 export {default as formula_08_6} from './components/SP63.13330.2012/Formula_08_6';
 export {default as formula_08_7} from './components/SP63.13330.2012/Formula_08_7';
+export {default as formula_08_8} from './components/SP63.13330.2012/Formula_08_8';
+export {default as formula_08_10} from './components/SP63.13330.2012/Formula_08_10';
+export {default as formula_08_11} from './components/SP63.13330.2012/Formula_08_11';
+export {default as formula_08_12} from './components/SP63.13330.2012/Formula_08_12';
+export {default as formula_08_13} from './components/SP63.13330.2012/Formula_08_13';
+export {default as formula_08_14} from './components/SP63.13330.2012/Formula_07_6';
+export {default as formula_08_15} from './components/SP63.13330.2012/Formula_07_7';
 
 export {default as table_06_1} from './components/SP63.13330.2012/Table_06_1';
 export {default as table_06_2} from './components/SP63.13330.2012/Table_06_2';

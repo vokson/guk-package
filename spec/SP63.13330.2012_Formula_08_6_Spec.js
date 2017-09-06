@@ -4,7 +4,7 @@ var test_function = NORM.formula_08_6;
 describe("СП 63.13330.2012 (изм.1) - Формула 8.6", function () {
 
     it("должна вернуть правильное значение", function () {
-        expect(test_function(100, 2, 100, 1, 30, 10, 0.1)).toBeCloseTo(70, 0);
+        expect(test_function(1000, 2, 1000, 1, 100, 40, 7)).toBeCloseTo(27000, 0);
     });
 
     it("должна вернуть NULL, если Rs не number", function () {

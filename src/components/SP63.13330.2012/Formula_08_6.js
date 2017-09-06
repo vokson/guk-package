@@ -10,7 +10,7 @@ export default function (Rs = null, As = null, Rsc = null, A1s = null, Rb = null
         typeof h1f === "number" &&
         Rs >= 0 && Rsc >= 0 && Rb >= 0 && As >= 0 && A1s >= 0 && b1f >= 0 && h1f >= 0
     ) {
-        return Rs * As - Rsc * A1s - Rb * b1f * h1f;
+        return Rsc * A1s + Rb * b1f * h1f - Rs * As;
     }
 
     return null;
