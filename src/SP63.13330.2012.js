@@ -13,6 +13,8 @@ export {default as get2LinearDiagramForRebar} from './components/SP63.13330.2012
 export {default as get3LinearDiagramForRebar} from './components/SP63.13330.2012/get3LinearDiagramForRebar';
 
 export {default as clause_06_2_12} from './components/SP63.13330.2012/Clause_06_2_12';
+export {default as clause_08_1_15_D} from './components/SP63.13330.2012/Clause_08_1_15_D';
+export {default as clause_08_1_15_Kb} from './components/SP63.13330.2012/Clause_08_1_15_Kb';
 
 export {default as formula_06_3} from './components/SP63.13330.2012/Formula_06_3';
 export {default as formula_06_11} from './components/SP63.13330.2012/Formula_06_11';

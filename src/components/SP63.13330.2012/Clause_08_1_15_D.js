@@ -6,17 +6,19 @@ var schema = {
     "type": "object",
     "properties": {},
     "required": [
-        "e0",
-        "nu",
-        "h0",
-        "a1",
+        "Kb",
+        "Eb",
+        "Es",
+        "I",
+        "Is",
     ]
 };
 
 function calculate(obj) {
-    return obj.e0 * obj.nu + (obj.h0 - obj.a1) / 2;
+    return obj.Kb * obj.Eb * obj.I + 0.7 * obj.Es * obj.Is;
 }
 
 export default function (json) {
     return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }
+
