@@ -3,33 +3,122 @@ var test_function = NORM.formula_08_1;
 
 describe("СП 63.13330.2012 (изм.1) - Формула 8.1", function () {
     it("должна вернуть null, если тип бетона не верен", function () {
-        expect(test_function(-1, 'B15', 1.0, 1.0)).toBe(null);
-        expect(test_function("AAA", 'B15', 1.0, 1.0)).toBe(null);
-    });
 
-    it("должна вернуть null, если e_sel не верно", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', -1, 1.0)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', "AAA", 1.0)).toBe(null);
-    });
+        var input = {
+            "type": -1,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
 
-    it("должна вернуть null, если e_b2 не верно", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1.0, -1)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1.0, "AAA")).toBe(null);
+        expect(test_function(input).answer).toBeCloseTo(null);
+
+        input = {
+            "type": "AAA",
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+
+        expect(test_function(input).answer).toBeCloseTo(null);
     });
 
     it("должна вернуть правильный ответ, если входные данные верны", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0)).toBeCloseTo(0.4, 1);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B70', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B80', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B90', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B100', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B, 'B15', 1.0, 1.0)).toBeCloseTo(0.35, 2);
-        expect(test_function(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0)).toBeCloseTo(0.4, 1);
-        expect(test_function(NORM.POROUS_CONCRETE, 'B15', 1.0, 1.0)).toBeCloseTo(0.4, 1);
-        expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, 'B15', 1.0, 1.0)).toBeCloseTo(0.4, 1);
-        expect(test_function(NORM.CELL_CONCRETE, 'B15', 1.0, 1.0)).toBeCloseTo(0.4, 1);
+        var input = {
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.4, 1);
+
+        var input = {
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": 'B70',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": 'B80',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": 'B90',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": 'B100',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.35, 2);
+
+        var input = {
+            "type": NORM.LIGHT_CONCRETE,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.4, 1);
+
+        var input = {
+            "type": NORM.POROUS_CONCRETE,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.4, 1);
+
+        var input = {
+            "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.4, 1);
+
+        var input = {
+            "type": NORM.CELL_CONCRETE,
+            "classname": 'B15',
+            "e_sel": 1.0,
+            "e_b2": 1.0,
+        };
+        expect(test_function(input).answer).toBeCloseTo(0.4, 1);
 
     });
 

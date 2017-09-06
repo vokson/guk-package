@@ -1,16 +1,24 @@
-export default function (Rs = null, As = null, Rsc = null, A1s = null, Rb = null, b = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof Rs === "number" &&
-        typeof Rsc === "number" &&
-        typeof Rb === "number" &&
-        typeof As === "number" &&
-        typeof A1s === "number" &&
-        typeof b === "number" &&
-        Rs >= 0 && Rsc >= 0 && Rb > 0 && As >= 0 && A1s >= 0 && b > 0
-    ) {
-        return (Rs * As - Rsc * A1s) / (Rb * b)
-    }
+var defaultProperties = {"type": "number", "minimum": 0};
 
-    return null;
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "Rs",
+        "As",
+        "Rsc",
+        "A1s",
+        "Rb",
+        "b",
+    ]
+};
+
+function calculate(obj) {
+    return (obj.Rs * obj.As - obj.Rsc * obj.A1s) / (obj.Rb * obj.b);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }
