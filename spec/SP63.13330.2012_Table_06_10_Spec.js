@@ -22,12 +22,12 @@ var types = [
     NORM.PRESTRESSED_CONCRETE
 ];
 
-var highStrengthFactor = function(classname) {
+var highStrengthFactor = function (classname) {
     var s = classname.substr(1).replace(',', '.');
     var value = parseFloat(s);
 
     if (value >= 70) {
-        return (270-value)/210;
+        return (270 - value) / 210;
     }
 
     return 1;
@@ -43,58 +43,82 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
             class_function(type).forEach(function (classname) {
 
-                expect(test_function(type, classname, NORM.HIGH_HUMIDITY, NORM.COMPRESSION)).toEqual(
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.HIGH_HUMIDITY,
+                    "stress": NORM.COMPRESSION
+                }).answer).toEqual(
                     [values[0][0], values[0][1] * highStrengthFactor(classname), values[0][2]]
                 );
-                expect(test_function(type, classname, NORM.MIDDLE_HUMIDITY, NORM.COMPRESSION)).toEqual(
-                    [values[1][0], values[1][1]  * highStrengthFactor(classname), values[1][2]]
+
+
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.MIDDLE_HUMIDITY,
+                    "stress": NORM.COMPRESSION
+                }).answer).toEqual(
+                    [values[1][0], values[1][1] * highStrengthFactor(classname), values[1][2]]
                 );
-                expect(test_function(type, classname, NORM.LOW_HUMIDITY, NORM.COMPRESSION)).toEqual(
-                    [values[2][0], values[2][1]  * highStrengthFactor(classname), values[2][2]]
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.LOW_HUMIDITY,
+                    "stress": NORM.COMPRESSION
+                }).answer).toEqual(
+                    [values[2][0], values[2][1] * highStrengthFactor(classname), values[2][2]]
                 );
-               
+
             });
 
         });
 
 
     });
-    
+
     it("должна вернуть относительные деформации Тяжелого, Напрягающего, Мелкозернистого бетонов при растяжении", function () {
-    
+
         var values = tension_values;
-    
+
         types.forEach(function (type) {
-    
+
             class_function(type).forEach(function (classname) {
-    
-                expect(test_function(type, classname, NORM.HIGH_HUMIDITY, NORM.TENSION)).toEqual(values[0]);
-                expect(test_function(type, classname, NORM.MIDDLE_HUMIDITY, NORM.TENSION)).toEqual(values[1]);
-                expect(test_function(type, classname, NORM.LOW_HUMIDITY, NORM.TENSION)).toEqual(values[2]);
-    
+
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.HIGH_HUMIDITY,
+                    "stress": NORM.TENSION
+                }).answer).toEqual(values[0]);
+
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.MIDDLE_HUMIDITY,
+                    "stress": NORM.TENSION
+                }).answer).toEqual(values[1]);
+
+                expect(test_function({
+                    "type": type,
+                    "classname": classname,
+                    "humidity": NORM.LOW_HUMIDITY,
+                    "stress": NORM.TENSION
+                }).answer).toEqual(values[2]);
+
             });
-    
+
         });
-    
+
     });
 
     it("должна вернуть NULL, если тип бетона неверен", function () {
-        expect(test_function(NORM.LIGHT_CONCRETE, 'B15', NORM.HIGH_HUMIDITY, NORM.TENSION)).toBe(null);
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+            "classname": 'B15',
+            "humidity": NORM.HIGH_HUMIDITY,
+            "stress": NORM.TENSION
+        }).answer).toBeNull();
     });
 
-    it("должна вернуть NULL, если класс бетона неверен", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'AAA', NORM.HIGH_HUMIDITY, NORM.TENSION)).toBe(null);
-    });
-
-    it("должна вернуть NULL, если влажность неверна", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', -1, NORM.TENSION)).toBe(null);
-    });
-
-    it("должна вернуть NULL, если напряженное состояние неверно", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', NORM.HIGH_HUMIDITY, -1)).toBe(null);
-    });
-
-    it("должна вернуть NULL, если нет входных параметров", function () {
-        expect(test_function()).toBe(null);
-    });
 });

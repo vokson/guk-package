@@ -1,8 +1,11 @@
 import {default as es0_function} from './Formula_06_11';
 
-export default function (Rs = null, Es = null) {
+export default function (json) {
+    let es0 = es0_function(json);
 
-    let es0 = es0_function(Rs, Es);
+    if (es0.answer !== null) {
+        es0.answer = es0.answer + 0.002;
+    }
 
-    return (es0 === null) ? null : (es0 + 0.002);
+    return es0;
 }

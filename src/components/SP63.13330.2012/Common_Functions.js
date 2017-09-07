@@ -46,19 +46,17 @@ function addDefaultRulesToProperties(schema, defaultProperties) {
 export function prepareFeedbackObject(jsonSchema, defaultProperties, inputJSON, functionForCalculation) {
     addDefaultRulesToProperties(jsonSchema, defaultProperties);
 
-    // console.log(jsonSchema);
-
     var result = validateJSON(jsonSchema, inputJSON);
     result.answer = null;
 
     if (result.isValid) {
         result.answer = functionForCalculation(inputJSON);
-        if (!isFinite(result.answer)) result.answer = null;
+
+        if ((typeof result.answer === "number") && !isFinite(result.answer)) {
+            result.answer = null;
+        }
 
     }
-
-    // console.log(result);
-
 
     return result;
 }

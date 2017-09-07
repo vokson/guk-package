@@ -1,6 +1,43 @@
 import * as CONST from './Constants';
 import * as FUNC from './Common_Functions';
-import {default as class_function} from './Table_06_1';
+
+var defaultProperties = {"type": "number", "minimum": 0};
+
+var schema = {
+    "type": "object",
+    "properties": {
+        "type": {
+            "oneOf": [
+                {"const": CONST.HEAVY_CONCRETE},
+                {"const": CONST.PRESTRESSED_CONCRETE},
+                {"const": CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
+            ]
+        },
+        "classname": {"type": "string"},
+        "humidity": {
+            "oneOf": [
+                {"const": CONST.HIGH_HUMIDITY},
+                {"const": CONST.MIDDLE_HUMIDITY},
+                {"const": CONST.LOW_HUMIDITY},
+            ]
+        },
+        "stress": {
+            "oneOf": [
+                {"const": CONST.COMPRESSION},
+                {"const": CONST.TENSION},
+            ]
+        },
+    },
+    "required": [
+        "type",
+        "classname",
+        "humidity",
+        "stress",
+    ]
+};
+
 
 const VALUES = [
     [
@@ -26,59 +63,16 @@ var highStrengthFactor = function (classname) {
     return 1.0;
 }
 
-function isClassCorrect(type, classname) {
-    if (
-        type === CONST.HEAVY_CONCRETE ||
-        type === CONST.PRESTRESSED_CONCRETE ||
-        type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
-        type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
-        type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B
-    ) {
-        return !(class_function(type).indexOf(classname) === -1);
-    }
+function calculate(obj) {
+    let result = Array.from(VALUES[obj.stress][obj.humidity]);
 
-    return false;
-}
-
-function isHumidityCorrect(humidity) {
-    if (
-        humidity === CONST.HIGH_HUMIDITY ||
-        humidity === CONST.MIDDLE_HUMIDITY ||
-        humidity === CONST.LOW_HUMIDITY
-    ) {
-        return true;
-    }
-
-    return false;
-}
-
-function isStressConditionCorrect(stress) {
-    if (
-        stress === CONST.COMPRESSION ||
-        stress === CONST.TENSION
-    ) {
-        return true;
-    }
-
-    return false;
-}
-
-export default function (type = null, classname = null, humidity = null, stress = null) {
-
-    if (
-        !isClassCorrect(type, classname) ||
-        !isHumidityCorrect(humidity) ||
-        !isStressConditionCorrect(stress)
-    ) {
-        return null;
-    }
-
-    let result = Array.from(VALUES[stress][humidity]);
-
-    if (stress === CONST.COMPRESSION) {
-        result[1] = result[1] * highStrengthFactor(classname);;
+    if (obj.stress === CONST.COMPRESSION) {
+        result[1] = result[1] * highStrengthFactor(obj.classname);
     }
 
     return result;
+}
 
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

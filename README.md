@@ -46,32 +46,19 @@ export const STRESS_TYPE_DESCRIPTION = [] - массив описаний тип
 ```
 
 ## Функции
-*[string]* __table_06_1__ (*number* __type__, *string* __density__)
-Возвращает массив классов бетона на сжатие из Таблицы 6.1
-* __type__ - тип бетона;
-* __density__ - марка бетона по средней плотности;
-#### Example
+#### Таблица 6.1
+*[string]* __table_06_1__ (jsonObject)
+Возвращает массив классов бетона на сжатие из Таблицы 6.1. Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *string*  __density = null__ - марка бетона по средней плотности;
 
-```javascript
-var NORM = require('module_name');
-
-NORM.table_06_1(1)
-// ['B20', 'B25', 'B30', 'B35', 'B40', 'B45', 'B50', 'B55', 'B60', 'B70']
-
-NORM.table_06_1(NORM.LIGHT_CONCRETE, 'D900')
-// ['B2,5', 'B3,5', 'B5', 'B7,5']
-```
 ---
-*[string]* __table_06_2__ (*number* __type__)
+#### Таблица 6.2
+*[string]* __table_06_2__ (jsonObject)
 
-Возвращает массив классов бетона на растяжение из Таблицы 6.2
+Возвращает массив классов бетона на растяжение из Таблицы 6.2. Поля объекта jsonObject:
 * __type__ - тип бетона;
 
-#### Example
-```javascript
-NORM.table_06_2(NORM.LIGHT_CONCRETE)
-// ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2']
-```
 ---
 *[string]* __table_06_3__ (*number* __type__)
 
@@ -183,14 +170,14 @@ NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
 // 0.95
 ```
 ---
-*[number]* __table_06_7__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[number]* __table_06_7__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *boolean* __isReductionFactorToBeApplied = false__)
 
 Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)
 * __type__ - тип бетона;
 * __class__ - класс бетона по прочности на сжатие;
 * __Ybi__ - коэффициент, понижающий **Rb**, > 0;
 * __Ybti__ - коэффициент, понижающий **Rbt**, > 0;
-* __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
+* __isReductionFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
 
 #### Example
 
@@ -202,24 +189,16 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
 // [11.0, 0.88]
 ```
 ---
-*[number]* __table_06_8__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *boolean* __isDecreaseFactorToBeApplied = false__)
+#### Таблица 6.8
+*[number]* __table_06_8__ (jsonObject)
 
-Возвращает массив расчетных сопротивлений бетона **[Rb ; Rbt]** из Таблицы 6.8 (МПа)
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на сжатие;
-* __Ybi__ - коэффициент, понижающий **Rb**, > 0;
-* __Ybti__ - коэффициент, понижающий **Rbt**, > 0;
-* __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
+Возвращает массив расчетных сопротивлений бетона **[Rb ; Rbt]** из Таблицы 6.8 (МПа). Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на сжатие;
+* *number* __Ybi = 1.0__ - коэффициент, понижающий **Rb**, > 0;
+* *number* __Ybti = 1.0__ - коэффициент, понижающий **Rbt**, > 0;
+* *boolean8 __isReductionFactorToBeApplied = false__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 
-#### Example
-
-```javascript
-NORM.table_06_8(NORM.HEAVY_CONCRETE, 'B25')
-// [14.5, 1.05]
-
-NORM.table_06_8(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
-// [8.5, 0.60]
-```
 ---
 *[number]* __table_06_9__ (*number* __type__, *string* __class__)
 
@@ -237,25 +216,17 @@ NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
 // null
 ```
 ---
-*[number]* __table_06_10__ (*number* __type__, *string* __class__, *number* __humidity__, *number* __stressCondition__)
+#### Таблица 6.10
+*[number]* __table_06_10__ (jsonObject)
 
-Возвращает массив относительных деформаций бетона из Таблицы 6.10 (МПа)
+Возвращает массив относительных деформаций бетона из Таблицы 6.10 (МПа). Поля объекта jsonObject:
 
 **[Eb0; Eb2; Eb1,red]** - при сжатии, **[Ebt0; Ebt2; Ebt1,red]** - при растяжении
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на осевое растяжение;
-* __humidity__ - группа относительной влажности;
-* __stressCondition__ - вид напряженного состояния;
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на осевое растяжение;
+* *number* __humidity__ - группа относительной влажности;
+* *number* __stress__ - вид напряженного состояния (см. константы);
 
-#### Example
-
-```javascript
-NORM.table_06_10(NORM.HEAVY_CONCRETE, 'B80', NORM.HIGH_HUMIDITY, NORM.COMPRESSION)
-// [0.003, 0.0038, 0.0024]
-
-NORM.table_06_10(NORM.PRESTRESSED_CONCRETE, 'B20', NORM.LOW_HUMIDITY, NORM.TENSION)
-// [0.00028, 0.00036, 0.00026]
-```
 ---
 *number* __table_06_11__ (*number* __type__, *string* __class__, *string* __density = null__)
 
@@ -305,7 +276,7 @@ NORM.formula_06_3(Eb, Fi)
 // 7058.8235
 ```
 ---
-*[[number, number]]* __get3LinearDiagramForConcrete__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
+*[[number, number]]* __get3LinearDiagramForConcrete__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isReductionFactorToBeApplied = false__)
 
 Возвращает 3-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку.
 
@@ -315,7 +286,7 @@ NORM.formula_06_3(Eb, Fi)
 * __Ybti__ - коэффициент, понижающий **Rbt**, > 0;
 * __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
 * __humidity__ - группа относительной влажности (только для длительных нагрузок);
-* __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
+* __isReductionFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 
 #### Example
 
@@ -344,40 +315,19 @@ NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 
 // ]
 ```
 ---
-*[[number, number]]* __get2LinearDiagramForConcrete__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *number* __loadType__, *number* __humidity = null__, *boolean* __isDecreaseFactorToBeApplied = false__)
+#### 2-х линейная диаграмма состояния бетона
+*[[number, number]]* __get2LinearDiagramForConcrete__ (jsonObject)
 
-Возвращает 2-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку.
+Возвращает 2-х линейную диаграмму состояния бетона сразу для сжатой (-) и растянутой(+) зон в виде двумерного массива координат точек (Рис. 6.1), включая нулевую точку. Поля объекта jsonObject:
 
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на сжатие (только тяжелый, напрягающий, мелкозернистый);
-* __Ybi__ - коэффициент, понижающий **Rb**, > 0;
-* __Ybti__ - коэффициент, понижающий **Rbt**, > 0;
-* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
-* __humidity__ - группа относительной влажности (только для длительных нагрузок);
-* __isDecreaseFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на сжатие (только тяжелый, напрягающий, мелкозернистый);
+* *number* __Ybi = 1.0__ - коэффициент, понижающий **Rb**, > 0;
+* *number* __Ybti = 1.0__ - коэффициент, понижающий **Rbt**, > 0;
+* *number* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+* *number* __humidity__ - группа относительной влажности (только для длительных нагрузок);
+* *boolean* __isReductionFactorToBeApplied = false__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 
-#### Example
-
-```javascript
-NORM.get2LinearDiagram(NORM.HEAVY_CONCRETE, 'B15', 1.0, 1.0, NORM.SHORT_TERM_LOAD)
-// [
-// [ -0.0035, -8.5 ],
-// [ -0.0015, -8.5 ],
-// [ 0, 0 ],
-// [ 0.00008, 0.75 ],
-// [ 0.00015, 0.75 ]
-// ]
-
-NORM.get2LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 1.0,
- NORM.LONG_TERM_LOAD, NORM.LOW_HUMIDITY, true)
-// [
-// [ -0.0056, -8.5 ],
-// [ -0.0034, -8.5 ],
-// [ 0, 0 ],
-// [ 0.00026, 0.6 ],
-// [ 0.00036, 0.6 ]
-// ]
-```
 ---
 *number* __table_06_13__ (*string* __class__, *number* __Ysi = 1.0__)
 

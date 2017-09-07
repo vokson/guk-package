@@ -85,7 +85,7 @@ function makeUniqueArrayFromSorted(sortedArray) {
 
 function isSame(a, b, precision = 0.000001) {
     if (Math.abs(a - b) < precision) {
-        // console.log(a, ' = ', b);
+        // console.log(main1, ' = ', sub1);
         return true;
     }
 }

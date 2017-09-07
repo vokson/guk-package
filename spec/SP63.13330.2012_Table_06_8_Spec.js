@@ -109,18 +109,71 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.8", function () {
         for (var classname in array_Rb) {
             if (array_Rb.hasOwnProperty(classname)) {
 
-                expect(test_function(NORM.HEAVY_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.PRESTRESSED_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
-                expect(test_function(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
+                expect(test_function({
+                    "type": NORM.HEAVY_CONCRETE,
+                    "classname": classname
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.PRESTRESSED_CONCRETE,
+                    "classname": classname
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                    "classname": classname
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                    "classname": classname
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                    "classname": classname
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 //с учетом понижающего коэффициента 0.8 для мелкозернистого бетона на песке с модулем крупности 2.0 и менее
-                expect(test_function(NORM.HEAVY_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.PRESTRESSED_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
-                expect(test_function(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
-                expect(test_function(NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
-                expect(test_function(NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
+                expect(test_function({
+                    "type": NORM.HEAVY_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.PRESTRESSED_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
+
+                expect(test_function({
+                    "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
             }
         }
     });
@@ -133,12 +186,33 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.8", function () {
 
         for (var classname in array_Rb) {
             if (array_Rb.hasOwnProperty(classname)) {
-                expect(test_function(NORM.LIGHT_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.POROUS_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
+
+                expect(test_function({
+                    "type": NORM.LIGHT_CONCRETE,
+                    "classname": classname,
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.POROUS_CONCRETE,
+                    "classname": classname,
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
 
                 //с учетом понижающего коэффициента 0.8 для легкого бетона на мелком пористом заполнителе
-                expect(test_function(NORM.LIGHT_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
-                expect(test_function(NORM.POROUS_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
+                expect(test_function({
+                    "type": NORM.LIGHT_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
+
+                expect(test_function({
+                    "type": NORM.POROUS_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
             }
         }
     });
@@ -150,11 +224,31 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.8", function () {
 
         for (var classname in array_Rb) {
             if (array_Rb.hasOwnProperty(classname)) {
-                expect(test_function(NORM.CELL_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, classname)).toEqual([array_Rb[classname], array_Rbt[classname]]);
+                expect(test_function({
+                    "type": NORM.CELL_CONCRETE,
+                    "classname": classname,
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
-                expect(test_function(NORM.CELL_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname]]);
-                expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, classname, 1, 1, true)).toEqual([array_Rb[classname], array_Rbt[classname]]);
+                expect(test_function({
+                    "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                    "classname": classname,
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.CELL_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
+
+                expect(test_function({
+                    "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                    "classname": classname,
+                    "Ybi": 1.0,
+                    "Ybti": 1.0,
+                    "isReductionFactorToBeApplied": true
+                }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
             }
         }
     });
@@ -165,22 +259,23 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.8", function () {
         var array_Rbt = heavy_Rbt;
         var classname = 'B15';
 
-        expect(test_function(NORM.HEAVY_CONCRETE, classname, 0.5, 0.25)).toEqual([array_Rb[classname] * 0.5, array_Rbt[classname] * 0.25]);
+        expect(test_function({
+            "type": NORM.HEAVY_CONCRETE,
+            "classname": classname,
+            "Ybi": 0.5,
+            "Ybti": 0.25,
+        }).answer).toEqual([array_Rb[classname] * 0.5, array_Rbt[classname] * 0.25]);
     });
 
     it("должна вернуть NULL, если тип, класс бетона неверен", function () {
-        expect(test_function(-1)).toBe(null);
-        expect(test_function('AAA')).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE)).toBe(null);
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+            "classname": 'B50',
+        }).answer).toBeNull();
 
-
-        expect(test_function(NORM.LIGHT_CONCRETE, 'B50')).toBe(null);
-        expect(test_function(NORM.LIGHT_CONCRETE, 1)).toBe(null);
-    });
-
-    it("должна вернуть NULL, если факторы гамма_bi неверны", function () {
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', -1)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', null)).toBe(null);
-        expect(test_function(NORM.HEAVY_CONCRETE, 'B15', 'AAA')).toBe(null);
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+            "classname": 1,
+        }).answer).toBeNull();
     });
 });

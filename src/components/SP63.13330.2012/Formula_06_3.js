@@ -1,12 +1,20 @@
-export default function (Eb = null, Fi = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof Eb === "number" &&
-        typeof Fi === "number" &&
-        Eb >= 0 && Fi >= 0
-    ) {
-        return Eb/(1+Fi);
-    }
+var defaultProperties = {"type": "number", "minimum": 0};
 
-    return null;
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "Eb",
+        "Fi",
+    ]
+};
+
+function calculate(obj) {
+    return obj.Eb / (1 + obj.Fi);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

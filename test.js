@@ -1,10 +1,13 @@
 var NORM = require('./lib/SP63.13330.2012');
+var test_function = NORM.get2LinearDiagramForConcrete;
 
-var data = {
-    "Rs": 99.9,
-    "N": 0,
+var test = test_function({
+    "type": NORM.HEAVY_CONCRETE,
+    "classname": 'B25',
+    "Ybi": 1.0,
+    "Ybti": 1.0,
+    "loadCondition": NORM.SHORT_TERM_LOAD,
+});
 
-};
-
-NORM.formula_08_13(data);
-
+console.log("TEST IS FINISHED");
+console.log(test);

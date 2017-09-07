@@ -10,20 +10,21 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
     it("должна вернуть Es = 1.95 * 10^5 МПа для арматурных канатов (К)", function () {
 
         K_list.forEach(function (classname) {
-            expect(test_function(classname)).toBe(195000);
+            var input = {
+                "classname": classname,
+            };
+            expect(test_function(input).answer).toBeCloseTo(195000, 0);
         });
     });
 
     it("должна вернуть Es = 2.0 * 10^5 МПа для арматуры (A и B)", function () {
 
         AB_list.forEach(function (classname) {
-            expect(test_function(classname)).toBe(200000);
+            var input = {
+                "classname": classname,
+            };
+            expect(test_function(input).answer).toBeCloseTo(200000, 0);
         });
-    });
-
-    it("должна вернуть NULL, если класс арматуры неверен", function () {
-        expect(test_function(-1)).toBeNull();
-        expect(test_function('AAA')).toBeNull();
     });
 
 });
