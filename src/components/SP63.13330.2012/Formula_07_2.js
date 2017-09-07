@@ -1,14 +1,22 @@
-export default function (b = null, h = null, e0 = null, nu = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof b === "number" &&
-        typeof h === "number" &&
-        typeof e0 === "number" &&
-        typeof nu === "number" &&
-        b >= 0 && h > 0 && e0 >= 0 && nu >= 0
-    ) {
-        return b * h * (1 - (2 * e0 * nu) / h);
-    }
+var defaultProperties = {"type": "number", "minimum": 0};
 
-    return null;
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "b",
+        "h",
+        "e0",
+        "nu",
+    ]
+};
+
+function calculate(obj) {
+    return obj.b * obj.h * (1 - (2 * obj.e0 * obj.nu) / obj.h);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

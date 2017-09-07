@@ -1,12 +1,20 @@
-export default function (D = null, L0 = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof D === "number" &&
-        typeof L0 === "number" &&
-        D >= 0 && L0 > 0
-    ) {
-        return Math.pow(Math.PI, 2) * D / Math.pow(L0, 2);
-    }
+var defaultProperties = {"type": "number", "minimum": 0};
 
-    return null;
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "D",
+        "L0",
+    ]
+};
+
+function calculate(obj) {
+    return Math.pow(Math.PI, 2) * obj.D / Math.pow(obj.L0, 2);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

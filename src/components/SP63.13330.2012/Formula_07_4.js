@@ -1,18 +1,24 @@
-export default function (Rbt = null, A = null, I = null, e0 = null, nu = null, Yt = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof Rbt === "number" &&
-        typeof A === "number" &&
-        typeof I === "number" &&
-        typeof e0 === "number" &&
-        typeof nu === "number" &&
-        typeof Yt === "number" &&
-        Rbt >= 0 && A >= 0 && I > 0 && e0 >= 0 && nu >= 0 && Yt >= 0
-    ) {
-        var result = Rbt * A / (A / I * e0 * nu * Yt - 1);
+var defaultProperties = {"type": "number", "minimum": 0};
 
-        if (isFinite(result)) return result;
-    }
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "Rbt",
+        "A",
+        "I",
+        "e0",
+        "nu",
+        "Yt",
+    ]
+};
 
-    return null;
+function calculate(obj) {
+    return obj.Rbt * obj.A / (obj.A / obj.I * obj.e0 * obj.nu * obj.Yt - 1);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

@@ -11,28 +11,46 @@ var shortTermOutput = [1.0, 0.90, 0.85, 0.95, 0.875];
 describe("СП 63.13330.2012 (изм.1) - Таблица 7.1", function () {
 
     it("должна вернуть Fi при L0/h для длительных нагрузок", function () {
-
         longTermInput.forEach(function (value, i) {
-            expect(test_function(value, NORM.LONG_TERM_LOAD)).toBeCloseTo(longTermOutput[i], 2);
+            var input = {
+                "e0_h": value,
+                "loadType": NORM.LONG_TERM_LOAD,
+            };
+            expect(test_function(input).answer).toBeCloseTo(longTermOutput[i], 2);
         });
     });
 
     it("должна вернуть Fi при L0/h для кратковременных нагрузок", function () {
 
         shortTermInput.forEach(function (value, i) {
-            expect(test_function(value, NORM.SHORT_TERM_LOAD)).toBeCloseTo(shortTermOutput[i], 3);
+            var input = {
+                "e0_h": value,
+                "loadType": NORM.SHORT_TERM_LOAD,
+            };
+            expect(test_function(input).answer).toBeCloseTo(shortTermOutput[i], 3);
         });
     });
 
     it("должна вернуть NULL, если L0/h неверно", function () {
-        expect(test_function(-0.1, NORM.LONG_TERM_LOAD)).toBeNull();
-        expect(test_function(20.1, NORM.LONG_TERM_LOAD)).toBeNull();
-        expect(test_function('AAA', NORM.LONG_TERM_LOAD)).toBeNull();
+        var input = {
+            "e0_h": -0.1,
+            "loadType": NORM.LONG_TERM_LOAD,
+        };
+        expect(test_function(input).answer).toBeNull();
+
+        var input = {
+            "e0_h": 20.1,
+            "loadType": NORM.LONG_TERM_LOAD,
+        };
+        expect(test_function(input).answer).toBeNull();
     });
 
-    it("должна вернуть NULL, если тип нагрузки не верен", function () {
-        expect(test_function(5, -1)).toBeNull();
-        expect(test_function(5, "AAA")).toBeNull();
+    it("должна вернуть NULL, если loadType неверно", function () {
+        var input = {
+            "e0_h": 1,
+            "loadType": -1,
+        };
+        expect(test_function(input).answer).toBeNull();
     });
 
 });

@@ -1,14 +1,20 @@
-export default function (N = null, Ncr = null) {
+import * as FUNC from './Common_Functions';
 
-    if (
-        typeof N === "number" &&
-        typeof Ncr === "number" &&
-        N >= 0 && Ncr > 0
-    ) {
-        var result = 1 / (1 - N / Ncr);
+var defaultProperties = {"type": "number", "minimum": 0};
 
-        if (isFinite(result)) return result;
-    }
+var schema = {
+    "type": "object",
+    "properties": {},
+    "required": [
+        "N",
+        "Ncr",
+    ]
+};
 
-    return null;
+function calculate(obj) {
+    return 1 / (1 - obj.N / obj.Ncr);
+}
+
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }
