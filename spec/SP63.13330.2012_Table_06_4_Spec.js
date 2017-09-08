@@ -14,14 +14,18 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.4", function () {
         var correct = ['W2', 'W4', 'W6', 'W8', 'W10', 'W12', 'W14', 'W16', 'W18', 'W20'];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual(correct);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(correct);
         });
     });
 
     it("должна вернуть массив марок по водонепроницаемости для Легкого бетона", function () {
 
         var correct = ['W2', 'W4', 'W6', 'W8', 'W10', 'W12'];
-        expect(test_function(NORM.LIGHT_CONCRETE)).toEqual(correct);
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+        }).answer).toEqual(correct);
 
     });
 
@@ -34,12 +38,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.4", function () {
         ];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual([]);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(null);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
-        expect(test_function(-1)).toEqual([]);
-        expect(test_function('AAA')).toEqual([]);
+        expect(test_function({
+            "type": -1,
+        }).answer).toEqual(null);
+
+        expect(test_function({
+            "type": "AAA",
+        }).answer).toEqual(null);
     });
 });

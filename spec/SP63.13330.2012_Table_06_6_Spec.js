@@ -6,7 +6,10 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.6", function () {
     it("должна вернуть массив марок бетона по самонапряжению для Напрягающего бетона", function () {
 
         var correct = ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4'];
-        expect(test_function(NORM.PRESTRESSED_CONCRETE)).toEqual(correct);
+
+        expect(test_function({
+            "type": NORM.PRESTRESSED_CONCRETE,
+        }).answer).toEqual(correct);
 
     });
 
@@ -23,12 +26,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.6", function () {
         ];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual([]);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(null);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
-        expect(test_function(-1)).toEqual([]);
-        expect(test_function('AAA')).toEqual([]);
+        expect(test_function({
+            "type": -1,
+        }).answer).toEqual(null);
+
+        expect(test_function({
+            "type": "AAA",
+        }).answer).toEqual(null);
     });
 });

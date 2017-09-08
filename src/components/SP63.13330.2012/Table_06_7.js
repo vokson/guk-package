@@ -1,4 +1,5 @@
 import * as CONST from './Constants';
+import * as FUNC from './Common_Functions';
 
 const HEAVY_CONCRETE_Rb = {
     'B3,5': 2.7,
@@ -182,28 +183,64 @@ function getRbt(type, classname) {
     }
 }
 
-export default function (type = null, classname = null, Ybi = 1.0, Ybti = 1.0, isReductionFactorToBeApplied = false) {
+let defaultValidationProperties = {"type": "number", "minimum": 0};
+let defaultProperties = {"Ybi": 1.0, "Ybti": 1.0, "isReductionFactorToBeApplied": false};
 
-    if (!isClassCorrect(type, classname) || typeof Ybi !== "number" || typeof Ybti !== "number") {
-        return null;
-    }
+let schema = {
+    "type": "object",
+    "properties": {
+        "type": {
+            "oneOf": [
+                {"const": CONST.HEAVY_CONCRETE},
+                {"const": CONST.PRESTRESSED_CONCRETE},
+                {"const": CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
+                {"const": CONST.LIGHT_CONCRETE},
+                {"const": CONST.POROUS_CONCRETE},
+                {"const": CONST.CELL_AUTOCLAVE_CONCRETE},
+                {"const": CONST.CELL_CONCRETE},
+            ]
+        },
+        "classname": {"type": "string"},
+        "isReductionFactorToBeApplied": {"type": "boolean"},
+    },
+    "required": [
+        "type",
+        "classname",
+        "Ybi",
+        "Ybti",
+        "isReductionFactorToBeApplied",
+    ]
+};
 
-    if (Ybi < 0 || Ybti < 0) {
+function calculate(obj) {
+    if (!isClassCorrect(obj.type, obj.classname)) {
         return null;
     }
 
     let reductionFactor = 1;
+
     if (
-        (isReductionFactorToBeApplied === true) &&
+        (obj.isReductionFactorToBeApplied === true) &&
         (
-            type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
-            type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
-            type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B ||
-            type === CONST.LIGHT_CONCRETE
+            obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
+            obj.type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
+            obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B ||
+            obj.type === CONST.LIGHT_CONCRETE
         )
     ) {
         reductionFactor = 0.8;
     }
 
-    return [getRb(type, classname) * Ybi, getRbt(type, classname) * Ybti * reductionFactor];
+    return [getRb(obj.type, obj.classname) * obj.Ybi, getRbt(obj.type, obj.classname) * obj.Ybti * reductionFactor];
+}
+
+export default function (json) {
+
+    Object.keys(defaultProperties).map(function(key, index) {
+        if (!(key in json)) json[key] = defaultProperties[key];
+    });
+
+    return FUNC.prepareFeedbackObject(schema, defaultValidationProperties, json, calculate);
 }

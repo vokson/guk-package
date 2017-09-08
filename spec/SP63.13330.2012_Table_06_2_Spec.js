@@ -15,14 +15,18 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.2", function () {
         var correct = ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2', 'Bt3,6', 'Bt4,0'];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual(correct);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(correct);
         });
     });
 
     it("должна вернуть массив классов по прочности на растяжение для Легкого бетона", function () {
 
         var correct = ['Bt0,8', 'Bt1,2', 'Bt1,6', 'Bt2,0', 'Bt2,4', 'Bt2,8', 'Bt3,2'];
-        expect(test_function(NORM.LIGHT_CONCRETE)).toEqual(correct);
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+        }).answer).toEqual(correct);
 
     });
 
@@ -34,12 +38,20 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.2", function () {
         ];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual([]);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(null);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
-        expect(test_function(-1)).toEqual([]);
-        expect(test_function('AAA')).toEqual([]);
+        expect(test_function({
+            "type": -1,
+        }).answer).toEqual(null);
+
+        expect(test_function({
+            "type": "AAA",
+        }).answer).toEqual(null);
+
     });
 });

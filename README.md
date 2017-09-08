@@ -57,56 +57,36 @@ export const STRESS_TYPE_DESCRIPTION = [] - массив описаний тип
 *[string]* __table_06_2__ (jsonObject)
 
 Возвращает массив классов бетона на растяжение из Таблицы 6.2. Поля объекта jsonObject:
-* __type__ - тип бетона;
+* *number* __type__ - тип бетона;
 
 ---
-*[string]* __table_06_3__ (*number* __type__)
+#### Таблица 6.3
+*[string]* __table_06_3__ (jsonObject)
 
-Возвращает массив марок бетона по морозостойкости из Таблицы 6.3
-* __type__ - тип бетона;
+Возвращает массив марок бетона по морозостойкости из Таблицы 6.3. Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
 
-#### Example
-
-```javascript
-NORM.table_06_3(NORM.LIGHT_CONCRETE)
-// ['F25', 'F35', 'F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500']
-```
 ---
-*[string]* __table_06_4__ (*number* __type__)
+#### Таблица 6.4
+*[string]* __table_06_4__ (jsonObject)
 
-Возвращает массив марок бетона по водонепроницаемости из Таблицы 6.4
-* __type__ - тип бетона;
+Возвращает массив марок бетона по водонепроницаемости из Таблицы 6.4. Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
 
-#### Example
-
-```javascript
-NORM.table_06_4(NORM.LIGHT_CONCRETE)
-// ['W2', 'W4', 'W6', 'W8', 'W10', 'W12']
-```
 ---
-*[string]* __table_06_5__ (*number* __type__)
+#### Таблица 6.5
+*[string]* __table_06_5__ (jsonObject)
 
-Возвращает массив марок бетона по средней плотности из Таблицы 6.5
-* __type__ - тип бетона;
+Возвращает массив марок бетона по средней плотности из Таблицы 6.5. Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
 
-#### Example
-
-```javascript
-NORM.table_06_5(NORM.POROUS_CONCRETE)
-// ['D800', 'D900', 'D1000', 'D1100', 'D1200', 'D1300', 'D1400']
-```
 ---
-*[string]* __table_06_6__ (*number* __type__)
+#### Таблица 6.6
+*[string]* __table_06_6__ (jsonObject)
 
-Возвращает массив марок бетона по самонапряжению из Таблицы 6.6
-* __type__ - тип бетона;
+Возвращает массив марок бетона по самонапряжению из Таблицы 6.6. Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
 
-#### Example
-
-```javascript
-NORM.table_06_6(NORM.PRESTRESSED_CONCRETE)
-// ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4']
-```
 ---
 *number* __getYb1__ (*number* __loadType__, *number* __type__)
 
@@ -170,24 +150,16 @@ NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
 // 0.95
 ```
 ---
-*[number]* __table_06_7__ (*number* __type__, *string* __class__, *number* __Ybi = 1.0__, *number* __Ybti = 1.0__, *boolean* __isReductionFactorToBeApplied = false__)
+#### Таблица 6.7
+*[number]* __table_06_7__ (jsonObject)
 
-Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа)
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на сжатие;
-* __Ybi__ - коэффициент, понижающий **Rb**, > 0;
-* __Ybti__ - коэффициент, понижающий **Rbt**, > 0;
-* __isReductionFactorToBeApplied__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
+Возвращает массив нормативных сопротивлений бетона **[Rb,n ; Rbt,n]** из Таблицы 6.7 (МПа). Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на сжатие;
+* *number* __Ybi = 1.0__ - коэффициент, понижающий **Rb**, > 0;
+* *number* __Ybti = 1.0__ - коэффициент, понижающий **Rbt**, > 0;
+* *boolean* __isReductionFactorToBeApplied = false__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.7);
 
-#### Example
-
-```javascript
-NORM.table_06_7(NORM.HEAVY_CONCRETE, 'B25')
-// [18.5, 1.55]
-
-NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
-// [11.0, 0.88]
-```
 ---
 #### Таблица 6.8
 *[number]* __table_06_8__ (jsonObject)
@@ -200,21 +172,13 @@ NORM.table_06_7(NORM.LIGHT_CONCRETE, 'B15', 1.0, 1.0, true)
 * *boolean8 __isReductionFactorToBeApplied = false__ - следует ли умножать Rbt,n на коэффициент 0.8 (прим. 2 Таблица 6.8);
 
 ---
-*[number]* __table_06_9__ (*number* __type__, *string* __class__)
+#### Таблица 6.9
+*[number]* __table_06_9__ (jsonObject)
 
-Возвращает расчетное сопротивление бетона **Rbt** из Таблицы 6.9 (МПа)
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на осевое растяжение;
+Возвращает расчетное сопротивление бетона **Rbt** из Таблицы 6.9 (МПа). Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на осевое растяжение;
 
-#### Example
-
-```javascript
-NORM.table_06_9(NORM.PRESTRESSED_CONCRETE, 'Bt2,4')
-// 1.85
-
-NORM.table_06_9(NORM.CELL_CONCRETE, 'Bt2,4')
-// null
-```
 ---
 #### Таблица 6.10
 *[number]* __table_06_10__ (jsonObject)

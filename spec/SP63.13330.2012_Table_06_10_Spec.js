@@ -41,7 +41,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
         types.forEach(function (type) {
 
-            class_function(type).forEach(function (classname) {
+            class_function({"type": type}).answer.forEach(function (classname) {
 
                 expect(test_function({
                     "type": type,
@@ -83,7 +83,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
         types.forEach(function (type) {
 
-            class_function(type).forEach(function (classname) {
+            class_function({"type": type}).answer.forEach(function (classname) {
 
                 expect(test_function({
                     "type": type,
