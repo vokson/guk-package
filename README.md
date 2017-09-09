@@ -192,21 +192,14 @@ NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
 * *number* __stress__ - вид напряженного состояния (см. константы);
 
 ---
-*number* __table_06_11__ (*number* __type__, *string* __class__, *string* __density = null__)
+#### Таблица 6.11
+*number* __table_06_11__ (jsonObject)
 
-Возвращает начальный модуль упругости **Eb** бетона из Таблицы 6.11 (МПа)
-* __type__ - тип бетона;
-* __class__ - класс бетона по прочности на сжатие;
-* __density__ - марка бетона по средней плотности;
+Возвращает начальный модуль упругости **Eb** бетона из Таблицы 6.11 (МПа). Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *string* __class__ - класс бетона по прочности на сжатие;
+* *string* __density = null__ - марка бетона по средней плотности;
 
-#### Example
-
-```javascript
-NORM.table_06_11(NORM.HEAVY_CONCRETE, 'B15')
-// 24000
-NORM.table_06_11(NORM.LIGHT_CONCRETE, 'B2,5', 'D900')
-// 4500
-```
 ---
 *number* __table_06_12__ (*string* __class__, *number* __humidity__)
 

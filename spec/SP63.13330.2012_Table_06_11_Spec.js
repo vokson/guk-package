@@ -160,8 +160,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = heavy_Eb;
 
-        class_function(NORM.HEAVY_CONCRETE).forEach(function (classname) {
-            expect(test_function(NORM.HEAVY_CONCRETE, classname)).toEqual(array_Eb[classname] * 1000);
+        class_function({"type": NORM.HEAVY_CONCRETE}).answer.forEach(function (classname) {
+            expect(test_function({
+                "type": NORM.HEAVY_CONCRETE,
+                "classname": classname,
+            }).answer).toEqual(array_Eb[classname] * 1000);
         });
 
     });
@@ -170,9 +173,14 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = heavy_Eb;
 
-        class_function(NORM.PRESTRESSED_CONCRETE).forEach(function (classname) {
+        class_function({"type": NORM.PRESTRESSED_CONCRETE}).answer.forEach(function (classname) {
             var factor = 0.56 + 0.006 * NORM.getGradeNumberValue(classname, 1);
-            expect(test_function(NORM.PRESTRESSED_CONCRETE, classname)).toEqual(array_Eb[classname] * factor * 1000);
+
+            expect(test_function({
+                "type": NORM.PRESTRESSED_CONCRETE,
+                "classname": classname,
+            }).answer).toEqual(array_Eb[classname] * factor * 1000);
+
         });
     });
 
@@ -180,8 +188,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_A_Eb;
 
-        class_function(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A).forEach(function (classname) {
-            expect(test_function(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, classname)).toEqual(array_Eb[classname] * 1000);
+        class_function({"type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
+            expect(test_function({
+                "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                "classname": classname,
+            }).answer).toEqual(array_Eb[classname] * 1000);
+            ;
         });
     });
 
@@ -189,8 +201,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_A_Eb;
 
-        class_function(NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A).forEach(function (classname) {
-            expect(test_function(NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A, classname)).toEqual(array_Eb[classname] * 0.89 * 1000);
+        class_function({"type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
+            expect(test_function({
+                "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                "classname": classname,
+            }).answer).toEqual(array_Eb[classname] * 0.89 * 1000);
         });
     });
 
@@ -198,8 +213,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_B_Eb;
 
-        class_function(NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B).forEach(function (classname) {
-            expect(test_function(NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B, classname)).toEqual(array_Eb[classname] * 1000);
+        class_function({"type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B}).answer.forEach(function (classname) {
+            expect(test_function({
+                "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                "classname": classname,
+            }).answer).toEqual(array_Eb[classname] * 1000);
         });
     });
 
@@ -207,18 +225,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = light_Eb;
 
-        density_function(NORM.LIGHT_CONCRETE).forEach(function (density) {
-            class_function(NORM.LIGHT_CONCRETE, density).forEach(function (classname) {
+        density_function({"type": NORM.LIGHT_CONCRETE}).answer.forEach(function (density) {
+            class_function({"type": NORM.LIGHT_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
 
-                    // if( !(test_function(NORM.LIGHT_CONCRETE, classname, density) ==array_Eb[density][classname])) {
-                    //     console.log(NORM.LIGHT_CONCRETE + '  ' + classname + '  ' + density);
-                    //     console.log('TEST: ' + test_function(NORM.LIGHT_CONCRETE, classname, density));
-                    //     console.log('CORRECT: ' + array_Eb[density][classname]);
-                    // }
+                    console.log("Type = LIGHT.CONCRETE");
+                    console.log("Classname = " +classname);
+                    console.log("Density = " +density);
 
-
-                    expect(test_function(NORM.LIGHT_CONCRETE, classname, density)).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
+                    expect(test_function({
+                        "type": NORM.LIGHT_CONCRETE,
+                        "classname": classname,
+                        "density": density
+                    }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
             });
         });
@@ -228,10 +247,14 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = light_Eb;
 
-        density_function(NORM.POROUS_CONCRETE).forEach(function (density) {
-            class_function(NORM.POROUS_CONCRETE, density).forEach(function (classname) {
+        density_function({"type": NORM.POROUS_CONCRETE}).answer.forEach(function (density) {
+            class_function({"type": NORM.POROUS_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
-                    expect(test_function(NORM.POROUS_CONCRETE, classname, density)).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
+                    expect(test_function({
+                        "type": NORM.POROUS_CONCRETE,
+                        "classname": classname,
+                        "density": density
+                    }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
             });
         });
@@ -241,10 +264,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = cell_Eb;
 
-        density_function(NORM.CELL_AUTOCLAVE_CONCRETE).forEach(function (density) {
-            class_function(NORM.CELL_AUTOCLAVE_CONCRETE, density).forEach(function (classname) {
+        density_function({"type": NORM.CELL_AUTOCLAVE_CONCRETE}).answer.forEach(function (density) {
+            class_function({
+                "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                "density": density
+            }).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
-                    expect(test_function(NORM.CELL_AUTOCLAVE_CONCRETE, classname, density)).toEqual(array_Eb[density][classname] * 1000);
+                    expect(test_function({
+                        "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                        "classname": classname,
+                        "density": density
+                    }).answer).toEqual(array_Eb[density][classname] * 1000);
                 }
             });
         });
@@ -254,20 +284,36 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = cell_Eb;
 
-        density_function(NORM.CELL_CONCRETE).forEach(function (density) {
-            class_function(NORM.CELL_CONCRETE, density).forEach(function (classname) {
+        density_function({"type": NORM.CELL_CONCRETE}).answer.forEach(function (density) {
+            class_function({"type": NORM.CELL_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
-                    expect(test_function(NORM.CELL_CONCRETE, classname, density)).toEqual(array_Eb[density][classname] * 0.8 * 1000);
+                    expect(test_function({
+                        "type": NORM.CELL_CONCRETE,
+                        "classname": classname,
+                        "density": density
+                    }).answer).toEqual(array_Eb[density][classname] * 0.8 * 1000);
                 }
             });
         });
     });
 
     it("должна вернуть NULL, если тип, класс бетона неверен", function () {
-        expect(test_function(-1)).toBe(null);
-        expect(test_function('AAA')).toBe(null);
+        expect(test_function({
+            "type": -1,
+        }).answer).toBeNull();
 
-        expect(test_function(NORM.LIGHT_CONCRETE)).toBe(null);
-        expect(test_function(NORM.CELL_CONCRETE, 'D400')).toBe(null);
+        expect(test_function({
+            "type": 'AAA',
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "type": NORM.CELL_CONCRETE,
+            "density": 'D400'
+        }).answer).toBeNull();
+
     });
 });

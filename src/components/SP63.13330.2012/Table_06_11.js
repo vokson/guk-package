@@ -1,6 +1,5 @@
 import * as CONST from './Constants';
 import * as FUNC from './Common_Functions';
-import {default as class_function} from './Table_06_1';
 
 const MULTIPLIER = 1000;
 
@@ -118,91 +117,123 @@ const CELL_CONCRETE_Eb = {
     'D1200': {'B10': 8.4, 'B12,5': 8.8, 'B15': 9.3}
 };
 
-function isInputCorrect(type, classname, density = null) {
-    if (
-        type === CONST.HEAVY_CONCRETE ||
-        type === CONST.PRESTRESSED_CONCRETE ||
-        type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
-        type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
-        type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B ||
-        type === CONST.LIGHT_CONCRETE ||
-        type === CONST.POROUS_CONCRETE ||
-        type === CONST.CELL_CONCRETE ||
-        type === CONST.CELL_AUTOCLAVE_CONCRETE
-    ) {
-        return !(class_function(type, density).indexOf(classname) === -1);
+let defaultValidationProperties = {"type": "number", "minimum": 0};
+
+let schema = {
+    "type": "object",
+    "properties": {
+        "type": {
+            "oneOf": [
+                {"const": CONST.HEAVY_CONCRETE},
+                {"const": CONST.PRESTRESSED_CONCRETE},
+                {"const": CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A},
+                {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
+                {"const": CONST.LIGHT_CONCRETE},
+                {"const": CONST.POROUS_CONCRETE},
+                {"const": CONST.CELL_AUTOCLAVE_CONCRETE},
+                {"const": CONST.CELL_CONCRETE},
+            ]
+        },
+        "classname": {"type": "string"},
+        "density": {"type": "string"},
+
+    },
+    "required": [
+        "type",
+        "classname",
+    ]
+};
+
+function isInputCorrect(type, classname, density) {
+
+    if (type === CONST.HEAVY_CONCRETE || type === CONST.PRESTRESSED_CONCRETE) {
+        return HEAVY_CONCRETE_Eb.hasOwnProperty(classname);
     }
 
-    return false;
-}
-
-function isValueInObject(object, classname, density) {
-    if (object.hasOwnProperty(density) && object[density].hasOwnProperty(classname)) {
-        return true;
-    }
-
-    return false;
-}
-
-function getUpDownDensities(density) {
-    let density_number = FUNC.getGradeNumberValue(density);
-    return ['D' + (density_number + 100), 'D' + (density_number - 100)];
-
-}
-
-export default function (type = null, classname = null, density = null) {
-
-    if (!isInputCorrect(type, classname, density)) {
-        return null;
-    }
-
-    if (type === CONST.HEAVY_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[classname] * MULTIPLIER;
-    }
-
-    if (type === CONST.PRESTRESSED_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[classname] * (0.56 + 0.006 * FUNC.getGradeNumberValue(classname, 1)) * MULTIPLIER;
-    }
-
-    if (type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[classname] * MULTIPLIER;
-    }
-
-    if (type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[classname] * 0.89 * MULTIPLIER;
+    if (type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A || type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
+        return FINE_GRADE_A_CONCRETE_Eb.hasOwnProperty(classname);
     }
 
     if (type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B) {
-        return FINE_GRADE_B_CONCRETE_Eb[classname] * MULTIPLIER;
+        return FINE_GRADE_B_CONCRETE_Eb.hasOwnProperty(classname);
+    }
+
+    if (type === CONST.CELL_CONCRETE || type === CONST.CELL_AUTOCLAVE_CONCRETE) {
+        return (CELL_CONCRETE_Eb.hasOwnProperty(density) && CELL_CONCRETE_Eb[density].hasOwnProperty(classname));
+    }
+
+    if (type === CONST.LIGHT_CONCRETE || type === CONST.POROUS_CONCRETE) {
+        return (LIGHT_CONCRETE_Eb.hasOwnProperty(density) && LIGHT_CONCRETE_Eb[density].hasOwnProperty(classname));
+    }
+}
+
+function getValueForMiddleDensity(density, classname) {
+    let density_number = FUNC.getGradeNumberValue(density);
+    let [density_up, density_down] = ['D' + (density_number + 100), 'D' + (density_number - 100)];
+
+    if (
+        isInputCorrect(LIGHT_CONCRETE_Eb, classname, density_up) &&
+        isInputCorrect(LIGHT_CONCRETE_Eb, classname, density_down)
+    ) {
+
+        return (LIGHT_CONCRETE_Eb[density_down][classname] + LIGHT_CONCRETE_Eb[density_up][classname]) / 2 * MULTIPLIER;
+    }
+
+    return null;
+
+}
+
+function calculate(obj) {
+
+    let isOK = isInputCorrect(obj.type, obj.classname, obj.density);
+
+    // ******************* INTERPOLATION OF DENSITY FOR LIGHT CONCRETE **************************
+
+    if (obj.type === CONST.LIGHT_CONCRETE || obj.type === CONST.POROUS_CONCRETE) {
+        if (isOK)
+            return LIGHT_CONCRETE_Eb[obj.density][obj.classname] * MULTIPLIER;
+        else
+            return getValueForMiddleDensity(obj.density, obj.classname);
+    }
+
+    if (!isOK) return null;
+
+    if (obj.type === CONST.HEAVY_CONCRETE) {
+        return HEAVY_CONCRETE_Eb[obj.classname] * MULTIPLIER;
+    }
+
+    if (obj.type === CONST.PRESTRESSED_CONCRETE) {
+        return HEAVY_CONCRETE_Eb[obj.classname] * (0.56 + 0.006 * FUNC.getGradeNumberValue(obj.classname, 1)) * MULTIPLIER;
+    }
+
+    if (obj.type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A) {
+        return FINE_GRADE_A_CONCRETE_Eb[obj.classname] * MULTIPLIER;
+    }
+
+    if (obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
+        return FINE_GRADE_A_CONCRETE_Eb[obj.classname] * 0.89 * MULTIPLIER;
+    }
+
+    if (obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B) {
+        return FINE_GRADE_B_CONCRETE_Eb[obj.classname] * MULTIPLIER;
     }
 
     // *******************
 
 
-    if (type === CONST.CELL_AUTOCLAVE_CONCRETE && isValueInObject(CELL_CONCRETE_Eb, classname, density)) {
-        return CELL_CONCRETE_Eb[density][classname] * MULTIPLIER;
+    if (obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) {
+        return CELL_CONCRETE_Eb[obj.density][obj.classname] * MULTIPLIER;
     }
 
-    if (type === CONST.CELL_CONCRETE && isValueInObject(CELL_CONCRETE_Eb, classname, density)) {
-        return CELL_CONCRETE_Eb[density][classname] * 0.8 * MULTIPLIER;
+    if (obj.type === CONST.CELL_CONCRETE) {
+        return CELL_CONCRETE_Eb[obj.density][obj.classname] * 0.8 * MULTIPLIER;
     }
 
-    // ******************* INTERPOLATION OF DENSITY FOR LIGHT CONCRETE **************************
-
-    if (type === CONST.LIGHT_CONCRETE || type === CONST.POROUS_CONCRETE) {
-
-        if (isValueInObject(LIGHT_CONCRETE_Eb, classname, density)) {
-            return LIGHT_CONCRETE_Eb[density][classname] * MULTIPLIER;
-        }
-
-        let [density_up, density_down] = getUpDownDensities(density);
-
-        if (isValueInObject(LIGHT_CONCRETE_Eb, classname, density_up) && isValueInObject(LIGHT_CONCRETE_Eb, classname, density_down)) {
-
-            return (LIGHT_CONCRETE_Eb[density_down][classname] + LIGHT_CONCRETE_Eb[density_up][classname]) / 2 * MULTIPLIER;
-        }
-    }
 
     return null;
+}
 
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultValidationProperties, json, calculate);
 }
