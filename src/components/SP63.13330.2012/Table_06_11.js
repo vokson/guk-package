@@ -168,15 +168,14 @@ function isInputCorrect(type, classname, density) {
     }
 }
 
-function getValueForMiddleDensity(density, classname) {
+function getValueForMiddleDensity(type, classname, density) {
     let density_number = FUNC.getGradeNumberValue(density);
-    let [density_up, density_down] = ['D' + (density_number + 100), 'D' + (density_number - 100)];
+    let [density_up, density_down] = [CONST.DENSITY_PREFIX + (density_number + 100), CONST.DENSITY_PREFIX + (density_number - 100)];
 
     if (
-        isInputCorrect(LIGHT_CONCRETE_Eb, classname, density_up) &&
-        isInputCorrect(LIGHT_CONCRETE_Eb, classname, density_down)
+        isInputCorrect(type, classname, density_up) &&
+        isInputCorrect(type, classname, density_down)
     ) {
-
         return (LIGHT_CONCRETE_Eb[density_down][classname] + LIGHT_CONCRETE_Eb[density_up][classname]) / 2 * MULTIPLIER;
     }
 
@@ -194,7 +193,7 @@ function calculate(obj) {
         if (isOK)
             return LIGHT_CONCRETE_Eb[obj.density][obj.classname] * MULTIPLIER;
         else
-            return getValueForMiddleDensity(obj.density, obj.classname);
+            return getValueForMiddleDensity(obj.type, obj.classname, obj.density);
     }
 
     if (!isOK) return null;

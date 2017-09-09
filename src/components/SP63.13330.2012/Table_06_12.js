@@ -1,4 +1,5 @@
 import * as CONST from './Constants';
+import * as FUNC from './Common_Functions';
 
 const HIGH_HUMIDITY_VALUES = {
     'B10': 2.8,
@@ -54,28 +55,63 @@ const LOW_HUMIDITY_VALUES = {
     'B100': 2
 };
 
+let defaultValidationProperties = {"type": "number", "minimum": 0};
 
-export default function (classname = null, humidity = null) {
+let schema = {
+    "type": "object",
+    "properties": {
+        "humidity": {
+            "oneOf": [
+                {"const": CONST.HIGH_HUMIDITY},
+                {"const": CONST.MIDDLE_HUMIDITY},
+                {"const": CONST.LOW_HUMIDITY},
+            ]
+        },
+        "classname": {
+            "oneOf": [
+                {"const": 'B10'},
+                {"const": 'B15'},
+                {"const": 'B20'},
+                {"const": 'B25'},
+                {"const": 'B30'},
+                {"const": 'B35'},
+                {"const": 'B40'},
+                {"const": 'B45'},
+                {"const": 'B50'},
+                {"const": 'B55'},
+                {"const": 'B60'},
+                {"const": 'B70'},
+                {"const": 'B80'},
+                {"const": 'B90'},
+                {"const": 'B100'},
+            ]
+        },
 
-    let humidity_array = {};
+    },
+    "required": [
+        "humidity",
+        "classname",
+    ]
+};
 
-    switch (humidity) {
+
+function calculate(obj) {
+
+    switch (obj.humidity) {
         case CONST.HIGH_HUMIDITY :
-            humidity_array = HIGH_HUMIDITY_VALUES;
+            return HIGH_HUMIDITY_VALUES[obj.classname];
             break;
         case CONST.MIDDLE_HUMIDITY :
-            humidity_array = MIDDLE_HUMIDITY_VALUES;
+            return MIDDLE_HUMIDITY_VALUES[obj.classname];
             break;
         case CONST.LOW_HUMIDITY :
-            humidity_array = LOW_HUMIDITY_VALUES;
+            return LOW_HUMIDITY_VALUES[obj.classname];
             break;
         default:
             return null;
     }
+}
 
-    if (humidity_array.hasOwnProperty(classname)) {
-        return humidity_array[classname];
-    }
-
-    return null;
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultValidationProperties, json, calculate);
 }

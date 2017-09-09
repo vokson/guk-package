@@ -67,39 +67,89 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.14", function () {
     it("должна вернуть Rs, Rsc арматуры при кратковременной нагрузке", function () {
 
         Object.getOwnPropertyNames(Rs_values).forEach(function (classname) {
-            expect(test_function(classname, 1.0, NORM.SHORT_TERM_LOAD))
-                .toEqual([Rs_values[classname], Rsc_short_term_values[classname]]);
+            expect(test_function({
+                "classname": classname,
+                "Ysi": 1.0,
+                "loadType": NORM.SHORT_TERM_LOAD
+            }).answer).toEqual([Rs_values[classname], Rsc_short_term_values[classname]]);
+
         });
     });
 
     it("должна вернуть Rs, Rsc арматуры при длительной нагрузке", function () {
 
         Object.getOwnPropertyNames(Rs_values).forEach(function (classname) {
-            expect(test_function(classname, 1.0, NORM.LONG_TERM_LOAD))
-                .toEqual([Rs_values[classname], Rsc_long_term_values[classname]]);
+            expect(test_function({
+                "classname": classname,
+                "Ysi": 1.0,
+                "loadType": NORM.LONG_TERM_LOAD
+            }).answer).toEqual([Rs_values[classname], Rsc_long_term_values[classname]]);
+
         });
     });
 
     it("должна вернуть Rs,n = Rs,ser арматуры при Ysi = 0.5", function () {
-        expect(test_function('A500', 0.5, NORM.SHORT_TERM_LOAD))
-            .toEqual([Rs_values['A500'] * 0.5, Rsc_short_term_values['A500'] * 0.5]);
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 0.5,
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toEqual([Rs_values['A500'] * 0.5, Rsc_short_term_values['A500'] * 0.5]);
     });
 
     it("должна вернуть NULL, если класс арматуры неверен", function () {
-        expect(test_function(-1, 1.0, NORM.SHORT_TERM_LOAD)).toBeNull();
-        expect(test_function('AAA', 1.0, NORM.SHORT_TERM_LOAD)).toBeNull();
+        expect(test_function({
+            "classname": -1,
+            "Ysi": 1,
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'AAA',
+            "Ysi": 1,
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toBeNull();
+
     });
 
     it("должна вернуть NULL, если фактор Ysi неверен", function () {
-        expect(test_function('A500', -1, NORM.SHORT_TERM_LOAD)).toBeNull();
-        expect(test_function('A500', null, NORM.SHORT_TERM_LOAD)).toBeNull();
-        expect(test_function('A500', 'AAA', NORM.SHORT_TERM_LOAD)).toBeNull();
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": -1,
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": null,
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 'AAA',
+            "loadType": NORM.SHORT_TERM_LOAD
+        }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
-        expect(test_function('A500', 1.0, -1)).toBeNull();
-        expect(test_function('A500', 1.0, null)).toBeNull();
-        expect(test_function('A500', 1.0, 'AAA')).toBeNull();
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": -1
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": null
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": 'AAA'
+        }).answer).toBeNull();
+
     });
 
 });

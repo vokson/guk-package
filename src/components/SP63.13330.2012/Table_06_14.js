@@ -1,4 +1,5 @@
 import * as CONST from './Constants';
+import * as FUNC from './Common_Functions';
 
 const VALUES_Rs = {
     'A240': 210,
@@ -60,24 +61,47 @@ const VALUES_LONG_TERM_Rsc = {
     'K1700': 500
 };
 
+let defaultValidationProperties = {"type": "number", "minimum": 0};
+let defaultProperties = {"Ysi": 1.0};
 
-export default function (classname = null, Ysi = 1.0, loadType = null) {
+let schema = {
+    "type": "object",
+    "properties": {
+        "classname": {"type": "string"},
+        "loadType": {
+            "oneOf": [
+                {"const": CONST.SHORT_TERM_LOAD},
+                {"const": CONST.LONG_TERM_LOAD},
+            ]
+        },
+    },
+    "required": [
+        "Ysi",
+        "classname",
+        "loadType"
+    ]
+};
 
-    if (!VALUES_Rs.hasOwnProperty(classname) || typeof Ysi !== "number" || !(loadType === CONST.SHORT_TERM_LOAD || loadType === CONST.LONG_TERM_LOAD)) {
-        return null;
+function calculate(obj) {
+
+    if (!VALUES_Rs.hasOwnProperty(obj.classname)) return null;
+
+    let Rs = VALUES_Rs[obj.classname], Rsc;
+
+    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
+        Rsc = VALUES_SHORT_TERM_Rsc[obj.classname];
+    } else if (obj.loadType === CONST.LONG_TERM_LOAD){
+        Rsc = VALUES_LONG_TERM_Rsc[obj.classname];
     }
 
-    if (Ysi < 0) {
-        return null;
-    }
+    return [Rs * obj.Ysi, Rsc * obj.Ysi];
+}
 
-    let Rs = VALUES_Rs[classname], Rsc;
+export default function (json) {
 
-    if (loadType === CONST.SHORT_TERM_LOAD) {
-        Rsc = VALUES_SHORT_TERM_Rsc[classname];
-    } else {
-        Rsc = VALUES_LONG_TERM_Rsc[classname];
-    }
+    Object.keys(defaultProperties).map(function (key, index) {
+        if (!(key in json)) json[key] = defaultProperties[key];
+    });
 
-    return [Rs * Ysi, Rsc * Ysi];
+    return FUNC.prepareFeedbackObject(schema, defaultValidationProperties, json, calculate);
 }

@@ -1,3 +1,5 @@
+import * as FUNC from './Common_Functions';
+
 const Rsw = {
     'A240': 170,
     'A400': 280,
@@ -5,15 +7,32 @@ const Rsw = {
     'B500': 300
 };
 
-export default function (classname = null, Ysi = 1.0) {
+let defaultValidationProperties = {"type": "number", "minimum": 0};
+let defaultProperties = {"Ysi": 1.0};
 
-    if (!Rsw.hasOwnProperty(classname) || typeof Ysi !== "number") {
-        return null;
-    }
+let schema = {
+    "type": "object",
+    "properties": {
+        "classname": {"type": "string"},
+    },
+    "required": [
+        "Ysi",
+        "classname",
+    ]
+};
 
-    if (Ysi < 0) {
-        return null;
-    }
+function calculate(obj) {
 
-    return Rsw[classname] * Ysi;
+    if (!Rsw.hasOwnProperty(obj.classname)) return null;
+
+    return Rsw[obj.classname] * obj.Ysi;
+}
+
+export default function (json) {
+
+    Object.keys(defaultProperties).map(function (key, index) {
+        if (!(key in json)) json[key] = defaultProperties[key];
+    });
+
+    return FUNC.prepareFeedbackObject(schema, defaultValidationProperties, json, calculate);
 }

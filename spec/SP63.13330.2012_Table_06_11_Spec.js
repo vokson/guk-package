@@ -229,10 +229,6 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
             class_function({"type": NORM.LIGHT_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
 
-                    console.log("Type = LIGHT.CONCRETE");
-                    console.log("Classname = " +classname);
-                    console.log("Density = " +density);
-
                     expect(test_function({
                         "type": NORM.LIGHT_CONCRETE,
                         "classname": classname,

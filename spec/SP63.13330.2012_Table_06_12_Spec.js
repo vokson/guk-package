@@ -64,7 +64,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
         for (var classname in array_humidity) {
             if (array_humidity.hasOwnProperty(classname)) {
-                expect(test_function(classname, NORM.HIGH_HUMIDITY)).toEqual(array_humidity[classname]);
+
+                expect(test_function({
+                    "classname": classname,
+                    "humidity" : NORM.HIGH_HUMIDITY
+                }).answer).toEqual(array_humidity[classname]);
             }
         }
     });
@@ -75,7 +79,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
         for (var classname in array_humidity) {
             if (array_humidity.hasOwnProperty(classname)) {
-                expect(test_function(classname, NORM.MIDDLE_HUMIDITY)).toEqual(array_humidity[classname]);
+
+                expect(test_function({
+                    "classname": classname,
+                    "humidity" : NORM.MIDDLE_HUMIDITY
+                }).answer).toEqual(array_humidity[classname]);
             }
         }
     });
@@ -86,14 +94,30 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
         for (var classname in array_humidity) {
             if (array_humidity.hasOwnProperty(classname)) {
-                expect(test_function(classname, NORM.LOW_HUMIDITY)).toEqual(array_humidity[classname]);
+
+                expect(test_function({
+                    "classname": classname,
+                    "humidity" : NORM.LOW_HUMIDITY
+                }).answer).toEqual(array_humidity[classname]);
+
             }
         }
     });
 
     it("должна вернуть NULL, если входные данные неверны", function () {
-        expect(test_function('AAA', NORM.HIGH_HUMIDITY)).toBe(null);
-        expect(test_function('B20', -1)).toBe(null);
-        expect(test_function('B15')).toBe(null);
+        expect(test_function({
+            "classname": 'AAA',
+            "humidity" : NORM.HIGH_HUMIDITY
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'B20',
+            "humidity" : -1
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'B15',
+        }).answer).toBeNull();
+
     });
 });
