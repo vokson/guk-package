@@ -15,7 +15,9 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
         ];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual(1.0);
+            expect(test_function({
+                "type": type
+            }).answer).toEqual(1.0);
         });
     });
 
@@ -26,20 +28,48 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
         ];
 
         types.forEach(function (type) {
-            expect(test_function(type, 10)).toEqual(1.0);
-            expect(test_function(type, 15)).toEqual(0.95);
-            expect(test_function(type, 25)).toEqual(0.85);
+            expect(test_function({
+                "type": type,
+                "humidity": 10
+            }).answer).toEqual(1.0);
+
+            expect(test_function({
+                "type": type,
+                "humidity": 15
+            }).answer).toEqual(0.95);
+
+            expect(test_function({
+                "type": type,
+                "humidity": 25
+            }).answer).toEqual(0.85);
         });
     });
 
     it("должна вернуть NULL, если тип бетона неверен", function () {
-        expect(test_function(-1)).toBeNull();
-        expect(test_function('AAA')).toBeNull();
+        expect(test_function({
+            "type": -1,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "type": 'AAA',
+        }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если влажность бетона неверна", function () {
-        expect(test_function(-1)).toBeNull();
-        expect(test_function(101)).toBeNull();
-        expect(test_function('AAA')).toBeNull();
+        expect(test_function({
+            "type": NORM.CELL_CONCRETE,
+            "humidity": -1
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "type": NORM.CELL_CONCRETE,
+            "humidity": 101
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "type": NORM.CELL_CONCRETE,
+            "humidity": 'AAA'
+        }).answer).toBeNull();
+
     });
 });

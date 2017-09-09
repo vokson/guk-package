@@ -4,7 +4,9 @@ var test_function = NORM.getYb1;
 describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
     it("должна вернуть 1.0 для кратковременных нагрузок", function () {
-        expect(test_function(NORM.SHORT_TERM_LOAD)).toBe(1.0);
+        expect(test_function({
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toEqual(1.0);
     });
 
     describe("длительные нагрузки: ", function () {
@@ -21,7 +23,10 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
             ];
 
             types.forEach(function (type) {
-                expect(test_function(NORM.LONG_TERM_LOAD, type)).toEqual(0.9);
+                expect(test_function({
+                    "loadType": NORM.LONG_TERM_LOAD,
+                    "type": type,
+                }).answer).toEqual(0.9);
             });
         });
 
@@ -33,7 +38,10 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
             ];
 
             types.forEach(function (type) {
-                expect(test_function(NORM.LONG_TERM_LOAD, type)).toEqual(0.85);
+                expect(test_function({
+                    "loadType": NORM.LONG_TERM_LOAD,
+                    "type": type,
+                }).answer).toEqual(0.85);
             });
         });
 
@@ -41,15 +49,26 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
     it("должна вернуть NULL, если тип бетона неверен", function () {
 
-        expect(test_function(NORM.LONG_TERM_LOAD,-1)).toBeNull();
-        expect(test_function(NORM.LONG_TERM_LOAD,'AAA')).toBeNull();
+        expect(test_function({
+            "loadType": NORM.LONG_TERM_LOAD,
+            "type": -1,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "loadType": NORM.LONG_TERM_LOAD,
+            "type": 'AAA',
+        }).answer).toBeNull();
 
     });
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
 
-        expect(test_function(-1)).toBeNull();
-        expect(test_function('AAA')).toBeNull();
+        expect(test_function({
+            "loadType": -1
+        }).answer).toBeNull();
 
+        expect(test_function({
+            "loadType": 'AAA'
+        }).answer).toBeNull();
     });
 });

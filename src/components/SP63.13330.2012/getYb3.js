@@ -1,15 +1,27 @@
-export default function (isHeightMoreThanLimit = false) {
+import * as FUNC from './Common_Functions';
 
-    if (typeof isHeightMoreThanLimit !== "boolean") {
-        return null;
-    }
+var defaultProperties = {"type": "number", "minimum": 0};
 
-    if (isHeightMoreThanLimit === true) {
+var schema = {
+    "type": "object",
+    "properties": {
+        "isHeightMoreThanLimit": {"type": "boolean"}
+    },
+    "required": [
+        "isHeightMoreThanLimit",
+    ]
+};
+
+
+function calculate(obj) {
+
+    if (obj.isHeightMoreThanLimit === true) {
         return 0.85;
     }
 
-    if (isHeightMoreThanLimit === false) {
-        return 1.0;
-    }
+    return 1.0;
+}
 
+export default function (json) {
+    return FUNC.prepareFeedbackObject(schema, defaultProperties, json, calculate);
 }

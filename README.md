@@ -88,67 +88,42 @@ export const STRESS_TYPE_DESCRIPTION = [] - массив описаний тип
 * *number* __type__ - тип бетона;
 
 ---
-*number* __getYb1__ (*number* __loadType__, *number* __type__)
+#### Коэффициент Гамма_b1
+*number* __getYb1__ (jsonObject)
 
-Возвращает коэффициент гамма_b1 для **Rb, Rbt** из п.6.1.12 а)
-* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
-* __type__ - тип бетона;
+Возвращает коэффициент гамма_b1 для **Rb, Rbt** из п.6.1.12 а). Поля объекта jsonObject:
+* *number* __loadType__ - тип нагрузки: кратковременная или длительная (см. константы);
+* *number* __type__ - тип бетона;
 
-#### Example
-
-```javascript
-NORM.getYb1(NORM.LONG_TERM_LOAD, NORM.CELL_CONCRETE)
-// 0.85
-```
 ---
-*number* __getYb2__ (*boolean* __isOnlyConcrete__)
+#### Коэффициент Гамма_b2
+*number* __getYb2__ (jsonObject)
 
-Возвращает коэффициент гамма_b2 для **Rb** из п.6.1.12 б)
-* __isOnlyConcrete__ - конструкция состоит только из бетона?;
+Возвращает коэффициент гамма_b2 для **Rb** из п.6.1.12 б). Поля объекта jsonObject:
+* *boolean* __isOnlyConcrete__ - конструкция состоит только из бетона?;
 
-#### Example
-
-```javascript
-NORM.getYb2(true)
-// 0.9
-```
 ---
-*number* __getYb3__ (*boolean* __isHeightMoreThanLimit__)
+#### Коэффициент Гамма_b3
+*number* __getYb3__ (jsonObject)
 
-Возвращает коэффициент гамма_b3 для **Rb** из п.6.1.12 в)
-* __isHeightMoreThanLimit__ - высота слоя бетонирования более 1.5м?;
+Возвращает коэффициент гамма_b3 для **Rb** из п.6.1.12 в). Поля объекта jsonObject:
+* *boolean* __isHeightMoreThanLimit__ - высота слоя бетонирования более 1.5м?;
 
-#### Example
-
-```javascript
-NORM.getYb3(true)
-// 0.85
-```
 ---
-*number* __getYb4__ (*number* __type__, *number* __humidity__)
+#### Коэффициент Гамма_b4
+*number* __getYb4__ (jsonObject)
 
-Возвращает коэффициент гамма_b4 для **Rb** из п.6.1.12 г)
-* __type__ - тип бетона;
-* __humidity__ - относительная влажность в %;
+Возвращает коэффициент гамма_b4 для **Rb** из п.6.1.12 г). Поля объекта jsonObject:
+* *number* __type__ - тип бетона;
+* *number* __humidity__ - относительная влажность в %;
 
-#### Example
-
-```javascript
-NORM.getYb4(NORM.CELL_CONCRETE, 15)
-// 0.95
-```
 ---
-*number* __getYb5__ (*boolean* __isColdTemperatureMoreThanMinus40__)
+#### Коэффициент Гамма_b5
+*number* __getYb5__ (jsonObject)
 
-Возвращает коэффициент гамма_b5 из п.6.1.12
-* __isColdTemperatureMoreThanMinus40__ - расчетная температура наружного воздуха в холодный период минус 40 и выше;
+Возвращает коэффициент гамма_b5 из п.6.1.12. Поля объекта jsonObject:
+* *boolean* __isColdTemperatureMoreThanMinus40__ - расчетная температура наружного воздуха в холодный период минус 40 и выше;
 
-#### Example
-
-```javascript
-NORM.concreteGamma_b4(NORM.CELL_CONCRETE, 15)
-// 0.95
-```
 ---
 #### Таблица 6.7
 *[number]* __table_06_7__ (jsonObject)
@@ -320,17 +295,11 @@ NORM.get3LinearDiagram(NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A, 'B15', 1.0, 
 * *number* __Es__ - модуль упругости арматуры, >= 0;
 
 ---
-*number* __clause_06_2_12__ (*string* __class__)
+*number* __clause_06_2_12__ (jsonObject)
 
-Возвращает значение модуля упругости **Es** по п.6.2.12 (МПа)
-* __class__ - класс арматуры;
+Возвращает значение модуля упругости **Es** по п.6.2.12 (МПа). Поля объекта jsonObject:
+* *string* __class__ - класс арматуры;
 
-#### Example
-
-```javascript
-NORM.clause_06_2_12('A400')
-// 200000
-```
 ---
 *[[number, number]]* __get2LinearDiagramForRebar__ (*string* __class__, *number* __Ysi = 1.0__, *number* __loadType__)
 
