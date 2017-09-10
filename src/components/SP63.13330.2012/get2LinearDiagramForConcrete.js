@@ -24,7 +24,7 @@ let schema = {
             ]
         },
         "classname": {"type": "string"},
-        "loadCondition": {
+        "loadType": {
             "oneOf": [
                 {"const": CONST.SHORT_TERM_LOAD},
                 {"const": CONST.LONG_TERM_LOAD},
@@ -44,7 +44,7 @@ let schema = {
         "classname",
         "Ybi",
         "Ybti",
-        "loadCondition",
+        "loadType",
         "humidity",
         "isReductionFactorToBeApplied",
     ]
@@ -64,38 +64,49 @@ function getShortTermEb2(classname) {
 
 function calculate(obj) {
 
+    debugger;
     let Rb = null, Rbt = null, eb1 = null, ebt1 = null, eb2 = null, ebt2 = null;
 
     let array_Rb_Rbt = limit_strength_function(obj);
+    debugger;
     if (array_Rb_Rbt.answer === null) {
+        debugger;
         return null;
     }
 
     [Rb, Rbt] = array_Rb_Rbt.answer;
-    if (obj.loadCondition === CONST.SHORT_TERM_LOAD) {
+    debugger;
+    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
+        debugger;
         eb1 = 0.0015;
         ebt1 = 0.00008;
 
         eb2 = getShortTermEb2(obj.classname);
         ebt2 = 0.00015;
+        debugger;
 
-    } else if (obj.loadCondition === CONST.LONG_TERM_LOAD) {
+    } else if (obj.loadType === CONST.LONG_TERM_LOAD) {
+        debugger;
         obj['stress'] = CONST.COMPRESSION;
-        let array_compression = strain_function(obj);
+        let array_compression = strain_function(obj).answer;
 
         obj['stress'] = CONST.TENSION;
-        let array_tension = strain_function(obj);
+        let array_tension = strain_function(obj).answer;
 
-        if (array_compression.answer === null || array_tension.answer === null) {
+        debugger;
+        if (array_compression === null || array_tension === null) {
+            debugger;
             return null;
         }
 
-        [, eb2, eb1] = array_compression.answer;
-        [, ebt2, ebt1] = array_tension.answer;
+        [, eb2, eb1] = array_compression;
+        [, ebt2, ebt1] = array_tension;
 
     } else {
+        debugger;
         return null;
     }
+    debugger;
 
     return new Array(
         [-eb2, -Rb],

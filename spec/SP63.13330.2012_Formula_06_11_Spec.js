@@ -16,4 +16,12 @@ describe("СП 63.13330.2012 (изм.1) - Формула 6.11", function () {
         };
         expect(test_function(input).answer).toBeCloseTo(0.005, 3);
     });
+
+    it("должна вернуть null, если знаменатель = 0", function () {
+        var input = {
+            "Rs": 10,
+            "Es": 0,
+        };
+        expect(test_function(input).answer).toBeNull();
+    });
 });

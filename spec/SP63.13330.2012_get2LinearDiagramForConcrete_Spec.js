@@ -26,7 +26,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
 
@@ -50,7 +50,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.LONG_TERM_LOAD,
+            "loadType": NORM.LONG_TERM_LOAD,
             "humidity": NORM.MIDDLE_HUMIDITY
         }).answer, 6);
 
@@ -78,7 +78,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B80',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
         // console.log('');
@@ -94,7 +94,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
@@ -102,7 +102,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
@@ -110,7 +110,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
@@ -118,7 +118,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
@@ -126,7 +126,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
@@ -134,7 +134,7 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
             "classname": 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
-            "loadCondition": NORM.SHORT_TERM_LOAD,
+            "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
     });

@@ -26,7 +26,12 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
             [es2, Rs * 1.1]
         ], 6);
 
-        let test = preciseArrayWith(test_function('A500', 1.0, NORM.SHORT_TERM_LOAD), 6);
+
+        var test = preciseArrayWith(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer, 6);
 
         expect(test).toEqual(correct);
     });
@@ -46,7 +51,11 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
             [es2, Rs * 1.1]
         ], 6);
 
-        let test = preciseArrayWith(test_function('A500', 1.0, NORM.LONG_TERM_LOAD), 6);
+        var test = preciseArrayWith(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": NORM.LONG_TERM_LOAD,
+        }).answer, 6);
 
         expect(test).toEqual(correct);
     });
@@ -66,7 +75,11 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
             [es2, Rs * 1.1]
         ], 6);
 
-        let test = preciseArrayWith(test_function('K1400', 1.0, NORM.SHORT_TERM_LOAD), 6);
+        var test = preciseArrayWith(test_function({
+            "classname": 'K1400',
+            "Ysi": 1.0,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer, 6);
 
         expect(test).toEqual(correct);
     });
@@ -86,28 +99,75 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
             [es2, Rs * 1.1]
         ], 6);
 
-        let test = preciseArrayWith(test_function('K1400', 1.0, NORM.LONG_TERM_LOAD), 6);
+        var test = preciseArrayWith(test_function({
+            "classname": 'K1400',
+            "Ysi": 1.0,
+            "loadType": NORM.LONG_TERM_LOAD,
+        }).answer, 6);
 
         expect(test).toEqual(correct);
     });
 
 
     it("должна вернуть NULL, если класс неверен", function () {
-        expect(test_function(-1, 1.0, NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function('AAA', 1.0, NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function(null, 1.0, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function({
+            "classname": -1,
+            "Ysi": 1.0,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'AAA',
+            "Ysi": 1.0,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": null,
+            "Ysi": 1.0,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
+
     });
 
     it("должна вернуть NULL, если Ysi неверен", function () {
-        expect(test_function('A500', -1, NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function('A500', 'AAA', NORM.SHORT_TERM_LOAD)).toBe(null);
-        expect(test_function('A500', null, NORM.SHORT_TERM_LOAD)).toBe(null);
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": -1,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 'AAA',
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": null,
+            "loadType": NORM.SHORT_TERM_LOAD,
+        }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
-        expect(test_function('A500', 1.0, -1)).toBe(null);
-        expect(test_function('A500', 1.0, 'AAA')).toBe(null);
-        expect(test_function('A500', 1.0, null)).toBe(null);
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": -1,
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": 'AAA',
+        }).answer).toBeNull();
+
+        expect(test_function({
+            "classname": 'A500',
+            "Ysi": 1.0,
+            "loadType": null,
+        }).answer).toBeNull();
     });
 
 });
