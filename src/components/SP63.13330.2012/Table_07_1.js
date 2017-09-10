@@ -12,7 +12,7 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "e0_h": {"type": "number", "minimum": 0, "maximum": 20},
+        "L0_h": {"type": "number", "minimum": 0, "maximum": 20},
         "loadType": {
             "oneOf": [
                 {"const": CONST.LONG_TERM_LOAD},
@@ -21,18 +21,18 @@ var schema = {
         },
     },
     "required": [
-        "e0_h",
+        "L0_h",
         "loadType",
     ]
 };
 
 
-function calculateFi(e0_h, input, output) {
-    if (e0_h == 0) return output[0];
+function calculateFi(L0_h, input, output) {
+    if (L0_h == 0) return output[0];
 
     for (var i = 1; i < input.length; i++) {
-        if (input[i] >= e0_h) {
-            return FUNC.singleInterpolation(input[i - 1], input[i], output[i - 1], output[i], e0_h);
+        if (input[i] >= L0_h) {
+            return FUNC.singleInterpolation(input[i - 1], input[i], output[i - 1], output[i], L0_h);
         }
     }
     ;
@@ -40,11 +40,11 @@ function calculateFi(e0_h, input, output) {
 
 function calculate(obj) {
     if (obj.loadType === CONST.LONG_TERM_LOAD) {
-        return calculateFi(obj.e0_h, longTermInput, longTermOutput);
+        return calculateFi(obj.L0_h, longTermInput, longTermOutput);
     }
 
     if (obj.loadType === CONST.SHORT_TERM_LOAD) {
-        return calculateFi(obj.e0_h, shortTermInput, shortTermOutput);
+        return calculateFi(obj.L0_h, shortTermInput, shortTermOutput);
     }
 }
 

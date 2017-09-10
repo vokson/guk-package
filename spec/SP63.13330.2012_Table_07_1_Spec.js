@@ -13,7 +13,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 7.1", function () {
     it("должна вернуть Fi при L0/h для длительных нагрузок", function () {
         longTermInput.forEach(function (value, i) {
             var input = {
-                "e0_h": value,
+                "L0_h": value,
                 "loadType": NORM.LONG_TERM_LOAD,
             };
             expect(test_function(input).answer).toBeCloseTo(longTermOutput[i], 2);
@@ -24,7 +24,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 7.1", function () {
 
         shortTermInput.forEach(function (value, i) {
             var input = {
-                "e0_h": value,
+                "L0_h": value,
                 "loadType": NORM.SHORT_TERM_LOAD,
             };
             expect(test_function(input).answer).toBeCloseTo(shortTermOutput[i], 3);
@@ -33,13 +33,13 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 7.1", function () {
 
     it("должна вернуть NULL, если L0/h неверно", function () {
         var input = {
-            "e0_h": -0.1,
+            "L0_h": -0.1,
             "loadType": NORM.LONG_TERM_LOAD,
         };
         expect(test_function(input).answer).toBeNull();
 
         var input = {
-            "e0_h": 20.1,
+            "L0_h": 20.1,
             "loadType": NORM.LONG_TERM_LOAD,
         };
         expect(test_function(input).answer).toBeNull();
@@ -47,7 +47,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 7.1", function () {
 
     it("должна вернуть NULL, если loadType неверно", function () {
         var input = {
-            "e0_h": 1,
+            "L0_h": 1,
             "loadType": -1,
         };
         expect(test_function(input).answer).toBeNull();
