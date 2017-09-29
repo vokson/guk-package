@@ -15,14 +15,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.3", function () {
         var correct = ['F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500', 'F600', 'F700', 'F800', 'F1000'];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual(correct);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(correct);
         });
     });
 
     it("должна вернуть массив марок по морозостойкости для Легкого бетона", function () {
 
         var correct = ['F25', 'F35', 'F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500'];
-        expect(test_function(NORM.LIGHT_CONCRETE)).toEqual(correct);
+
+        expect(test_function({
+            "type": NORM.LIGHT_CONCRETE,
+        }).answer).toEqual(correct);
 
     });
 
@@ -36,12 +41,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.3", function () {
         var correct = ['F15', 'F25', 'F35', 'F50', 'F75', 'F100'];
 
         types.forEach(function (type) {
-            expect(test_function(type)).toEqual(correct);
+            expect(test_function({
+                "type": type,
+            }).answer).toEqual(correct);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
-        expect(test_function(-1)).toEqual([]);
-        expect(test_function('AAA')).toEqual([]);
+        expect(test_function({
+            "type": -1,
+        }).answer).toEqual(null);
+
+        expect(test_function({
+            "type": "AAA",
+        }).answer).toEqual(null);
     });
 });
