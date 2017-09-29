@@ -1,7 +1,7 @@
 {
-  "name": "guk-package",
+  "name": "guk-SP63.13330.2012",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "SP63.13330.2012.js",
   "dependencies": {
     "ajv": "^5.2.2"
   },
@@ -15,8 +15,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Noskov Alexey",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "Package adds functionality of SP 63.13330.2012"
 }

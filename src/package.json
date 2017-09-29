@@ -1,0 +1,11 @@
+{
+  "name": "guk-sp63.13330.2012",
+  "version": "1.0.0",
+  "main": "SP63.13330.2012.js",
+  "dependencies": {
+    "ajv": "^5.2.2"
+  },
+  "author": "Noskov Alexey",
+  "license": "ISC",
+  "description": "Package adds functionality of SP 63.13330.2012"
+}

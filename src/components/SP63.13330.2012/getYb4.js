@@ -19,7 +19,7 @@ var schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        "humidity": {"type": "number", "minimum": 0, "maximum": 100}
+        "humidityPercentage": {"type": "number", "minimum": 0, "maximum": 100}
     },
     "required": [
         "type",
@@ -41,17 +41,17 @@ function calculate(obj) {
 
     if (
         (obj.type === CONST.CELL_CONCRETE || obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) &&
-        (obj.humidity >= 0 && obj.humidity <= 100)
+        (obj.humidityPercentage >= 0 && obj.humidityPercentage <= 100)
     ) {
-        if (obj.humidity <= 10) {
+        if (obj.humidityPercentage <= 10) {
             return 1.0;
         }
 
-        if (obj.humidity > 10 && obj.humidity < 25) {
-            return 1.0 + (obj.humidity - 10) / (25 - 10) * (0.85 - 1.0);
+        if (obj.humidityPercentage > 10 && obj.humidityPercentage < 25) {
+            return 1.0 + (obj.humidityPercentage - 10) / (25 - 10) * (0.85 - 1.0);
         }
 
-        if (obj.humidity >= 25) {
+        if (obj.humidityPercentage >= 25) {
             return 0.85;
         }
 
