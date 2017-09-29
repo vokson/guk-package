@@ -30,17 +30,17 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
         types.forEach(function (type) {
             expect(test_function({
                 "type": type,
-                "humidity": 10
+                "humidityPercentage": 10
             }).answer).toEqual(1.0);
 
             expect(test_function({
                 "type": type,
-                "humidity": 15
+                "humidityPercentage": 15
             }).answer).toEqual(0.95);
 
             expect(test_function({
                 "type": type,
-                "humidity": 25
+                "humidityPercentage": 25
             }).answer).toEqual(0.85);
         });
     });
@@ -58,17 +58,17 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
     it("должна вернуть NULL, если влажность бетона неверна", function () {
         expect(test_function({
             "type": NORM.CELL_CONCRETE,
-            "humidity": -1
+            "humidityPercentage": -1
         }).answer).toBeNull();
 
         expect(test_function({
             "type": NORM.CELL_CONCRETE,
-            "humidity": 101
+            "humidityPercentage": 101
         }).answer).toBeNull();
 
         expect(test_function({
             "type": NORM.CELL_CONCRETE,
-            "humidity": 'AAA'
+            "humidityPercentage": 'AAA'
         }).answer).toBeNull();
 
     });
