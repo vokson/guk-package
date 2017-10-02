@@ -59,6 +59,7 @@ export const VAR_CONCRETE_HUMIDITY_IN_PERCENTS = "humidityPercentage";
 export const VAR_CONCRETE_TYPE = "type";
 export const VAR_D = "D";
 export const VAR_DELTA_e = "delta_e";
+export const VAR_e = "e";
 export const VAR_e0 = "e0";
 export const VAR_e_b2 = "e_b2";
 export const VAR_e_sel = "e_sel";

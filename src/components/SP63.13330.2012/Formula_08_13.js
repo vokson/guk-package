@@ -1,4 +1,5 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
@@ -6,21 +7,23 @@ var schema = {
     "type": "object",
     "properties": {},
     "required": [
-        "N",
-        "Rb",
-        "Rs",
-        "Rsc",
-        "As",
-        "A1s",
-        "b",
-        "h0",
-        "Xi_R"
+        CONST.VAR_N,
+        CONST.VAR_Rb,
+        CONST.VAR_Rs,
+        CONST.VAR_Rsc,
+        CONST.VAR_As,
+        CONST.VAR_As$,
+        CONST.VAR_SECTION_WIDTH,
+        CONST.VAR_H0,
+        CONST.VAR_Xi_R
     ]
 };
 
 function calculate(obj) {
-    return (obj.N + obj.Rs * obj.As * (1 + obj.Xi_R) / (1 - obj.Xi_R) - obj.Rsc * obj.A1s) /
-        (obj.Rb * obj.b + 2 * obj.Rs * obj.As / obj.h0 / (1 - obj.Xi_R));
+    return (obj[CONST.VAR_N] + obj[CONST.VAR_Rs] * obj[CONST.VAR_As] * (1 + obj[CONST.VAR_Xi_R]) /
+        (1 - obj[CONST.VAR_Xi_R]) - obj[CONST.VAR_Rsc] * obj[CONST.VAR_As$]) /
+        (obj[CONST.VAR_Rb] * obj[ CONST.VAR_SECTION_WIDTH] + 2 * obj[CONST.VAR_Rs] * obj[CONST.VAR_As] /
+            obj[CONST.VAR_H0] / (1 - obj[CONST.VAR_Xi_R]));
 }
 
 export default function (json) {

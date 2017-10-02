@@ -1,4 +1,5 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
@@ -6,15 +7,15 @@ var schema = {
     "type": "object",
     "properties": {},
     "required": [
-        "e0",
-        "nu",
-        "h0",
-        "a1",
+        CONST.VAR_e0,
+        CONST.VAR_NU,
+        CONST.VAR_H0,
+        CONST.VAR_a$
     ]
 };
 
 function calculate(obj) {
-    return obj.e0 * obj.nu + (obj.h0 - obj.a1) / 2;
+    return obj[CONST.VAR_e0] * obj[CONST.VAR_NU] + (obj[CONST.VAR_H0] - obj[CONST.VAR_a$]) / 2;
 }
 
 export default function (json) {
