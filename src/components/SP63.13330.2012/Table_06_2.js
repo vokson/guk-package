@@ -9,7 +9,7 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -21,14 +21,14 @@ let schema = {
         },
     },
     "required": [
-        "type",
+        CONST.VAR_CONCRETE_TYPE,
     ]
 };
 
 
 function calculate(obj) {
 
-    if (obj.type === CONST.LIGHT_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE) {
         return LIGHT_CONCRETE_MARKS;
     } else {
         return HEAVY_CONCRETE_MARKS;

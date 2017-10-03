@@ -8,14 +8,14 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.PRESTRESSED_CONCRETE},
             ]
         },
     },
     "required": [
-        "type",
+        CONST.VAR_CONCRETE_TYPE
     ]
 };
 

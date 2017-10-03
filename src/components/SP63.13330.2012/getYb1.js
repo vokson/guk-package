@@ -6,7 +6,7 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -19,7 +19,7 @@ var schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        "loadType": {
+        [CONST.VAR_LOAD_TYPE]: {
             "oneOf": [
                 {"const": CONST.LONG_TERM_LOAD},
                 {"const": CONST.SHORT_TERM_LOAD},
@@ -27,32 +27,32 @@ var schema = {
         },
     },
     "required": [
-        "loadType",
+        CONST.VAR_LOAD_TYPE
     ]
 };
 
 function calculate(obj) {
-    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.SHORT_TERM_LOAD) {
         return 1.0;
     }
 
-    if (obj.loadType === CONST.LONG_TERM_LOAD) {
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.LONG_TERM_LOAD) {
 
         if (
-            obj.type === CONST.HEAVY_CONCRETE ||
-            obj.type === CONST.LIGHT_CONCRETE ||
-            obj.type === CONST.PRESTRESSED_CONCRETE ||
-            obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
-            obj.type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
-            obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.HEAVY_CONCRETE ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.PRESTRESSED_CONCRETE ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B
         ) {
             return 0.9;
         }
 
         if (
-            obj.type === CONST.CELL_CONCRETE ||
-            obj.type === CONST.CELL_AUTOCLAVE_CONCRETE ||
-            obj.type === CONST.POROUS_CONCRETE
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE ||
+            obj[CONST.VAR_CONCRETE_TYPE] === CONST.POROUS_CONCRETE
         ) {
             return 0.85;
         }

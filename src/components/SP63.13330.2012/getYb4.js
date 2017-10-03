@@ -6,7 +6,7 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -19,39 +19,39 @@ var schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        "humidityPercentage": {"type": "number", "minimum": 0, "maximum": 100}
+        [CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: {"type": "number", "minimum": 0, "maximum": 100}
     },
     "required": [
-        "type",
+        CONST.VAR_CONCRETE_TYPE
     ]
 };
 
 function calculate(obj) {
     if (
-        obj.type === CONST.HEAVY_CONCRETE ||
-        obj.type === CONST.PRESTRESSED_CONCRETE ||
-        obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
-        obj.type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
-        obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B ||
-        obj.type === CONST.LIGHT_CONCRETE ||
-        obj.type === CONST.POROUS_CONCRETE
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.HEAVY_CONCRETE ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.PRESTRESSED_CONCRETE ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE ||
+        obj[CONST.VAR_CONCRETE_TYPE] === CONST.POROUS_CONCRETE
     ) {
         return 1.0;
     }
 
     if (
-        (obj.type === CONST.CELL_CONCRETE || obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) &&
-        (obj.humidityPercentage >= 0 && obj.humidityPercentage <= 100)
+        (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE || obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE) &&
+        (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] >= 0 && obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] <= 100)
     ) {
-        if (obj.humidityPercentage <= 10) {
+        if (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] <= 10) {
             return 1.0;
         }
 
-        if (obj.humidityPercentage > 10 && obj.humidityPercentage < 25) {
-            return 1.0 + (obj.humidityPercentage - 10) / (25 - 10) * (0.85 - 1.0);
+        if (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] > 10 && obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] < 25) {
+            return 1.0 + (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] - 10) / (25 - 10) * (0.85 - 1.0);
         }
 
-        if (obj.humidityPercentage >= 25) {
+        if (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] >= 25) {
             return 0.85;
         }
 

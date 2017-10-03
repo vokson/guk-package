@@ -1,4 +1,5 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
@@ -6,21 +7,23 @@ var schema = {
     "type": "object",
     "properties": {},
     "required": [
-        "Rb",
-        "Rsc",
-        "A1s",
-        "b",
-        "h0",
-        "x",
-        "a1",
-        "b1f",
-        "h1f",
+        CONST.VAR_Rb,
+        CONST.VAR_Rsc,
+        CONST.VAR_As$,
+        CONST.VAR_X,
+        CONST.VAR_H0,
+        CONST.VAR_a$,
+        CONST.VAR_SECTION_WIDTH,
+        CONST.VAR_T_SECTION_FLANGE_WIDTH,
+        CONST.VAR_T_SECTION_FLANGE_HEIGHT
     ]
 };
 
 function calculate(obj) {
-    return obj.Rb * obj.b * obj.x * (obj.h0 - 0.5 * obj.x) + obj.Rsc * obj.A1s * (obj.h0 - obj.a1) +
-        obj.Rb * (obj.b1f - obj.b) * obj.h1f * (obj.h0 - 0.5 * obj.h1f);
+    return obj[CONST.VAR_Rb] * obj[CONST.VAR_SECTION_WIDTH] * obj[CONST.VAR_X] * (obj[CONST.VAR_H0] -
+        0.5 * obj[CONST.VAR_X]) + obj[CONST.VAR_Rsc] * obj[CONST.VAR_As$] * (obj[CONST.VAR_H0] - obj[CONST.VAR_a$]) +
+        obj[CONST.VAR_Rb] * (obj[CONST.VAR_T_SECTION_FLANGE_WIDTH] - obj[CONST.VAR_SECTION_WIDTH]) *
+        obj[CONST.VAR_T_SECTION_FLANGE_HEIGHT] * (obj[CONST.VAR_H0] - 0.5 * obj[CONST.VAR_T_SECTION_FLANGE_HEIGHT]);
 }
 
 export default function (json) {

@@ -1,21 +1,22 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
 var schema = {
     "type": "object",
     "properties": {
-        "isOnlyConcrete": {"type": "boolean"}
+        [CONST.VAR_IS_ONLY_CONCRETE]: {"type": "boolean"}
     },
     "required": [
-        "isOnlyConcrete",
+        CONST.VAR_IS_ONLY_CONCRETE
     ]
 };
 
 
 function calculate(obj) {
 
-    if (obj.isOnlyConcrete === true) {
+    if (obj[CONST.VAR_IS_ONLY_CONCRETE] === true) {
         return 0.9;
     }
 

@@ -7,51 +7,51 @@ import {default as Fi_b_cr_function} from './Table_06_12';
 import {default as long_term_Eb_function} from './Formula_06_3';
 
 let defaultValidationProperties = {"type": "number", "minimum": 0};
-let defaultProperties = {
-    "Ybi": 1.0,
-    "Ybti": 1.0,
-    "humidity": CONST.HIGH_HUMIDITY,
-    "isReductionFactorToBeApplied": false
-};
+let defaultProperties = {};
+defaultProperties[CONST.VAR_Ybi] = 1.0;
+defaultProperties[CONST.VAR_Ybti] = 1.0;
+defaultProperties[CONST.VAR_HUMIDITY_GROUP] = CONST.HIGH_HUMIDITY;
+defaultProperties[CONST.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED] = false;
 
 let schema = {
     "type": "object",
-    "properties": {
-        "type": {
-            "oneOf": [
-                {"const": CONST.HEAVY_CONCRETE},
-                {"const": CONST.PRESTRESSED_CONCRETE},
-                {"const": CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A},
-                {"const": CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A},
-                {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
-            ]
-        },
-        "classname": {"type": "string"},
-        "loadType": {
-            "oneOf": [
-                {"const": CONST.SHORT_TERM_LOAD},
-                {"const": CONST.LONG_TERM_LOAD},
-            ]
-        },
-        "humidity": {
-            "oneOf": [
-                {"const": CONST.HIGH_HUMIDITY},
-                {"const": CONST.MIDDLE_HUMIDITY},
-                {"const": CONST.LOW_HUMIDITY},
-            ]
-        },
-        "isReductionFactorToBeApplied": {"type": "boolean"},
-    },
+    "properties": {},
     "required": [
-        "type",
-        "classname",
-        "Ybi",
-        "Ybti",
-        "loadType",
-        "humidity",
-        "isReductionFactorToBeApplied",
+        CONST.VAR_CONCRETE_TYPE,
+        CONST.VAR_CONCRETE_CLASS,
+        CONST.VAR_Ybi,
+        CONST.VAR_Ybti,
+        CONST.VAR_LOAD_TYPE,
+        CONST.VAR_HUMIDITY_GROUP,
+        CONST.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED
     ]
 };
+
+schema.properties[CONST.VAR_CONCRETE_TYPE] = {
+    "oneOf": [
+        {"const": CONST.HEAVY_CONCRETE},
+        {"const": CONST.PRESTRESSED_CONCRETE},
+        {"const": CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A},
+        {"const": CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A},
+        {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
+    ]
+};
+schema.properties[CONST.VAR_CONCRETE_CLASS] = {"type": "string"};
+schema.properties[CONST.VAR_LOAD_TYPE] = {
+    "oneOf": [
+        {"const": CONST.SHORT_TERM_LOAD},
+        {"const": CONST.LONG_TERM_LOAD},
+    ]
+};
+schema.properties[CONST.VAR_HUMIDITY_GROUP] = {
+    "oneOf": [
+        {"const": CONST.HIGH_HUMIDITY},
+        {"const": CONST.MIDDLE_HUMIDITY},
+        {"const": CONST.LOW_HUMIDITY},
+    ]
+};
+schema.properties[CONST.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED] = {"type": "boolean"};
+
 
 function getShortTermEb2(classname) {
     let class_value = FUNC.getGradeNumberValue(classname);
@@ -84,7 +84,7 @@ function calculate(obj) {
     let sigma_b1 = 0.6 * Rb;
     let sigma_bt1 = 0.6 * Rbt;
 
-    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.SHORT_TERM_LOAD) {
 
         eb0 = 0.002;
         ebt0 = 0.0001;
@@ -92,16 +92,16 @@ function calculate(obj) {
         eb1 = sigma_b1 / Eb;
         ebt1 = sigma_bt1 / Ebt;
 
-        eb2 = getShortTermEb2(obj.classname);
+        eb2 = getShortTermEb2(obj[CONST.VAR_CONCRETE_CLASS]);
         ebt2 = 0.00015;
     }
 
-    if (obj.loadType === CONST.LONG_TERM_LOAD) {
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.LONG_TERM_LOAD) {
 
-        obj['stress'] = CONST.COMPRESSION;
+        obj[CONST.VAR_STRESS_TYPE] = CONST.COMPRESSION;
         let array_compression = strain_function(obj).answer;
 
-        obj['stress'] = CONST.TENSION;
+        obj[CONST.VAR_STRESS_TYPE] = CONST.TENSION;
         let array_tension = strain_function(obj).answer;
 
         if (array_compression === null || array_tension === null) {
@@ -117,8 +117,13 @@ function calculate(obj) {
             return null;
         }
 
-        eb1 = sigma_b1 / long_term_Eb_function({"Eb": Eb, "Fi": Fi}).answer;
-        ebt1 = sigma_bt1 / long_term_Eb_function({"Eb": Ebt, "Fi": Fi}).answer;
+        let inputObject = {};
+        inputObject[CONST.VAR_Eb] = Eb;
+        inputObject[CONST.VAR_FI] = Fi;
+        eb1 = sigma_b1 / long_term_Eb_function(inputObject).answer;
+
+        inputObject[CONST.VAR_Eb] = Ebt;
+        ebt1 = sigma_bt1 / long_term_Eb_function(inputObject).answer;
     }
 
     if (

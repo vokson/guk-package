@@ -1,21 +1,22 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
 var schema = {
     "type": "object",
     "properties": {
-        "isHeightMoreThanLimit": {"type": "boolean"}
+        [CONST.VAR_IS_HEIGHT_MORE_THAN_LIMIT]: {"type": "boolean"}
     },
     "required": [
-        "isHeightMoreThanLimit",
+        CONST.VAR_IS_HEIGHT_MORE_THAN_LIMIT
     ]
 };
 
 
 function calculate(obj) {
 
-    if (obj.isHeightMoreThanLimit === true) {
+    if (obj[CONST.VAR_IS_HEIGHT_MORE_THAN_LIMIT] === true) {
         return 0.85;
     }
 

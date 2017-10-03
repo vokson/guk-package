@@ -11,7 +11,7 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.LIGHT_CONCRETE},
                 {"const": CONST.POROUS_CONCRETE},
@@ -21,7 +21,7 @@ let schema = {
         },
     },
     "required": [
-        "type",
+        CONST.VAR_CONCRETE_TYPE
     ]
 };
 
@@ -29,16 +29,16 @@ function calculate(obj) {
 
     let values = [];
 
-    if (obj.type === CONST.LIGHT_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE) {
         values = LIGHT_CONCRETE_DENSITIES;
     }
-    if (obj.type === CONST.POROUS_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.POROUS_CONCRETE) {
         values = POROUS_CONCRETE_DENSITIES;
     }
-    if (obj.type === CONST.CELL_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE) {
         values = CELL_CONCRETE_DENSITIES;
     }
-    if (obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE) {
         values = CELL_AUTOCLAVE_CONCRETE_DENSITIES;
     }
 
