@@ -10,14 +10,14 @@ const LIST_FORMULA_06_12 = ['A600', 'A800', 'A1000', 'Bp1200', 'Bp1300', 'Bp1400
 
 let defaultValidationProperties = {"type": "number", "minimum": 0};
 let defaultProperties = {
-    "Ysi": 1.0,
+    [CONST.VAR_Ysi]: 1.0,
 };
 
 let schema = {
     "type": "object",
     "properties": {
-        "classname": {"type": "string"},
-        "loadType": {
+        [CONST.VAR_REBAR_CLASS]: {"type": "string"},
+        [CONST.VAR_LOAD_TYPE]: {
             "oneOf": [
                 {"const": CONST.SHORT_TERM_LOAD},
                 {"const": CONST.LONG_TERM_LOAD},
@@ -25,9 +25,9 @@ let schema = {
         },
     },
     "required": [
-        "classname",
-        "Ysi",
-        "loadType",
+        CONST.VAR_REBAR_CLASS,
+        CONST.VAR_LOAD_TYPE,
+        CONST.VAR_Ysi
     ]
 };
 
@@ -46,12 +46,26 @@ function calculate(obj) {
     [Rs, Rsc] = array_Rs_Rsc
 
     if (LIST_FORMULA_06_11.indexOf(obj.classname) !== -1) {
-        es0 = formula_06_11({"Rs": Rs, "Es": Es}).answer;
-        esc0 = formula_06_11({"Rs": Rsc, "Es": Es}).answer;
+        es0 = formula_06_11({
+            [CONST.VAR_Rs]: Rs,
+            [CONST.VAR_Es]: Es
+        }).answer;
+
+        esc0 = formula_06_11({
+            [CONST.VAR_Rs]: Rsc,
+            [CONST.VAR_Es]: Es
+        }).answer;
     }
     if (LIST_FORMULA_06_12.indexOf(obj.classname) !== -1) {
-        es0 = formula_06_12({"Rs": Rs, "Es": Es}).answer;
-        esc0 = formula_06_12({"Rs": Rsc, "Es": Es}).answer;
+        es0 = formula_06_12({
+            [CONST.VAR_Rs]: Rs,
+            [CONST.VAR_Es]: Es
+        }).answer;
+
+        esc0 = formula_06_12({
+            [CONST.VAR_Rs]: Rsc,
+            [CONST.VAR_Es]: Es
+        }).answer;
     }
 
     if (es0 === null || esc0 === null) {

@@ -54,7 +54,7 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -67,42 +67,42 @@ let schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        "density": {"type": "string"},
+        [CONST.VAR_CONCRETE_DENSITY]: {"type": "string"},
 
     },
     "required": [
-        "type",
+        CONST.VAR_CONCRETE_TYPE
     ]
 };
 
 function calculate(obj) {
-    if (obj.type === CONST.HEAVY_CONCRETE)  {return HEAVY_CONCRETE_COMPRESSION_STRENGTH_CLASSES;}
-    if (obj.type === CONST.PRESTRESSED_CONCRETE)  {return PRESTRESSED_CONCRETE_COMPRESSION_STRENGTH_CLASSES;}
-    if (obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A || obj.type===CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A)  {return FINE_GRAIN_CONCRETE_GROUP_A_COMPRESSION_STRENGTH_CLASSES;}
-    if (obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B)  {return FINE_GRAIN_CONCRETE_GROUP_B_COMPRESSION_STRENGTH_CLASSES;}
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.HEAVY_CONCRETE)  {return HEAVY_CONCRETE_COMPRESSION_STRENGTH_CLASSES;}
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.PRESTRESSED_CONCRETE)  {return PRESTRESSED_CONCRETE_COMPRESSION_STRENGTH_CLASSES;}
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A || obj[CONST.VAR_CONCRETE_TYPE]===CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A)  {return FINE_GRAIN_CONCRETE_GROUP_A_COMPRESSION_STRENGTH_CLASSES;}
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B)  {return FINE_GRAIN_CONCRETE_GROUP_B_COMPRESSION_STRENGTH_CLASSES;}
 
-    if (obj.density !== null) {
+    if (obj[CONST.VAR_CONCRETE_DENSITY] !== null) {
 
-        if (obj.type === CONST.LIGHT_CONCRETE) {
-            if (obj.density in LIGHT_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
-                return LIGHT_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj.density];
+        if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE) {
+            if (obj[CONST.VAR_CONCRETE_DENSITY] in LIGHT_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
+                return LIGHT_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj[CONST.VAR_CONCRETE_DENSITY]];
             }
         }
-        if (obj.type === CONST.POROUS_CONCRETE) {
-            if (obj.density in POROUS_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
-                return POROUS_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj.density];
-            }
-        }
-
-        if (obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) {
-            if (obj.density in CELL_AUTOCLAVE_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
-                return CELL_AUTOCLAVE_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj.density];
+        if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.POROUS_CONCRETE) {
+            if (obj[CONST.VAR_CONCRETE_DENSITY] in POROUS_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
+                return POROUS_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj[CONST.VAR_CONCRETE_DENSITY]];
             }
         }
 
-        if (obj.type === CONST.CELL_CONCRETE) {
-            if (obj.density in CELL_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
-                return CELL_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj.density];
+        if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE) {
+            if (obj[CONST.VAR_CONCRETE_DENSITY] in CELL_AUTOCLAVE_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
+                return CELL_AUTOCLAVE_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj[CONST.VAR_CONCRETE_DENSITY]];
+            }
+        }
+
+        if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE) {
+            if (obj[CONST.VAR_CONCRETE_DENSITY] in CELL_CONCRETE_COMPRESSION_STRENGTH_CLASSES) {
+                return CELL_CONCRETE_COMPRESSION_STRENGTH_CLASSES[obj[CONST.VAR_CONCRETE_DENSITY]];
             }
         }
     }

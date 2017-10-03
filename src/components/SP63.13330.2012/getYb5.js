@@ -1,21 +1,22 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 var defaultProperties = {"type": "number", "minimum": 0};
 
 var schema = {
     "type": "object",
     "properties": {
-        "isColdTemperatureMoreThanMinus40": {"type": "boolean"}
+        [CONST.VAR_IS_COLD_TEMPERATURE_MORE_THAN_MINUS40]: {"type": "boolean"}
     },
     "required": [
-        "isColdTemperatureMoreThanMinus40",
+        CONST.VAR_IS_COLD_TEMPERATURE_MORE_THAN_MINUS40
     ]
 };
 
 
 function calculate(obj) {
 
-    if (obj.isColdTemperatureMoreThanMinus40 === false) {
+    if (obj[CONST.VAR_IS_COLD_TEMPERATURE_MORE_THAN_MINUS40] === false) {
         return null;
     }
 
