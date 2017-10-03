@@ -6,7 +6,7 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -15,15 +15,15 @@ var schema = {
                 {"const": CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B},
             ]
         },
-        "classname": {"type": "string"},
-        "humidity": {
+        [CONST.VAR_CONCRETE_CLASS]: {"type": "string"},
+        [CONST.VAR_HUMIDITY_GROUP]: {
             "oneOf": [
                 {"const": CONST.HIGH_HUMIDITY},
                 {"const": CONST.MIDDLE_HUMIDITY},
                 {"const": CONST.LOW_HUMIDITY},
             ]
         },
-        "stress": {
+        [CONST.VAR_STRESS_TYPE]: {
             "oneOf": [
                 {"const": CONST.COMPRESSION},
                 {"const": CONST.TENSION},
@@ -31,10 +31,10 @@ var schema = {
         },
     },
     "required": [
-        "type",
-        "classname",
-        "humidity",
-        "stress",
+        CONST.VAR_CONCRETE_TYPE,
+        CONST.VAR_CONCRETE_CLASS,
+        CONST.VAR_HUMIDITY_GROUP,
+        CONST.VAR_STRESS_TYPE
     ]
 };
 
@@ -64,10 +64,10 @@ var highStrengthFactor = function (classname) {
 }
 
 function calculate(obj) {
-    let result = Array.from(VALUES[obj.stress][obj.humidity]);
+    let result = Array.from(VALUES[obj[CONST.VAR_STRESS_TYPE]][obj[CONST.VAR_HUMIDITY_GROUP]]);
 
-    if (obj.stress === CONST.COMPRESSION) {
-        result[1] = result[1] * highStrengthFactor(obj.classname);
+    if (obj[CONST.VAR_STRESS_TYPE] === CONST.COMPRESSION) {
+        result[1] = result[1] * highStrengthFactor(obj[CONST.VAR_CONCRETE_CLASS]);
     }
 
     return result;

@@ -12,12 +12,12 @@ const HEAVY_CONCRETE_Rbt = {
 };
 
 let defaultValidationProperties = {"type": "number", "minimum": 0};
-let defaultProperties = {"isReductionFactorToBeApplied": false};
+let defaultProperties = {};
 
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -27,20 +27,18 @@ let schema = {
                 {"const": CONST.LIGHT_CONCRETE},
             ]
         },
-        "classname": {"type": "string"},
-        "isReductionFactorToBeApplied": {"type": "boolean"},
+        [CONST.VAR_CONCRETE_TENSION_CLASS]: {"type": "string"},
     },
     "required": [
-        "type",
-        "classname",
-        "isReductionFactorToBeApplied",
+        CONST.VAR_CONCRETE_TYPE,
+        CONST.VAR_CONCRETE_TENSION_CLASS,
     ]
 };
 
 function calculate(obj) {
 
-    if (HEAVY_CONCRETE_Rbt.hasOwnProperty(obj.classname)) {
-        return HEAVY_CONCRETE_Rbt[obj.classname];
+    if (HEAVY_CONCRETE_Rbt.hasOwnProperty(obj[CONST.VAR_CONCRETE_TENSION_CLASS])) {
+        return HEAVY_CONCRETE_Rbt[obj[CONST.VAR_CONCRETE_TENSION_CLASS]];
     }
     return null;
 }

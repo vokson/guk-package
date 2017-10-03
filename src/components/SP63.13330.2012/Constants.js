@@ -54,6 +54,7 @@ export const VAR_Ab = "Ab";
 export const VAR_As = "As";
 export const VAR_As$ = "A1s";
 export const VAR_CONCRETE_CLASS = "classname";
+export const VAR_CONCRETE_TENSION_CLASS = "classname";
 export const VAR_CONCRETE_DENSITY = "density";
 export const VAR_CONCRETE_HUMIDITY_IN_PERCENTS = "humidityPercentage";
 export const VAR_CONCRETE_TYPE = "type";
