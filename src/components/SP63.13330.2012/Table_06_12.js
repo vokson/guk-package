@@ -60,14 +60,14 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "humidity": {
+        [CONST.VAR_HUMIDITY_GROUP]: {
             "oneOf": [
                 {"const": CONST.HIGH_HUMIDITY},
                 {"const": CONST.MIDDLE_HUMIDITY},
                 {"const": CONST.LOW_HUMIDITY},
             ]
         },
-        "classname": {
+        [CONST.VAR_CONCRETE_CLASS]: {
             "oneOf": [
                 {"const": 'B10'},
                 {"const": 'B15'},
@@ -89,23 +89,23 @@ let schema = {
 
     },
     "required": [
-        "humidity",
-        "classname",
+        CONST.VAR_HUMIDITY_GROUP,
+        CONST.VAR_CONCRETE_CLASS
     ]
 };
 
 
 function calculate(obj) {
 
-    switch (obj.humidity) {
+    switch (obj[CONST.VAR_HUMIDITY_GROUP]) {
         case CONST.HIGH_HUMIDITY :
-            return HIGH_HUMIDITY_VALUES[obj.classname];
+            return HIGH_HUMIDITY_VALUES[obj[CONST.VAR_CONCRETE_CLASS]];
             break;
         case CONST.MIDDLE_HUMIDITY :
-            return MIDDLE_HUMIDITY_VALUES[obj.classname];
+            return MIDDLE_HUMIDITY_VALUES[obj[CONST.VAR_CONCRETE_CLASS]];
             break;
         case CONST.LOW_HUMIDITY :
-            return LOW_HUMIDITY_VALUES[obj.classname];
+            return LOW_HUMIDITY_VALUES[obj[CONST.VAR_CONCRETE_CLASS]];
             break;
         default:
             return null;

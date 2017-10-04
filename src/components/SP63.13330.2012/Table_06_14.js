@@ -62,13 +62,15 @@ const VALUES_LONG_TERM_Rsc = {
 };
 
 let defaultValidationProperties = {"type": "number", "minimum": 0};
-let defaultProperties = {"Ysi": 1.0};
+let defaultProperties = {
+    [CONST.VAR_Ysi]: 1.0
+};
 
 let schema = {
     "type": "object",
     "properties": {
-        "classname": {"type": "string"},
-        "loadType": {
+        [CONST.VAR_REBAR_CLASS]: {"type": "string"},
+        [CONST.VAR_LOAD_TYPE]: {
             "oneOf": [
                 {"const": CONST.SHORT_TERM_LOAD},
                 {"const": CONST.LONG_TERM_LOAD},
@@ -76,25 +78,25 @@ let schema = {
         },
     },
     "required": [
-        "Ysi",
-        "classname",
-        "loadType"
+        CONST.VAR_Ysi,
+        CONST.VAR_REBAR_CLASS,
+        CONST.VAR_LOAD_TYPE
     ]
 };
 
 function calculate(obj) {
 
-    if (!VALUES_Rs.hasOwnProperty(obj.classname)) return null;
+    if (!VALUES_Rs.hasOwnProperty(obj[CONST.VAR_REBAR_CLASS])) return null;
 
-    let Rs = VALUES_Rs[obj.classname], Rsc;
+    let Rs = VALUES_Rs[obj[CONST.VAR_REBAR_CLASS]], Rsc;
 
-    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
-        Rsc = VALUES_SHORT_TERM_Rsc[obj.classname];
-    } else if (obj.loadType === CONST.LONG_TERM_LOAD){
-        Rsc = VALUES_LONG_TERM_Rsc[obj.classname];
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.SHORT_TERM_LOAD) {
+        Rsc = VALUES_SHORT_TERM_Rsc[obj[CONST.VAR_REBAR_CLASS]];
+    } else if (obj[CONST.VAR_LOAD_TYPE] === CONST.LONG_TERM_LOAD){
+        Rsc = VALUES_LONG_TERM_Rsc[obj[CONST.VAR_REBAR_CLASS]];
     }
 
-    return [Rs * obj.Ysi, Rsc * obj.Ysi];
+    return [Rs * obj[CONST.VAR_Ysi], Rsc * obj[CONST.VAR_Ysi]];
 }
 
 export default function (json) {

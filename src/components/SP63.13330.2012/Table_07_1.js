@@ -12,8 +12,8 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "L0_h": {"type": "number", "minimum": 0, "maximum": 20},
-        "loadType": {
+        [CONST.VAR_L0_DIVIDE_H]: {"type": "number", "minimum": 0, "maximum": 20},
+        [CONST.VAR_LOAD_TYPE]: {
             "oneOf": [
                 {"const": CONST.LONG_TERM_LOAD},
                 {"const": CONST.SHORT_TERM_LOAD},
@@ -21,8 +21,8 @@ var schema = {
         },
     },
     "required": [
-        "L0_h",
-        "loadType",
+        CONST.VAR_L0_DIVIDE_H,
+        CONST.VAR_LOAD_TYPE
     ]
 };
 
@@ -39,12 +39,12 @@ function calculateFi(L0_h, input, output) {
 }
 
 function calculate(obj) {
-    if (obj.loadType === CONST.LONG_TERM_LOAD) {
-        return calculateFi(obj.L0_h, longTermInput, longTermOutput);
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.LONG_TERM_LOAD) {
+        return calculateFi(obj[CONST.VAR_L0_DIVIDE_H], longTermInput, longTermOutput);
     }
 
-    if (obj.loadType === CONST.SHORT_TERM_LOAD) {
-        return calculateFi(obj.L0_h, shortTermInput, shortTermOutput);
+    if (obj[CONST.VAR_LOAD_TYPE] === CONST.SHORT_TERM_LOAD) {
+        return calculateFi(obj[CONST.VAR_L0_DIVIDE_H], shortTermInput, shortTermOutput);
     }
 }
 

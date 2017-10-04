@@ -122,7 +122,7 @@ let defaultValidationProperties = {"type": "number", "minimum": 0};
 let schema = {
     "type": "object",
     "properties": {
-        "type": {
+        [CONST.VAR_CONCRETE_TYPE]: {
             "oneOf": [
                 {"const": CONST.HEAVY_CONCRETE},
                 {"const": CONST.PRESTRESSED_CONCRETE},
@@ -135,13 +135,13 @@ let schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        "classname": {"type": "string"},
-        "density": {"type": "string"},
+        [CONST.VAR_CONCRETE_CLASS]: {"type": "string"},
+        [CONST.VAR_CONCRETE_DENSITY]: {"type": "string"},
 
     },
     "required": [
-        "type",
-        "classname",
+        CONST.VAR_CONCRETE_TYPE,
+        CONST.VAR_CONCRETE_CLASS
     ]
 };
 
@@ -185,48 +185,48 @@ function getValueForMiddleDensity(type, classname, density) {
 
 function calculate(obj) {
 
-    let isOK = isInputCorrect(obj.type, obj.classname, obj.density);
+    let isOK = isInputCorrect(obj[CONST.VAR_CONCRETE_TYPE], obj[CONST.VAR_CONCRETE_CLASS], obj[CONST.VAR_CONCRETE_DENSITY]);
 
     // ******************* INTERPOLATION OF DENSITY FOR LIGHT CONCRETE **************************
 
-    if (obj.type === CONST.LIGHT_CONCRETE || obj.type === CONST.POROUS_CONCRETE) {
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.LIGHT_CONCRETE || obj[CONST.VAR_CONCRETE_TYPE] === CONST.POROUS_CONCRETE) {
         if (isOK)
-            return LIGHT_CONCRETE_Eb[obj.density][obj.classname] * MULTIPLIER;
+            return LIGHT_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_DENSITY]][obj[CONST.VAR_CONCRETE_CLASS]] * MULTIPLIER;
         else
-            return getValueForMiddleDensity(obj.type, obj.classname, obj.density);
+            return getValueForMiddleDensity(obj[CONST.VAR_CONCRETE_TYPE], obj[CONST.VAR_CONCRETE_CLASS], obj[CONST.VAR_CONCRETE_DENSITY]);
     }
 
     if (!isOK) return null;
 
-    if (obj.type === CONST.HEAVY_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[obj.classname] * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.HEAVY_CONCRETE) {
+        return HEAVY_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_CLASS]] * MULTIPLIER;
     }
 
-    if (obj.type === CONST.PRESTRESSED_CONCRETE) {
-        return HEAVY_CONCRETE_Eb[obj.classname] * (0.56 + 0.006 * FUNC.getGradeNumberValue(obj.classname, 1)) * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.PRESTRESSED_CONCRETE) {
+        return HEAVY_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_CLASS]] * (0.56 + 0.006 * FUNC.getGradeNumberValue(obj[CONST.VAR_CONCRETE_CLASS], 1)) * MULTIPLIER;
     }
 
-    if (obj.type === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[obj.classname] * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A) {
+        return FINE_GRADE_A_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_CLASS]] * MULTIPLIER;
     }
 
-    if (obj.type === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
-        return FINE_GRADE_A_CONCRETE_Eb[obj.classname] * 0.89 * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_HEATED_CONCRETE_GROUP_A) {
+        return FINE_GRADE_A_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_CLASS]] * 0.89 * MULTIPLIER;
     }
 
-    if (obj.type === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B) {
-        return FINE_GRADE_B_CONCRETE_Eb[obj.classname] * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B) {
+        return FINE_GRADE_B_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_CLASS]] * MULTIPLIER;
     }
 
     // *******************
 
 
-    if (obj.type === CONST.CELL_AUTOCLAVE_CONCRETE) {
-        return CELL_CONCRETE_Eb[obj.density][obj.classname] * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE) {
+        return CELL_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_DENSITY]][obj[CONST.VAR_CONCRETE_CLASS]] * MULTIPLIER;
     }
 
-    if (obj.type === CONST.CELL_CONCRETE) {
-        return CELL_CONCRETE_Eb[obj.density][obj.classname] * 0.8 * MULTIPLIER;
+    if (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE) {
+        return CELL_CONCRETE_Eb[obj[CONST.VAR_CONCRETE_DENSITY]][obj[CONST.VAR_CONCRETE_CLASS]] * 0.8 * MULTIPLIER;
     }
 
 

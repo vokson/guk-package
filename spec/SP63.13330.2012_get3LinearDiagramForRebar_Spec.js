@@ -28,7 +28,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
 
         var test = preciseArrayWith(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer, 6);
@@ -52,7 +52,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         ], 6);
 
         var test = preciseArrayWith(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,
         }).answer, 6);
@@ -76,7 +76,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         ], 6);
 
         var test = preciseArrayWith(test_function({
-            "classname": 'K1400',
+            [NORM.VAR_REBAR_CLASS]: 'K1400',
             "Ysi": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer, 6);
@@ -100,7 +100,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         ], 6);
 
         var test = preciseArrayWith(test_function({
-            "classname": 'K1400',
+            [NORM.VAR_REBAR_CLASS]: 'K1400',
             "Ysi": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,
         }).answer, 6);
@@ -111,19 +111,19 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
     it("должна вернуть NULL, если класс неверен", function () {
         expect(test_function({
-            "classname": -1,
+            [NORM.VAR_REBAR_CLASS]: -1,
             "Ysi": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'AAA',
+            [NORM.VAR_REBAR_CLASS]: 'AAA',
             "Ysi": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": null,
+            [NORM.VAR_REBAR_CLASS]: null,
             "Ysi": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
@@ -132,19 +132,19 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
     it("должна вернуть NULL, если Ysi неверен", function () {
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": -1,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 'AAA',
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": null,
             "loadType": NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
@@ -152,19 +152,19 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 1.0,
             "loadType": -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 1.0,
             "loadType": 'AAA',
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi": 1.0,
             "loadType": null,
         }).answer).toBeNull();

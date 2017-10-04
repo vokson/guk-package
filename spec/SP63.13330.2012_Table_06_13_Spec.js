@@ -27,7 +27,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.13", function () {
 
         Object.getOwnPropertyNames(values).forEach(function(classname) {
             expect(test_function({
-                "classname": classname,
+                [NORM.VAR_REBAR_CLASS]: classname,
                 "Ysi" : 1.0
             }).answer).toEqual(values[classname]);
         });
@@ -37,7 +37,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.13", function () {
 
         Object.getOwnPropertyNames(values).forEach(function(classname) {
             expect(test_function({
-                "classname": classname,
+                [NORM.VAR_REBAR_CLASS]: classname,
                 "Ysi" : 0.5
             }).answer).toEqual(values[classname]* 0.5);
         });
@@ -45,27 +45,27 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.13", function () {
 
     it("должна вернуть NULL, если класс арматуры неверен", function () {
         expect(test_function({
-            "classname": -1,
+            [NORM.VAR_REBAR_CLASS]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'AAA',
+            [NORM.VAR_REBAR_CLASS]: 'AAA',
         }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если фактор Ysi неверен", function () {
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi" : -1
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi" : null
         }).answer).toBeNull();
 
         expect(test_function({
-            "classname": 'A500',
+            [NORM.VAR_REBAR_CLASS]: 'A500',
             "Ysi" : 'AAA'
         }).answer).toBeNull();
     });

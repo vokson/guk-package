@@ -163,7 +163,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         class_function({"type": NORM.HEAVY_CONCRETE}).answer.forEach(function (classname) {
             expect(test_function({
                 "type": NORM.HEAVY_CONCRETE,
-                "classname": classname,
+                [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
         });
 
@@ -178,7 +178,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
             expect(test_function({
                 "type": NORM.PRESTRESSED_CONCRETE,
-                "classname": classname,
+                [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * factor * 1000);
 
         });
@@ -191,7 +191,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         class_function({"type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
             expect(test_function({
                 "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
-                "classname": classname,
+                [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
             ;
         });
@@ -204,7 +204,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         class_function({"type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
             expect(test_function({
                 "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
-                "classname": classname,
+                [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 0.89 * 1000);
         });
     });
@@ -216,7 +216,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         class_function({"type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B}).answer.forEach(function (classname) {
             expect(test_function({
                 "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
-                "classname": classname,
+                [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
         });
     });
@@ -231,7 +231,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
                     expect(test_function({
                         "type": NORM.LIGHT_CONCRETE,
-                        "classname": classname,
+                        [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
@@ -248,7 +248,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         "type": NORM.POROUS_CONCRETE,
-                        "classname": classname,
+                        [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
@@ -268,7 +268,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         "type": NORM.CELL_AUTOCLAVE_CONCRETE,
-                        "classname": classname,
+                        [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toEqual(array_Eb[density][classname] * 1000);
                 }
@@ -285,7 +285,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         "type": NORM.CELL_CONCRETE,
-                        "classname": classname,
+                        [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toEqual(array_Eb[density][classname] * 0.8 * 1000);
                 }

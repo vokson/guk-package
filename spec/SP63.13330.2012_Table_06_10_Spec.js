@@ -45,7 +45,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.HIGH_HUMIDITY,
                     "stress": NORM.COMPRESSION
                 }).answer).toEqual(
@@ -55,7 +55,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.MIDDLE_HUMIDITY,
                     "stress": NORM.COMPRESSION
                 }).answer).toEqual(
@@ -63,7 +63,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
                 );
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.LOW_HUMIDITY,
                     "stress": NORM.COMPRESSION
                 }).answer).toEqual(
@@ -87,21 +87,21 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
 
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.HIGH_HUMIDITY,
                     "stress": NORM.TENSION
                 }).answer).toEqual(values[0]);
 
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.MIDDLE_HUMIDITY,
                     "stress": NORM.TENSION
                 }).answer).toEqual(values[1]);
 
                 expect(test_function({
                     "type": type,
-                    "classname": classname,
+                    [NORM.VAR_CONCRETE_CLASS]: classname,
                     "humidity": NORM.LOW_HUMIDITY,
                     "stress": NORM.TENSION
                 }).answer).toEqual(values[2]);
@@ -115,7 +115,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.10", function () {
     it("должна вернуть NULL, если тип бетона неверен", function () {
         expect(test_function({
             "type": NORM.LIGHT_CONCRETE,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "humidity": NORM.HIGH_HUMIDITY,
             "stress": NORM.TENSION
         }).answer).toBeNull();

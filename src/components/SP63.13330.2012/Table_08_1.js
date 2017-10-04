@@ -1,4 +1,5 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 let input = [0, 6, 10, 15, 20];
 let outputOther = [1.0, 0.92, 0.90, 0.83, 0.70];
@@ -10,8 +11,8 @@ var defaultProperties = {"type": "number", "minimum": 0};
 var schema = {
     "type": "object",
     "properties": {
-        "L0_h": {"type": "number", "minimum": 0, "maximum": 20},
-        "classname": {
+        [CONST.VAR_L0_DIVIDE_H]: {"type": "number", "minimum": 0, "maximum": 20},
+        [CONST.VAR_CONCRETE_CLASS]: {
             "oneOf": [
                 {"const": 'B20'},
                 {"const": 'B25'},
@@ -27,8 +28,8 @@ var schema = {
         },
     },
     "required": [
-        "L0_h",
-        "classname",
+        CONST.VAR_L0_DIVIDE_H,
+        CONST.VAR_CONCRETE_CLASS
     ]
 };
 
@@ -45,15 +46,15 @@ function calculateFi(L0_h, input, output) {
 }
 
 function calculate(obj) {
-    if (obj.classname === 'B60') {
-        return calculateFi(obj.L0_h, input, outputB60);
+    if (obj[CONST.VAR_CONCRETE_CLASS] === 'B60') {
+        return calculateFi(obj[CONST.VAR_L0_DIVIDE_H], input, outputB60);
     }
 
-    if (obj.classname === 'B80') {
-        return calculateFi(obj.L0_h, input, outputB80);
+    if (obj[CONST.VAR_CONCRETE_CLASS] === 'B80') {
+        return calculateFi(obj[CONST.VAR_L0_DIVIDE_H], input, outputB80);
     }
 
-    return calculateFi(obj.L0_h, input, outputOther);
+    return calculateFi(obj[CONST.VAR_L0_DIVIDE_H], input, outputOther);
 }
 
 export default function (json) {

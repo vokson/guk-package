@@ -1,4 +1,5 @@
 import * as FUNC from './Common_Functions';
+import * as CONST from './Constants';
 
 const Rsn = {
     'A240': 240,
@@ -21,23 +22,25 @@ const Rsn = {
 };
 
 let defaultValidationProperties = {"type": "number", "minimum": 0};
-let defaultProperties = {"Ysi": 1.0};
+let defaultProperties = {
+    [CONST.VAR_Ysi]: 1.0
+};
 
 let schema = {
     "type": "object",
     "properties": {
-        "classname": {"type": "string"},
+        [CONST.VAR_REBAR_CLASS]: {"type": "string"},
     },
     "required": [
-        "Ysi",
-        "classname",
+        CONST.VAR_Ysi,
+        CONST.VAR_CONCRETE_CLASS
     ]
 };
 
 function calculate(obj) {
 
-    if (Rsn.hasOwnProperty(obj.classname)) {
-        return Rsn[obj.classname] * obj.Ysi;
+    if (Rsn.hasOwnProperty(obj[CONST.VAR_REBAR_CLASS])) {
+        return Rsn[obj[CONST.VAR_REBAR_CLASS]] * obj[CONST.VAR_Ysi];
     }
 
     return null;

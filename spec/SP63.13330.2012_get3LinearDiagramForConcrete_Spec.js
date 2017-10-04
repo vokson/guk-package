@@ -25,7 +25,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         var test = preciseArrayWith(test_function({
             "type": NORM.HEAVY_CONCRETE,
-            "classname": 'B25',
+            [NORM.VAR_CONCRETE_CLASS]: 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -58,7 +58,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         let test = preciseArrayWith(test_function({
             "type": NORM.HEAVY_CONCRETE,
-            "classname": 'B25',
+            [NORM.VAR_CONCRETE_CLASS]: 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,
@@ -88,7 +88,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         let test = preciseArrayWith(test_function({
             "type": NORM.HEAVY_CONCRETE,
-            "classname": 'B80',
+            [NORM.VAR_CONCRETE_CLASS]: 'B80',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -104,7 +104,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
     it("должна вернуть NULL, если тип неверен", function () {
         expect(test_function({
             "type": -1,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -112,7 +112,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": "AAA",
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -120,7 +120,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.LIGHT_CONCRETE,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -128,7 +128,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.POROUS_CONCRETE,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -136,7 +136,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.CELL_CONCRETE,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -144,7 +144,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.CELL_AUTOCLAVE_CONCRETE,
-            "classname": 'B15',
+            [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.SHORT_TERM_LOAD,
@@ -155,7 +155,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
     it("должна вернуть NULL, если класс ниже B10 при продолжительной нагрузке", function () {
         expect(test_function({
             "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
-            "classname": 'B3,5',
+            [NORM.VAR_CONCRETE_CLASS]: 'B3,5',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,
@@ -164,7 +164,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
-            "classname": 'B5',
+            [NORM.VAR_CONCRETE_CLASS]: 'B5',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,
@@ -173,7 +173,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         expect(test_function({
             "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
-            "classname": 'B7,5',
+            [NORM.VAR_CONCRETE_CLASS]: 'B7,5',
             "Ybi": 1.0,
             "Ybti": 1.0,
             "loadType": NORM.LONG_TERM_LOAD,

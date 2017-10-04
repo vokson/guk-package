@@ -33,7 +33,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.9", function () {
 
                     expect(test_function({
                         "type": type,
-                        "classname": classname,
+                        [NORM.VAR_CONCRETE_CLASS]: classname,
                     }).answer).toEqual(array_Rbt[classname]);
 
                 });
@@ -57,12 +57,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.9", function () {
 
         expect(test_function({
             "type": NORM.LIGHT_CONCRETE,
-            "classname": 'B50'
+            [NORM.VAR_CONCRETE_CLASS]: 'B50'
         }).answer).toBeNull();
 
         expect(test_function({
             "type": NORM.LIGHT_CONCRETE,
-            "classname": 1
+            [NORM.VAR_CONCRETE_CLASS]: 1
         }).answer).toBeNull();
 
     });

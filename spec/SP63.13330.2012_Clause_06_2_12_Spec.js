@@ -11,7 +11,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
 
         K_list.forEach(function (classname) {
             var input = {
-                "classname": classname,
+                [NORM.VAR_REBAR_CLASS]: classname,
             };
             expect(test_function(input).answer).toBeCloseTo(195000, 0);
         });
@@ -21,7 +21,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
 
         AB_list.forEach(function (classname) {
             var input = {
-                "classname": classname,
+                [NORM.VAR_REBAR_CLASS]: classname,
             };
             expect(test_function(input).answer).toBeCloseTo(200000, 0);
         });
