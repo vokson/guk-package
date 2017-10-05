@@ -16,7 +16,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
 
         types.forEach(function (type) {
             expect(test_function({
-                "type": type
+                [NORM.VAR_CONCRETE_TYPE]: type
             }).answer).toEqual(1.0);
         });
     });
@@ -29,17 +29,17 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
 
         types.forEach(function (type) {
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
                 "humidityPercentage": 10
             }).answer).toEqual(1.0);
 
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
                 "humidityPercentage": 15
             }).answer).toEqual(0.95);
 
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
                 "humidityPercentage": 25
             }).answer).toEqual(0.85);
         });
@@ -47,27 +47,27 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
 
     it("должна вернуть NULL, если тип бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": 'AAA',
+            [NORM.VAR_CONCRETE_TYPE]: 'AAA',
         }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если влажность бетона неверна", function () {
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             "humidityPercentage": -1
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             "humidityPercentage": 101
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             "humidityPercentage": 'AAA'
         }).answer).toBeNull();
 

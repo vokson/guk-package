@@ -15,7 +15,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.5", function() {
 
         types.forEach(function(type) {
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
             }).answer).toEqual(null);
         });
     });
@@ -25,7 +25,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.5", function() {
             'D1500', 'D1600', 'D1700', 'D1800', 'D1900', 'D2000'];
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
         }).answer).toEqual(correct);
     });
 
@@ -33,7 +33,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.5", function() {
         var correct = ['D800', 'D900', 'D1000', 'D1100', 'D1200', 'D1300', 'D1400'];
 
         expect(test_function({
-            "type": NORM.POROUS_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
         }).answer).toEqual(correct);
     });
 
@@ -41,7 +41,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.5", function() {
         var correct = ['D600', 'D700', 'D800', 'D900', 'D1000', 'D1100', 'D1200'];
 
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
         }).answer).toEqual(correct);
     });
 
@@ -49,17 +49,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.5", function() {
         var correct = ['D500', 'D600', 'D700', 'D800', 'D900', 'D1000', 'D1100', 'D1200'];
 
         expect(test_function({
-            "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
         }).answer).toEqual(correct);
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toEqual(null);
 
         expect(test_function({
-            "type": "AAA",
+            [NORM.VAR_CONCRETE_TYPE]: "AAA",
         }).answer).toEqual(null);
     });
 });

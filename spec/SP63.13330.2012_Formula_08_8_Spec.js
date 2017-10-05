@@ -5,12 +5,12 @@ describe("СП 63.13330.2012 (изм.1) - Формула 8.8", function () {
 
     it("должна вернуть x", function () {
         var input = {
-            "Rs": 1000,
+            [NORM.VAR_Rs]: 1000,
             "As": 4,
-            "Rsc": 1000,
-            "A1s": 1,
-            "Rb": 10,
-            "b": 10,
+            [NORM.VAR_Rsc]: 1000,
+            [NORM.VAR_As$]: 1,
+            [NORM.VAR_Rb]: 10,
+            [NORM.VAR_SECTION_WIDTH]: 10,
             "b1f": 40,
             "h1f": 7,
         };

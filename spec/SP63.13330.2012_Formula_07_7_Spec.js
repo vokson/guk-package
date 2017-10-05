@@ -6,8 +6,8 @@ describe("СП 63.13330.2012 (изм.1) - Формула 7.7", function () {
 
     it("должна вернуть Ncr для бетонного сечения", function () {
         var input = {
-            "D": 100,
-            "L0": 2,
+            [NORM.VAR_D]: 100,
+            [NORM.VAR_L0]: 2,
         };
         expect(test_function(input).answer).toBeCloseTo(246.74, 2);
     });

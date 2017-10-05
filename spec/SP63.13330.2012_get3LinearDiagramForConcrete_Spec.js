@@ -24,7 +24,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         ], 6);
 
         var test = preciseArrayWith(test_function({
-            "type": NORM.HEAVY_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -57,7 +57,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         ], 6);
 
         let test = preciseArrayWith(test_function({
-            "type": NORM.HEAVY_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B25',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -87,7 +87,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
             ], 6);
 
         let test = preciseArrayWith(test_function({
-            "type": NORM.HEAVY_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B80',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -103,7 +103,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
     it("должна вернуть NULL, если тип неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -111,7 +111,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": "AAA",
+            [NORM.VAR_CONCRETE_TYPE]: "AAA",
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -119,7 +119,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -127,7 +127,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.POROUS_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -135,7 +135,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -143,7 +143,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -154,7 +154,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
     it("должна вернуть NULL, если класс ниже B10 при продолжительной нагрузке", function () {
         expect(test_function({
-            "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
             [NORM.VAR_CONCRETE_CLASS]: 'B3,5',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -163,7 +163,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
             [NORM.VAR_CONCRETE_CLASS]: 'B5',
             "Ybi": 1.0,
             "Ybti": 1.0,
@@ -172,7 +172,7 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
             [NORM.VAR_CONCRETE_CLASS]: 'B7,5',
             "Ybi": 1.0,
             "Ybti": 1.0,

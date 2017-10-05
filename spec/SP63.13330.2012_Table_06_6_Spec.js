@@ -8,7 +8,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.6", function () {
         var correct = ['Sp0,6','Sp0,8', 'Sp1', 'Sp1,2', 'Sp1,5', 'Sp2', 'Sp3', 'Sp4'];
 
         expect(test_function({
-            "type": NORM.PRESTRESSED_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE,
         }).answer).toEqual(correct);
 
     });
@@ -27,18 +27,18 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.6", function () {
 
         types.forEach(function (type) {
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
             }).answer).toEqual(null);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toEqual(null);
 
         expect(test_function({
-            "type": "AAA",
+            [NORM.VAR_CONCRETE_TYPE]: "AAA",
         }).answer).toEqual(null);
     });
 });

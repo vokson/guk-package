@@ -32,7 +32,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.9", function () {
                 types.forEach(function (type) {
 
                     expect(test_function({
-                        "type": type,
+                        [NORM.VAR_CONCRETE_TYPE]: type,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
                     }).answer).toEqual(array_Rbt[classname]);
 
@@ -44,24 +44,24 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.9", function () {
 
     it("должна вернуть NULL, если тип, класс бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": 'AAA',
+            [NORM.VAR_CONCRETE_TYPE]: 'AAA',
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B50'
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 1
         }).answer).toBeNull();
 

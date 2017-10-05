@@ -5,8 +5,8 @@ describe("СП 63.13330.2012 (изм.1) - Пункт 8.1.15", function () {
 
     it("должна вернуть Kb", function () {
         var input = {
-            "Fi_L": 1.5,
-            "delta_e": 0.7,
+            [NORM.VAR_FI_L]: 1.5,
+            [NORM.VAR_DELTA_e]: 0.7,
         };
 
         var result = test_function(input);

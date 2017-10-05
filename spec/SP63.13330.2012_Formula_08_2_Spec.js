@@ -5,8 +5,8 @@ describe("СП 63.13330.2012 (изм.1) - Формула 8.2", function () {
 
     it("должна вернуть e_sel", function () {
         var input = {
-            "Rs": 10,
-            "Es": 200,
+            [NORM.VAR_Rs]: 10,
+            [NORM.VAR_Es]: 200,
         };
 
         expect(test_function(input).answer).toBeCloseTo(0.05, 2);

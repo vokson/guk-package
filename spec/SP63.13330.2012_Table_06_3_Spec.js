@@ -16,7 +16,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.3", function () {
 
         types.forEach(function (type) {
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
             }).answer).toEqual(correct);
         });
     });
@@ -26,7 +26,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.3", function () {
         var correct = ['F25', 'F35', 'F50', 'F75', 'F100', 'F150', 'F200', 'F300', 'F400', 'F500'];
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
         }).answer).toEqual(correct);
 
     });
@@ -42,18 +42,18 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.3", function () {
 
         types.forEach(function (type) {
             expect(test_function({
-                "type": type,
+                [NORM.VAR_CONCRETE_TYPE]: type,
             }).answer).toEqual(correct);
         });
     });
 
     it("должна вернуть пустой массив, если тип бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toEqual(null);
 
         expect(test_function({
-            "type": "AAA",
+            [NORM.VAR_CONCRETE_TYPE]: "AAA",
         }).answer).toEqual(null);
     });
 });

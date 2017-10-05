@@ -25,7 +25,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
             types.forEach(function (type) {
                 expect(test_function({
                     "loadType": NORM.LONG_TERM_LOAD,
-                    "type": type,
+                    [NORM.VAR_CONCRETE_TYPE]: type,
                 }).answer).toEqual(0.9);
             });
         });
@@ -40,7 +40,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
             types.forEach(function (type) {
                 expect(test_function({
                     "loadType": NORM.LONG_TERM_LOAD,
-                    "type": type,
+                    [NORM.VAR_CONCRETE_TYPE]: type,
                 }).answer).toEqual(0.85);
             });
         });
@@ -51,12 +51,12 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
         expect(test_function({
             "loadType": NORM.LONG_TERM_LOAD,
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
             "loadType": NORM.LONG_TERM_LOAD,
-            "type": 'AAA',
+            [NORM.VAR_CONCRETE_TYPE]: 'AAA',
         }).answer).toBeNull();
 
     });

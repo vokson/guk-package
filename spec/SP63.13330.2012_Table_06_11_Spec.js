@@ -160,9 +160,9 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = heavy_Eb;
 
-        class_function({"type": NORM.HEAVY_CONCRETE}).answer.forEach(function (classname) {
+        class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE}).answer.forEach(function (classname) {
             expect(test_function({
-                "type": NORM.HEAVY_CONCRETE,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
         });
@@ -173,11 +173,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = heavy_Eb;
 
-        class_function({"type": NORM.PRESTRESSED_CONCRETE}).answer.forEach(function (classname) {
+        class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE}).answer.forEach(function (classname) {
             var factor = 0.56 + 0.006 * NORM.getGradeNumberValue(classname, 1);
 
             expect(test_function({
-                "type": NORM.PRESTRESSED_CONCRETE,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * factor * 1000);
 
@@ -188,9 +188,9 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_A_Eb;
 
-        class_function({"type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
+        class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
             expect(test_function({
-                "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
             ;
@@ -201,9 +201,9 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_A_Eb;
 
-        class_function({"type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
+        class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A}).answer.forEach(function (classname) {
             expect(test_function({
-                "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 0.89 * 1000);
         });
@@ -213,9 +213,9 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = fine_grade_B_Eb;
 
-        class_function({"type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B}).answer.forEach(function (classname) {
+        class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B}).answer.forEach(function (classname) {
             expect(test_function({
-                "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toEqual(array_Eb[classname] * 1000);
         });
@@ -225,12 +225,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = light_Eb;
 
-        density_function({"type": NORM.LIGHT_CONCRETE}).answer.forEach(function (density) {
-            class_function({"type": NORM.LIGHT_CONCRETE, "density": density}).answer.forEach(function (classname) {
+        density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE}).answer.forEach(function (density) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
 
                     expect(test_function({
-                        "type": NORM.LIGHT_CONCRETE,
+                        [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
@@ -243,11 +243,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = light_Eb;
 
-        density_function({"type": NORM.POROUS_CONCRETE}).answer.forEach(function (density) {
-            class_function({"type": NORM.POROUS_CONCRETE, "density": density}).answer.forEach(function (classname) {
+        density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE}).answer.forEach(function (density) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
-                        "type": NORM.POROUS_CONCRETE,
+                        [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
@@ -260,14 +260,14 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = cell_Eb;
 
-        density_function({"type": NORM.CELL_AUTOCLAVE_CONCRETE}).answer.forEach(function (density) {
+        density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE}).answer.forEach(function (density) {
             class_function({
-                "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                 "density": density
             }).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
-                        "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                        [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toEqual(array_Eb[density][classname] * 1000);
@@ -280,11 +280,11 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         var array_Eb = cell_Eb;
 
-        density_function({"type": NORM.CELL_CONCRETE}).answer.forEach(function (density) {
-            class_function({"type": NORM.CELL_CONCRETE, "density": density}).answer.forEach(function (classname) {
+        density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE}).answer.forEach(function (density) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE, "density": density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
-                        "type": NORM.CELL_CONCRETE,
+                        [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
                         "density": density
                     }).answer).toEqual(array_Eb[density][classname] * 0.8 * 1000);
@@ -295,19 +295,19 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
     it("должна вернуть NULL, если тип, класс бетона неверен", function () {
         expect(test_function({
-            "type": -1,
+            [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": 'AAA',
+            [NORM.VAR_CONCRETE_TYPE]: 'AAA',
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             "density": 'D400'
         }).answer).toBeNull();
 

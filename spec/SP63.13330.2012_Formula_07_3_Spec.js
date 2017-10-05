@@ -5,16 +5,16 @@ describe("СП 63.13330.2012 (изм.1) - Формула 7.3", function () {
 
     it("должна вернуть N для бетонного сечения", function () {
         var input = {
-            "Fi": 0.95,
-            "Rb": 10,
-            "Ab": 2,
+            [NORM.VAR_FI]: 0.95,
+            [NORM.VAR_Rb]: 10,
+            [NORM.VAR_Ab]: 2,
         };
         expect(test_function(input).answer).toBeCloseTo(19, 0);
 
         var input = {
-            "Fi": 0.5,
-            "Rb": 0.555,
-            "Ab": 100,
+            [NORM.VAR_FI]: 0.5,
+            [NORM.VAR_Rb]: 0.555,
+            [NORM.VAR_Ab]: 100,
         };
         expect(test_function(input).answer).toBeCloseTo(27.75, 2);
     });

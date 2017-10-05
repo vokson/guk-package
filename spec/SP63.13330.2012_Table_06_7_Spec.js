@@ -94,33 +94,33 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
 
 
                 expect(test_function({
-                    "type": NORM.HEAVY_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.PRESTRESSED_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
                     [NORM.VAR_CONCRETE_CLASS]: classname
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 //с учетом понижающего коэффициента 0.8 для мелкозернистого бетона на песке с модулем крупности 2.0 и менее
                 expect(test_function({
-                    "type": NORM.HEAVY_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -128,7 +128,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.PRESTRESSED_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -136,7 +136,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -144,7 +144,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -152,7 +152,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
-                    "type": NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -171,18 +171,18 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
         for (var classname in array_Rb) {
             if (array_Rb.hasOwnProperty(classname)) {
                 expect(test_function({
-                    "type": NORM.LIGHT_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.POROUS_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
 
                 //с учетом понижающего коэффициента 0.8 для легкого бетона на мелком пористом заполнителе
                 expect(test_function({
-                    "type": NORM.LIGHT_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -190,7 +190,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
-                    "type": NORM.POROUS_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -208,17 +208,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
         for (var classname in array_Rb) {
             if (array_Rb.hasOwnProperty(classname)) {
                 expect(test_function({
-                    "type": NORM.CELL_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.CELL_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -226,7 +226,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
-                    "type": NORM.CELL_AUTOCLAVE_CONCRETE,
+                    [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                     "Ybi": 1.0,
                     "Ybti": 1.0,
@@ -243,7 +243,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
         var classname = 'B15';
 
         expect(test_function({
-            "type": NORM.HEAVY_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: classname,
             "Ybi": 0.5,
             "Ybti": 0.25,
@@ -252,12 +252,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
 
     it("должна вернуть NULL, если тип, класс бетона неверен", function () {
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B50',
         }).answer).toBeNull();
 
         expect(test_function({
-            "type": NORM.LIGHT_CONCRETE,
+            [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 1,
         }).answer).toBeNull();
     });
