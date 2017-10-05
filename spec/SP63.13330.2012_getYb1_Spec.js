@@ -5,7 +5,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
     it("должна вернуть 1.0 для кратковременных нагрузок", function () {
         expect(test_function({
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toEqual(1.0);
     });
 
@@ -24,7 +24,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
             types.forEach(function (type) {
                 expect(test_function({
-                    "loadType": NORM.LONG_TERM_LOAD,
+                    [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
                     [NORM.VAR_CONCRETE_TYPE]: type,
                 }).answer).toEqual(0.9);
             });
@@ -39,7 +39,7 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
 
             types.forEach(function (type) {
                 expect(test_function({
-                    "loadType": NORM.LONG_TERM_LOAD,
+                    [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
                     [NORM.VAR_CONCRETE_TYPE]: type,
                 }).answer).toEqual(0.85);
             });
@@ -50,12 +50,12 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
     it("должна вернуть NULL, если тип бетона неверен", function () {
 
         expect(test_function({
-            "loadType": NORM.LONG_TERM_LOAD,
+            [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
             [NORM.VAR_CONCRETE_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
-            "loadType": NORM.LONG_TERM_LOAD,
+            [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
             [NORM.VAR_CONCRETE_TYPE]: 'AAA',
         }).answer).toBeNull();
 
@@ -64,11 +64,11 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 а)", function () {
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
 
         expect(test_function({
-            "loadType": -1
+            [NORM.VAR_LOAD_TYPE]: -1
         }).answer).toBeNull();
 
         expect(test_function({
-            "loadType": 'AAA'
+            [NORM.VAR_LOAD_TYPE]: 'AAA'
         }).answer).toBeNull();
     });
 });

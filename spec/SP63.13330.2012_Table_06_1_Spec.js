@@ -9,7 +9,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-            "density": 'D500'
+            [NORM.VAR_CONCRETE_DENSITY]: 'D500'
         }).answer).toBeNull();
     });
 
@@ -66,12 +66,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D800',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D800',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D900',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D900',
             }).answer).toEqual(correct);
         });
 
@@ -80,12 +80,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1000',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1000',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1100',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1100',
             }).answer).toEqual(correct);
         });
 
@@ -94,12 +94,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1200',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1200',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1300',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1300',
             }).answer).toEqual(correct);
         });
 
@@ -108,12 +108,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1400',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1400',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1500',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1500',
             }).answer).toEqual(correct);
         });
 
@@ -122,12 +122,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1600',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1600',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1700',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1700',
             }).answer).toEqual(correct);
         });
 
@@ -136,12 +136,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1800',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1800',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D1900',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1900',
             }).answer).toEqual(correct);
         });
 
@@ -151,7 +151,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
-                "density": 'D2000',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D2000',
             }).answer).toEqual(correct);
         });
     });
@@ -161,17 +161,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
             var correct = ['B2,5', 'B3,5', 'B5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D800',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D800',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D900',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D900',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D1000',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1000',
             }).answer).toEqual(correct);
         });
 
@@ -180,17 +180,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D1100',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1100',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D1200',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1200',
             }).answer).toEqual(correct);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D1300',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1300',
             }).answer).toEqual(correct);
         });
 
@@ -199,7 +199,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
-                "density": 'D1400',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1400',
             }).answer).toEqual(correct);
         });
     });
@@ -210,49 +210,49 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D600',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D600',
             }).answer).toEqual(correct);
         });
         it(" плотностей D700", function () {
             var correct = ['B1,5', 'B2', 'B2,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D700',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D700',
             }).answer).toEqual(correct);
         });
         it(" плотностей D800", function () {
             var correct = ['B2', 'B2,5', 'B3,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D800',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D800',
             }).answer).toEqual(correct);
         });
         it(" плотностей D900", function () {
             var correct = ['B2,5', 'B3,5', 'B5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D900',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D900',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1000", function () {
             var correct = ['B5', 'B7,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D1000',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1000',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1100", function () {
             var correct = ['B7,5', 'B10'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D1100',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1100',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1200", function () {
             var correct = ['B10', 'B12,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-                "density": 'D1200',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1200',
             }).answer).toEqual(correct);
         });
     });
@@ -262,56 +262,56 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.1", function () {
             var correct = ['B1,5', 'B2', 'B2,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D500',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D500',
             }).answer).toEqual(correct);
         });
         it(" плотностей D600", function () {
             var correct = ['B1,5', 'B2', 'B2,5', 'B3,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D600',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D600',
             }).answer).toEqual(correct);
         });
         it(" плотностей D700", function () {
             var correct = ['B2', 'B2,5', 'B3,5', 'B5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D700',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D700',
             }).answer).toEqual(correct);
         });
         it(" плотностей D800", function () {
             var correct = ['B2,5', 'B3,5', 'B5', 'B7,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D800',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D800',
             }).answer).toEqual(correct);
         });
         it(" плотностей D900", function () {
             var correct = ['B3,5', 'B5', 'B7,5', 'B10'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D900',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D900',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1000", function () {
             var correct = ['B7,5', 'B10', 'B12,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D1000',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1000',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1100", function () {
             var correct = ['B10', 'B12,5', 'B15', 'B17,5'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D1100',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1100',
             }).answer).toEqual(correct);
         });
         it(" плотностей D1200", function () {
             var correct = ['B12,5', 'B15', 'B17,5', 'B20'];
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": 'D1200',
+                [NORM.VAR_CONCRETE_DENSITY]: 'D1200',
             }).answer).toEqual(correct);
         });
     });

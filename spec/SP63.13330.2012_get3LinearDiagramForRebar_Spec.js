@@ -29,8 +29,8 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         var test = preciseArrayWith(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
         expect(test).toEqual(correct);
@@ -53,8 +53,8 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         var test = preciseArrayWith(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": NORM.LONG_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
         }).answer, 6);
 
         expect(test).toEqual(correct);
@@ -77,8 +77,8 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         var test = preciseArrayWith(test_function({
             [NORM.VAR_REBAR_CLASS]: 'K1400',
-            "Ysi": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
         expect(test).toEqual(correct);
@@ -101,8 +101,8 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
 
         var test = preciseArrayWith(test_function({
             [NORM.VAR_REBAR_CLASS]: 'K1400',
-            "Ysi": 1.0,
-            "loadType": NORM.LONG_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
         }).answer, 6);
 
         expect(test).toEqual(correct);
@@ -112,20 +112,20 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
     it("должна вернуть NULL, если класс неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: -1,
-            "Ysi": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'AAA',
-            "Ysi": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: null,
-            "Ysi": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
     });
@@ -133,40 +133,40 @@ describe("СП 63.13330.2012 (изм.1) - 3-х линейная диаграмм
     it("должна вернуть NULL, если Ysi неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": -1,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: -1,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 'AAA',
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: 'AAA',
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": null,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ysi]: null,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": -1,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: -1,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": 'AAA',
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: 'AAA',
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": null,
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: null,
         }).answer).toBeNull();
     });
 

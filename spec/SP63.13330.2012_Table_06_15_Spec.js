@@ -15,7 +15,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
         Object.getOwnPropertyNames(values).forEach(function(classname) {
             expect(test_function({
                 [NORM.VAR_REBAR_CLASS]: classname,
-                "Ysi": 1.0,
+                [NORM.VAR_Ysi]: 1.0,
             }).answer).toEqual(values[classname]);
 
         });
@@ -26,7 +26,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
         Object.getOwnPropertyNames(values).forEach(function(classname) {
             expect(test_function({
                 [NORM.VAR_REBAR_CLASS]: classname,
-                "Ysi": 0.5,
+                [NORM.VAR_Ysi]: 0.5,
             }).answer).toEqual(values[classname] * 0.5);
         });
     });
@@ -45,17 +45,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.15", function () {
     it("должна вернуть NULL, если фактор Ysi неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": -1
+            [NORM.VAR_Ysi]: -1
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": null
+            [NORM.VAR_Ysi]: null
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 'AAA'
+            [NORM.VAR_Ysi]: 'AAA'
         }).answer).toBeNull();
     });
 

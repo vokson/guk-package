@@ -30,17 +30,17 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
         types.forEach(function (type) {
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: type,
-                "humidityPercentage": 10
+                [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 10
             }).answer).toEqual(1.0);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: type,
-                "humidityPercentage": 15
+                [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 15
             }).answer).toEqual(0.95);
 
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: type,
-                "humidityPercentage": 25
+                [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 25
             }).answer).toEqual(0.85);
         });
     });
@@ -58,17 +58,17 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
     it("должна вернуть NULL, если влажность бетона неверна", function () {
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-            "humidityPercentage": -1
+            [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: -1
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-            "humidityPercentage": 101
+            [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 101
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-            "humidityPercentage": 'AAA'
+            [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 'AAA'
         }).answer).toBeNull();
 
     });

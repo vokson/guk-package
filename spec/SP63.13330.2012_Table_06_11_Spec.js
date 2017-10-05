@@ -226,13 +226,13 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         var array_Eb = light_Eb;
 
         density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE}).answer.forEach(function (density) {
-            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE, "density": density}).answer.forEach(function (classname) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE, [NORM.VAR_CONCRETE_DENSITY]: density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
 
                     expect(test_function({
                         [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
-                        "density": density
+                        [NORM.VAR_CONCRETE_DENSITY]: density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
             });
@@ -244,12 +244,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         var array_Eb = light_Eb;
 
         density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE}).answer.forEach(function (density) {
-            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE, "density": density}).answer.forEach(function (classname) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE, [NORM.VAR_CONCRETE_DENSITY]: density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
-                        "density": density
+                        [NORM.VAR_CONCRETE_DENSITY]: density
                     }).answer).toBeCloseTo(array_Eb[density][classname] * 1000, 2);
                 }
             });
@@ -263,13 +263,13 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE}).answer.forEach(function (density) {
             class_function({
                 [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
-                "density": density
+                [NORM.VAR_CONCRETE_DENSITY]: density
             }).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
-                        "density": density
+                        [NORM.VAR_CONCRETE_DENSITY]: density
                     }).answer).toEqual(array_Eb[density][classname] * 1000);
                 }
             });
@@ -281,12 +281,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
         var array_Eb = cell_Eb;
 
         density_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE}).answer.forEach(function (density) {
-            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE, "density": density}).answer.forEach(function (classname) {
+            class_function({[NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE, [NORM.VAR_CONCRETE_DENSITY]: density}).answer.forEach(function (classname) {
                 if (array_Eb[density].hasOwnProperty(classname)) {
                     expect(test_function({
                         [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
                         [NORM.VAR_CONCRETE_CLASS]: classname,
-                        "density": density
+                        [NORM.VAR_CONCRETE_DENSITY]: density
                     }).answer).toEqual(array_Eb[density][classname] * 0.8 * 1000);
                 }
             });
@@ -308,7 +308,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.11", function () {
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
-            "density": 'D400'
+            [NORM.VAR_CONCRETE_DENSITY]: 'D400'
         }).answer).toBeNull();
 
     });

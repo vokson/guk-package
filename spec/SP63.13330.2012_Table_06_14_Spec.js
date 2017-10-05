@@ -69,8 +69,8 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.14", function () {
         Object.getOwnPropertyNames(Rs_values).forEach(function (classname) {
             expect(test_function({
                 [NORM.VAR_REBAR_CLASS]: classname,
-                "Ysi": 1.0,
-                "loadType": NORM.SHORT_TERM_LOAD
+                [NORM.VAR_Ysi]: 1.0,
+                [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
             }).answer).toEqual([Rs_values[classname], Rsc_short_term_values[classname]]);
 
         });
@@ -81,8 +81,8 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.14", function () {
         Object.getOwnPropertyNames(Rs_values).forEach(function (classname) {
             expect(test_function({
                 [NORM.VAR_REBAR_CLASS]: classname,
-                "Ysi": 1.0,
-                "loadType": NORM.LONG_TERM_LOAD
+                [NORM.VAR_Ysi]: 1.0,
+                [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD
             }).answer).toEqual([Rs_values[classname], Rsc_long_term_values[classname]]);
 
         });
@@ -91,22 +91,22 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.14", function () {
     it("должна вернуть Rs,n = Rs,ser арматуры при Ysi = 0.5", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 0.5,
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: 0.5,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toEqual([Rs_values['A500'] * 0.5, Rsc_short_term_values['A500'] * 0.5]);
     });
 
     it("должна вернуть NULL, если класс арматуры неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: -1,
-            "Ysi": 1,
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: 1,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'AAA',
-            "Ysi": 1,
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: 1,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toBeNull();
 
     });
@@ -114,40 +114,40 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.14", function () {
     it("должна вернуть NULL, если фактор Ysi неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": -1,
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: -1,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": null,
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: null,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 'AAA',
-            "loadType": NORM.SHORT_TERM_LOAD
+            [NORM.VAR_Ysi]: 'AAA',
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD
         }).answer).toBeNull();
     });
 
     it("должна вернуть NULL, если тип нагрузки неверен", function () {
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": -1
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: -1
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": null
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: null
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_REBAR_CLASS]: 'A500',
-            "Ysi": 1.0,
-            "loadType": 'AAA'
+            [NORM.VAR_Ysi]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: 'AAA'
         }).answer).toBeNull();
 
     });

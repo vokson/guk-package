@@ -12,8 +12,8 @@ describe("СП 63.13330.2012 (изм.1) - Формула 8.7", function () {
             [NORM.VAR_H0]: 45,
             [NORM.VAR_X]: 15,
             [NORM.VAR_a$]: 5,
-            "b1f": 50,
-            "h1f": 7,
+            [NORM.VAR_T_SECTION_FLANGE_WIDTH]: 50,
+            [NORM.VAR_T_SECTION_FLANGE_HEIGHT]: 7,
         };
 
         expect(test_function(input).answer).toBeCloseTo(2036500, 0);

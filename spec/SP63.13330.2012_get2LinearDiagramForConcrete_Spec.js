@@ -24,9 +24,9 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
        var test = preciseArrayWith(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B25',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
 
@@ -48,10 +48,10 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
         let test = preciseArrayWith(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B25',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.LONG_TERM_LOAD,
-            "humidity": NORM.MIDDLE_HUMIDITY
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.LONG_TERM_LOAD,
+            [NORM.VAR_HUMIDITY_GROUP]: NORM.MIDDLE_HUMIDITY
         }).answer, 6);
 
 
@@ -76,9 +76,9 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
         let test = preciseArrayWith(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B80',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer, 6);
 
         // console.log('');
@@ -92,49 +92,49 @@ describe("СП 63.13330.2012 (изм.1) - 2-х линейная диаграмм
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: -1,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: "AAA",
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: 'B15',
-            "Ybi": 1.0,
-            "Ybti": 1.0,
-            "loadType": NORM.SHORT_TERM_LOAD,
+            [NORM.VAR_Ybi]: 1.0,
+            [NORM.VAR_Ybti]: 1.0,
+            [NORM.VAR_LOAD_TYPE]: NORM.SHORT_TERM_LOAD,
         }).answer).toBeNull();
 
     });

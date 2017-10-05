@@ -67,7 +67,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "humidity" : NORM.HIGH_HUMIDITY
+                    [NORM.VAR_HUMIDITY_GROUP] : NORM.HIGH_HUMIDITY
                 }).answer).toEqual(array_humidity[classname]);
             }
         }
@@ -82,7 +82,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "humidity" : NORM.MIDDLE_HUMIDITY
+                    [NORM.VAR_HUMIDITY_GROUP] : NORM.MIDDLE_HUMIDITY
                 }).answer).toEqual(array_humidity[classname]);
             }
         }
@@ -97,7 +97,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "humidity" : NORM.LOW_HUMIDITY
+                    [NORM.VAR_HUMIDITY_GROUP] : NORM.LOW_HUMIDITY
                 }).answer).toEqual(array_humidity[classname]);
 
             }
@@ -107,12 +107,12 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.12", function () {
     it("должна вернуть NULL, если входные данные неверны", function () {
         expect(test_function({
             [NORM.VAR_CONCRETE_CLASS]: 'AAA',
-            "humidity" : NORM.HIGH_HUMIDITY
+            [NORM.VAR_HUMIDITY_GROUP] : NORM.HIGH_HUMIDITY
         }).answer).toBeNull();
 
         expect(test_function({
             [NORM.VAR_CONCRETE_CLASS]: 'B20',
-            "humidity" : -1
+            [NORM.VAR_HUMIDITY_GROUP] : -1
         }).answer).toBeNull();
 
         expect(test_function({

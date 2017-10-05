@@ -9,7 +9,7 @@ describe("СП 63.13330.2012 (изм.1) - Формула 8.12", function () {
             [NORM.VAR_Rb]: 10,
             [NORM.VAR_Rs]: 100,
             [NORM.VAR_Rsc]: 100,
-            "As": 2,
+            [NORM.VAR_As]: 2,
             [NORM.VAR_As$]: 1,
             [NORM.VAR_SECTION_WIDTH]: 15,
         };
@@ -23,7 +23,7 @@ describe("СП 63.13330.2012 (изм.1) - Формула 8.12", function () {
             [NORM.VAR_Rb]: 10,
             [NORM.VAR_Rs]: 100,
             [NORM.VAR_Rsc]: 100,
-            "As": 2,
+            [NORM.VAR_As]: 2,
             [NORM.VAR_As$]: 1,
             [NORM.VAR_SECTION_WIDTH]: 0,
         };

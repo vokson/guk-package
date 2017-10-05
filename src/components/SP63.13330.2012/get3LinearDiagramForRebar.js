@@ -45,7 +45,7 @@ function calculate(obj) {
 
     [Rs, Rsc] = array_Rs_Rsc
 
-    if (LIST_FORMULA_06_11.indexOf(obj.classname) !== -1) {
+    if (LIST_FORMULA_06_11.indexOf(obj[CONST.VAR_REBAR_CLASS]) !== -1) {
         es0 = formula_06_11({
             [CONST.VAR_Rs]: Rs,
             [CONST.VAR_Es]: Es
@@ -56,7 +56,7 @@ function calculate(obj) {
             [CONST.VAR_Es]: Es
         }).answer;
     }
-    if (LIST_FORMULA_06_12.indexOf(obj.classname) !== -1) {
+    if (LIST_FORMULA_06_12.indexOf(obj[CONST.VAR_REBAR_CLASS]) !== -1) {
         es0 = formula_06_12({
             [CONST.VAR_Rs]: Rs,
             [CONST.VAR_Es]: Es

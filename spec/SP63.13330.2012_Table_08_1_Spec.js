@@ -12,7 +12,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
         input.forEach(function (value, i) {
 
             expect(test_function({
-                "L0_h": value,
+                [NORM.VAR_L0_DIVIDE_H]: value,
                 [NORM.VAR_CONCRETE_CLASS]: 'B60',
             }).answer).toBeCloseTo(outputB60[i], 3);
 
@@ -23,7 +23,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
         input.forEach(function (value, i) {
 
             expect(test_function({
-                "L0_h": value,
+                [NORM.VAR_L0_DIVIDE_H]: value,
                 [NORM.VAR_CONCRETE_CLASS]: 'B80',
             }).answer).toBeCloseTo(outputB80[i], 3);
 
@@ -37,7 +37,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
 
             validClasses.forEach(function (classname) {
                 expect(test_function({
-                    "L0_h": value,
+                    [NORM.VAR_L0_DIVIDE_H]: value,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
                 }).answer).toBeCloseTo(outputOther[i], 3);
             });
@@ -51,7 +51,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
 
         invalidClasses.forEach(function (classname) {
             expect(test_function({
-                "L0_h": 5,
+                [NORM.VAR_L0_DIVIDE_H]: 5,
                 [NORM.VAR_CONCRETE_CLASS]: classname,
             }).answer).toBeNull();
         });
@@ -59,13 +59,13 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
 
     it("должна вернуть NULL, если L0/h неверно", function () {
         var input = {
-            "L0_h": -0.1,
+            [NORM.VAR_L0_DIVIDE_H]: -0.1,
             [NORM.VAR_CONCRETE_CLASS]: 'B20',
         };
         expect(test_function(input).answer).toBeNull();
 
         var input = {
-            "L0_h": 20.1,
+            [NORM.VAR_L0_DIVIDE_H]: 20.1,
             [NORM.VAR_CONCRETE_CLASS]: 'B20',
         };
         expect(test_function(input).answer).toBeNull();
@@ -73,7 +73,7 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 8.1", function () {
 
     it("должна вернуть NULL, если loadType неверно", function () {
         var input = {
-            "L0_h": 1,
+            [NORM.VAR_L0_DIVIDE_H]: 1,
             [NORM.VAR_CONCRETE_CLASS]: -1,
         };
         expect(test_function(input).answer).toBeNull();

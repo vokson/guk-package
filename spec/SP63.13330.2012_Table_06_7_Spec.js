@@ -122,41 +122,41 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.PRESTRESSED_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 1.2]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_NOT_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_HEATED_CONCRETE_GROUP_A,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.FINE_GRAIN_AUTOCLAVE_CONCRETE_GROUP_B,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
             }
         }
@@ -184,17 +184,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.LIGHT_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.8]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.POROUS_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname] * 0.7]);
             }
         }
@@ -220,17 +220,17 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
 
                 expect(test_function({
                     [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_AUTOCLAVE_CONCRETE,
                     [NORM.VAR_CONCRETE_CLASS]: classname,
-                    "Ybi": 1.0,
-                    "Ybti": 1.0,
-                    "isReductionFactorToBeApplied": true
+                    [NORM.VAR_Ybi]: 1.0,
+                    [NORM.VAR_Ybti]: 1.0,
+                    [NORM.VAR_IS_REDUCTION_FACTOR_FOR_Rbt_TO_BE_APPLIED]: true
                 }).answer).toEqual([array_Rb[classname], array_Rbt[classname]]);
             }
         }
@@ -245,8 +245,8 @@ describe("СП 63.13330.2012 (изм.1) - Таблица 6.7", function () {
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.HEAVY_CONCRETE,
             [NORM.VAR_CONCRETE_CLASS]: classname,
-            "Ybi": 0.5,
-            "Ybti": 0.25,
+            [NORM.VAR_Ybi]: 0.5,
+            [NORM.VAR_Ybti]: 0.25,
         }).answer).toEqual([array_Rb[classname] * 0.5, array_Rbt[classname] * 0.25]);
     });
 
