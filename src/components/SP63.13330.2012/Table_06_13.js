@@ -33,7 +33,7 @@ let schema = {
     },
     "required": [
         CONST.VAR_Ysi,
-        CONST.VAR_CONCRETE_CLASS
+        CONST.VAR_REBAR_CLASS
     ]
 };
 
