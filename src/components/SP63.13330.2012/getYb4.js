@@ -19,7 +19,7 @@ var schema = {
                 {"const": CONST.CELL_CONCRETE},
             ]
         },
-        [CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: {"type": "number", "minimum": 0, "maximum": 100}
+        // [CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: {"type": "number", "minimum": 0, "maximum": 100}
     },
     "required": [
         CONST.VAR_CONCRETE_TYPE
@@ -41,6 +41,7 @@ function calculate(obj) {
 
     if (
         (obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_CONCRETE || obj[CONST.VAR_CONCRETE_TYPE] === CONST.CELL_AUTOCLAVE_CONCRETE) &&
+         Number.isFinite(obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]) &&
         (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] >= 0 && obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] <= 100)
     ) {
         if (obj[CONST.VAR_CONCRETE_HUMIDITY_IN_PERCENTS] <= 10) {

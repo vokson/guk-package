@@ -18,6 +18,11 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
             expect(test_function({
                 [NORM.VAR_CONCRETE_TYPE]: type
             }).answer).toEqual(1.0);
+
+            expect(test_function({
+                [NORM.VAR_CONCRETE_TYPE]: type,
+                [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 'AAA'
+            }).answer).toEqual(1.0);
         });
     });
 
@@ -69,6 +74,11 @@ describe("СП 63.13330.2012 (изм.1) - п.6.1.12 г)", function () {
         expect(test_function({
             [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
             [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: 'AAA'
+        }).answer).toBeNull();
+
+        expect(test_function({
+            [NORM.VAR_CONCRETE_TYPE]: NORM.CELL_CONCRETE,
+            [NORM.VAR_CONCRETE_HUMIDITY_IN_PERCENTS]: null
         }).answer).toBeNull();
 
     });
